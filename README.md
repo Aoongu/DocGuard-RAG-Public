@@ -185,5 +185,5 @@ PandaWiki 仅作为产品形态参考；本项目未复制其源码。
 ## 复现门禁兼容说明
 
 - M1 固定语料快照覆盖 PostgreSQL 17.11 与 PostgreSQL 18.6，共 773 个页面；可运行 `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verify_m1.ps1` 进行校验。只有显式传入 `--download-missing` 时才允许补齐缺失的官方归档。
-- S3 起进入冻结模型与 Dense Retrieval 阶段；各阶段验证脚本按 S0—S12 顺序保留，用于核对实验来源而不是展示学历、求职或学习过程。
+- S3 起进入冻结模型与 Dense Retrieval 阶段；各阶段验证脚本按 S0—S12 顺序保留，用于核对实验来源、实验边界与制品一致性。
 - S7 结构化生成与引用（已完成）。Mock 仅验证工程契约，不代表真实模型质量；兼容配置读取 `OPENAI_API_KEY`，DeepSeek 配置读取 `DEEPSEEK_API_KEY`，真实密钥不得提交。Test 在 S12 前由代码锁定，正式 Test 只执行一次。
