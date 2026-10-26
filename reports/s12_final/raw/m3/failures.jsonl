@@ -1,0 +1,9 @@
+{"error_message":"generation output contains unknown fields: ['type']","error_type":"CitationValidationFailure","question_id":"s4-test-016"}
+{"error_message":"generation response status must be completed","error_type":"FinalPipelineError","question_id":"s4-test-021"}
+{"error_message":"verified answer requires at least one citation","error_type":"CitationValidationFailure","question_id":"s4-test-031"}
+{"error_message":"verified answer requires at least one citation","error_type":"CitationValidationFailure","question_id":"s4-test-032"}
+{"error_message":"verified answer requires at least one citation","error_type":"CitationValidationFailure","question_id":"s4-test-033"}
+{"error_message":"verified answer requires at least one citation","error_type":"CitationValidationFailure","question_id":"s4-test-034"}
+{"error_message":"verified answer requires at least one citation","error_type":"CitationValidationFailure","question_id":"s4-test-035"}
+{"error_message":"verified answer requires at least one citation","error_type":"CitationValidationFailure","question_id":"s4-test-036"}
+{"error_message":"verified answer requires at least one citation","error_type":"CitationValidationFailure","question_id":"s4-test-039"}

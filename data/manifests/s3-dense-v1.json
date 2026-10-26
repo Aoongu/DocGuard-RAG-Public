@@ -1,0 +1,19 @@
+{
+  "chunks_sha256": "6aad4667593d6519657cd1823b713983e09ed9f819e48246e0db9c18f0694964",
+  "collection_name": "docguard_postgresql_s2_chunk_v1_e5_small",
+  "config_sha256": "3e61d9b09969f6dc68244c128ef242b158f328f4de1dd8f4dde521625d7776c8",
+  "distance": "Cosine",
+  "index_version": "s3-dense-v1",
+  "model_manifest_sha256": "d0555d0fe012218f441700b9a47ad6d5d2727606918ecaf2451df1e7a68e4418",
+  "model_name": "intfloat/multilingual-e5-small",
+  "model_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "point_count": 7413,
+  "s2_manifest_sha256": "0559ee4d75d6079fc2859f8e09910570c4f37f631511f0a9f4348ae7023911d2",
+  "schema_version": 1,
+  "vector_name": "dense",
+  "vector_size": 384,
+  "version_counts": {
+    "17.11": 3670,
+    "18.6": 3743
+  }
+}

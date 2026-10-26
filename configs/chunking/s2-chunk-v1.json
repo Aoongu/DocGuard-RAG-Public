@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "chunking_version": "s2-chunk-v1",
+  "max_chunk_tokens": 384,
+  "overlap_tokens": 48,
+  "min_chunk_tokens": 64,
+  "query_budget": 96,
+  "special_tokens_budget": 4,
+  "safety_margin": 28,
+  "html_normalization_version": "postgresql-html-v1",
+  "id_rule_version": "sha256-nul-v1",
+  "embedding": {
+    "name": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "max_length": 512
+  },
+  "reranker": {
+    "name": "BAAI/bge-reranker-base",
+    "revision": "2cfc18c9415c912f9d8155881c133215df768a70",
+    "max_length": 512
+  }
+}

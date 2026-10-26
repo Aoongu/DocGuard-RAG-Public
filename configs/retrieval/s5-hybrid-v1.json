@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "retrieval_version": "s5-hybrid-v1",
+  "tokenizer_version": "s5-tech-tokenizer-v1",
+  "bm25_enabled": true,
+  "dense_enabled": true,
+  "bm25": {
+    "k1": 1.2,
+    "b": 0.75
+  },
+  "rrf": {
+    "k_candidates": [20, 60],
+    "dense_depth_candidates": [20, 50],
+    "bm25_depth_candidates": [20, 50],
+    "selection_metrics": ["ndcg_at_10", "mrr_at_10", "recall_at_10", "recall_at_5"]
+  },
+  "chunking_version": "s2-chunk-v1",
+  "chunks_sha256": "6aad4667593d6519657cd1823b713983e09ed9f819e48246e0db9c18f0694964"
+}

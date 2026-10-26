@@ -1,0 +1,249 @@
+{
+  "baselines": {
+    "b1_run_id": "s5-validation-b1-v1",
+    "m1_run_id": "s5-validation-m1-k20_d50_b20-v1"
+  },
+  "candidate_depths": [
+    10,
+    20,
+    50
+  ],
+  "candidates": {
+    "10": {
+      "operations": {
+        "failed_count": 0,
+        "latency_ms": {
+          "end_to_end": {
+            "p50": 3528.306549997069,
+            "p95": 4148.1298500148105
+          },
+          "reranking": {
+            "p50": 2834.4567000167444,
+            "p95": 3496.035699979984
+          },
+          "retrieval": {
+            "p50": 625.6441999867093,
+            "p95": 875.5640750372546
+          }
+        },
+        "success_count": 60,
+        "usage": {
+          "api_cost_usd": 0.0,
+          "input_tokens": 0,
+          "output_tokens": 0
+        }
+      },
+      "retrieval": {
+        "evaluated_answerable_count": 30,
+        "mrr_at_10": 0.6666666666666666,
+        "ndcg_at_10": 0.5580928551168037,
+        "recall_at_1": 0.6,
+        "recall_at_10": 0.7666666666666667,
+        "recall_at_5": 0.7666666666666667
+      },
+      "run_id": "s6-validation-m2-d10"
+    },
+    "20": {
+      "operations": {
+        "failed_count": 0,
+        "latency_ms": {
+          "end_to_end": {
+            "p50": 6346.226350025972,
+            "p95": 6981.340734986588
+          },
+          "reranking": {
+            "p50": 5736.390100006247,
+            "p95": 6321.116930022254
+          },
+          "retrieval": {
+            "p50": 575.6981500016991,
+            "p95": 881.6235349775523
+          }
+        },
+        "success_count": 60,
+        "usage": {
+          "api_cost_usd": 0.0,
+          "input_tokens": 0,
+          "output_tokens": 0
+        }
+      },
+      "retrieval": {
+        "evaluated_answerable_count": 30,
+        "mrr_at_10": 0.6558730158730159,
+        "ndcg_at_10": 0.5840013792883259,
+        "recall_at_1": 0.5666666666666667,
+        "recall_at_10": 0.8333333333333334,
+        "recall_at_5": 0.8
+      },
+      "run_id": "s6-validation-m2-d20"
+    },
+    "50": {
+      "operations": {
+        "failed_count": 0,
+        "latency_ms": {
+          "end_to_end": {
+            "p50": 15184.991300018737,
+            "p95": 17496.45815002441
+          },
+          "reranking": {
+            "p50": 14605.251499975566,
+            "p95": 16828.84179497196
+          },
+          "retrieval": {
+            "p50": 605.9197499998845,
+            "p95": 886.8244299985232
+          }
+        },
+        "success_count": 60,
+        "usage": {
+          "api_cost_usd": 0.0,
+          "input_tokens": 0,
+          "output_tokens": 0
+        }
+      },
+      "retrieval": {
+        "evaluated_answerable_count": 30,
+        "mrr_at_10": 0.6788888888888889,
+        "ndcg_at_10": 0.6053231487291698,
+        "recall_at_1": 0.6,
+        "recall_at_10": 0.8333333333333334,
+        "recall_at_5": 0.8333333333333334
+      },
+      "run_id": "s6-validation-m2-d50"
+    }
+  },
+  "chunks_sha256": "6aad4667593d6519657cd1823b713983e09ed9f819e48246e0db9c18f0694964",
+  "comparisons": {
+    "m2_minus_b1": {
+      "mrr_at_10": {
+        "ci_lower": 0.050232142857142906,
+        "ci_upper": 0.38968253968253974,
+        "confidence_level": 0.95,
+        "mean_difference": 0.22134920634920635,
+        "paired_question_count": 30,
+        "samples": 10000,
+        "seed": 20261014
+      },
+      "ndcg_at_10": {
+        "ci_lower": 0.0943827852837755,
+        "ci_upper": 0.3618531843558536,
+        "confidence_level": 0.95,
+        "mean_difference": 0.22798047847545314,
+        "paired_question_count": 30,
+        "samples": 10000,
+        "seed": 20261014
+      },
+      "recall_at_10": {
+        "ci_lower": 0.0,
+        "ci_upper": 0.3,
+        "confidence_level": 0.95,
+        "mean_difference": 0.13333333333333333,
+        "paired_question_count": 30,
+        "samples": 10000,
+        "seed": 20261014
+      },
+      "recall_at_5": {
+        "ci_lower": 0.06666666666666667,
+        "ci_upper": 0.3333333333333333,
+        "confidence_level": 0.95,
+        "mean_difference": 0.2,
+        "paired_question_count": 30,
+        "samples": 10000,
+        "seed": 20261014
+      }
+    },
+    "m2_minus_m1": {
+      "mrr_at_10": {
+        "ci_lower": 0.09444246031746034,
+        "ci_upper": 0.33877480158730144,
+        "confidence_level": 0.95,
+        "mean_difference": 0.21130952380952384,
+        "paired_question_count": 30,
+        "samples": 10000,
+        "seed": 20261014
+      },
+      "ndcg_at_10": {
+        "ci_lower": 0.0726821696282055,
+        "ci_upper": 0.2225691037235771,
+        "confidence_level": 0.95,
+        "mean_difference": 0.1462225449805522,
+        "paired_question_count": 30,
+        "samples": 10000,
+        "seed": 20261014
+      },
+      "recall_at_10": {
+        "ci_lower": 0.0,
+        "ci_upper": 0.16666666666666666,
+        "confidence_level": 0.95,
+        "mean_difference": 0.06666666666666667,
+        "paired_question_count": 30,
+        "samples": 10000,
+        "seed": 20261014
+      },
+      "recall_at_5": {
+        "ci_lower": 0.03333333333333333,
+        "ci_upper": 0.3,
+        "confidence_level": 0.95,
+        "mean_difference": 0.16666666666666666,
+        "paired_question_count": 30,
+        "samples": 10000,
+        "seed": 20261014
+      }
+    }
+  },
+  "dataset_sha256": "38d11619b89c6c70eb9889d6882b07953599dcc49445e52d3cb458cb338377ea",
+  "dataset_version": "s4-golden-v1",
+  "reranker_identity": [
+    "58f6be34cc40198dfc63eb503605bc2372205f9fbf80157ee2e063e424b3838a",
+    "a32c1fc79c0da13b8f09b68bc28a79bb444727e5f9dcbcff80bab720ae764b62",
+    "9eb652ac4e40cc093272bbbe0f55d521cf67570060227109b5cdc20945a4489e",
+    "BAAI/bge-reranker-base",
+    "2cfc18c9415c912f9d8155881c133215df768a70",
+    512
+  ],
+  "schema_version": 1,
+  "selected": {
+    "operations": {
+      "failed_count": 0,
+      "latency_ms": {
+        "end_to_end": {
+          "p50": 15184.991300018737,
+          "p95": 17496.45815002441
+        },
+        "reranking": {
+          "p50": 14605.251499975566,
+          "p95": 16828.84179497196
+        },
+        "retrieval": {
+          "p50": 605.9197499998845,
+          "p95": 886.8244299985232
+        }
+      },
+      "success_count": 60,
+      "usage": {
+        "api_cost_usd": 0.0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      }
+    },
+    "parameters": {
+      "rerank_depth": 50
+    },
+    "retrieval": {
+      "evaluated_answerable_count": 30,
+      "mrr_at_10": 0.6788888888888889,
+      "ndcg_at_10": 0.6053231487291698,
+      "recall_at_1": 0.6,
+      "recall_at_10": 0.8333333333333334,
+      "recall_at_5": 0.8333333333333334
+    },
+    "run_id": "s6-validation-m2-d50"
+  },
+  "selection_metrics": [
+    "ndcg_at_10",
+    "mrr_at_10",
+    "recall_at_10",
+    "recall_at_5"
+  ],
+  "selection_split": "validation"
+}

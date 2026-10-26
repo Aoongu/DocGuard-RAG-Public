@@ -1,0 +1,6 @@
+upstream_url=https://github.com/deepsense-ai/ragbits
+upstream_commit=32074a71324239ba677234a67737ed65fb678eeb
+upstream_license=MIT
+original_historical_reproduction_commit=fc411730eb6bb95eaae02fcc7be5c5be34cceac0
+reproduction_snapshot_tree=99ec16c9efd9fb85e950a1a9b0f71b004eb736e5
+reproduction_commit=d8ba5d3f00594e0900b7c5c2217935ba0efa2b06

@@ -1,0 +1,2 @@
+{"error_message":"generation output contains unknown fields: ['requested_version']","error_type":"CitationValidationFailure","question_id":"s4-test-003"}
+{"error_message":"verified answer requires at least one citation","error_type":"CitationValidationFailure","question_id":"s4-test-034"}

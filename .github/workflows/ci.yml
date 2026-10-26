@@ -1,0 +1,125 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deterministic-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.11.13"
+          enable-cache: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install frozen Python dependencies
+        run: uv sync --frozen --group dev
+      - name: Python tests
+        run: uv run pytest -q
+      - name: Python format and lint
+        run: uv run ruff check src tests
+      - name: Frozen fixture regression
+        run: >-
+          uv run python -m docguard.engineering.regression
+          --fixture data/eval/s11-regression-v1.json
+          --config configs/engineering/s11-engineering-v1.json
+      - name: Preserve Test lock
+        run: >-
+          uv run python -c "import json;
+          assert json.load(open('data/eval/s4-golden-v1/manifest.json', encoding='utf-8'))['test_execution_status'] == 'locked_until_s12'"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Frontend gate
+        working-directory: frontend
+        run: |
+          npm ci
+          npm test -- --run
+          npm run typecheck
+          npm run build
+      - name: Compose validation and image build
+        run: |
+          docker compose config --quiet
+          docker compose build api frontend
+
+  qdrant-parity:
+    runs-on: ubuntu-latest
+    services:
+      qdrant:
+        image: qdrant/qdrant:v1.15.5
+        ports:
+          - 6333:6333
+        options: >-
+          --health-cmd "bash -c '</dev/tcp/127.0.0.1/6333'"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      S11_QDRANT_URL: http://127.0.0.1:6333
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.11.13"
+          enable-cache: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: uv sync --frozen --group dev
+      - name: Local/service Top-K parity and persistence
+        run: uv run pytest -q tests/integration/test_s11_qdrant_parity.py
+
+  compose-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Start minimal three-service demo
+        run: |
+          set -euo pipefail
+          trap 'docker compose down --volumes' EXIT
+          docker compose build api frontend
+          docker compose up -d qdrant api
+          for attempt in $(seq 1 30); do
+            api_id=$(docker compose ps -q api)
+            status=$(docker inspect --format='{{.State.Health.Status}}' "$api_id")
+            if [ "$status" = healthy ]; then break; fi
+            if [ "$status" = unhealthy ] || [ "$attempt" -eq 30 ]; then
+              docker compose logs api
+              exit 1
+            fi
+            sleep 2
+          done
+          docker compose up -d frontend
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8080/ >/dev/null; then break; fi
+            if [ "$attempt" -eq 30 ]; then docker compose logs; exit 1; fi
+            sleep 2
+          done
+          curl --fail --silent --show-error -X PUT \
+            http://127.0.0.1:6333/collections/s11_ci_persistence \
+            -H 'Content-Type: application/json' \
+            --data '{"vectors":{"size":1,"distance":"Cosine"}}'
+          curl --fail --silent --show-error -X PUT \
+            'http://127.0.0.1:6333/collections/s11_ci_persistence/points?wait=true' \
+            -H 'Content-Type: application/json' \
+            --data '{"points":[{"id":1,"vector":[1.0]}]}'
+          docker compose down
+          docker compose up -d qdrant
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:6333/readyz >/dev/null; then break; fi
+            if [ "$attempt" -eq 30 ]; then docker compose logs qdrant; exit 1; fi
+            sleep 2
+          done
+          curl --fail --silent --show-error \
+            http://127.0.0.1:6333/collections/s11_ci_persistence/points/1 \
+            | grep --fixed-strings '"status":"ok"'

@@ -1,0 +1,69 @@
+"""
+Hooks system for lifecycle events.
+
+This module provides a comprehensive hook system that allows users to register
+custom logic at various points in the execution lifecycle.
+
+Available event types:
+- PRE_TOOL: Before a tool is invoked
+- POST_TOOL: After a tool completes
+- PRE_RUN: Before the agent run starts
+- POST_RUN: After the agent run completes
+- ON_EVENT: For each streaming event during run_streaming
+
+Example usage:
+
+    from ragbits.agents.hooks import EventType, Hook
+    from ragbits.core.llms.base import ToolCall
+
+    # Create a pre-tool hook callback
+    async def validate_input(tool_call: ToolCall) -> ToolCall:
+        if tool_call.name == "dangerous_tool":
+            return tool_call.model_copy(update={
+                "decision": "deny",
+                "reason": "This tool is not allowed",
+            })
+        return tool_call
+
+    # Create hook instance
+    hook = Hook(
+        event_type=EventType.PRE_TOOL,
+        callback=validate_input,
+        tool_names=["dangerous_tool"],
+        priority=10
+    )
+
+    # Register hooks with agent
+    agent = Agent(
+        ...,
+        hooks=[hook]
+    )
+"""
+
+from ragbits.agents.hooks.base import Hook
+from ragbits.agents.hooks.confirmation import create_confirmation_hook
+from ragbits.agents.hooks.manager import HookManager
+from ragbits.agents.hooks.types import (
+    EventType,
+    HookCallback,
+    OnEventCallback,
+    PostRunCallback,
+    PostToolCallback,
+    PreRunCallback,
+    PreToolCallback,
+    StreamingEvent,
+)
+
+__all__ = [
+    "EventType",
+    "Hook",
+    "HookCallback",
+    "HookManager",
+    "OnEventCallback",
+    "PostRunCallback",
+    "PostToolCallback",
+    "PreRunCallback",
+    "PreToolCallback",
+    "StreamingEvent",
+    "create_confirmation_hook",
+]

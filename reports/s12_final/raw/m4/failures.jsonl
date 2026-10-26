@@ -1,0 +1,2 @@
+{"error_message":"generation response status must be completed","error_type":"FinalPipelineError","question_id":"s4-test-021"}
+{"error_message":"verified answer requires at least one citation","error_type":"CitationValidationFailure","question_id":"s4-test-034"}

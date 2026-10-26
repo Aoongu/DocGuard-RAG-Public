@@ -1,0 +1,238 @@
+[
+  {
+    "schema_version": 1,
+    "version": "17.11",
+    "major_version": "17",
+    "url": "https://ftp.postgresql.org/pub/source/v17.11/postgresql-17.11-docs.tar.gz",
+    "archive_path": "data/archives/postgresql-17.11-docs.tar.gz",
+    "size_bytes": 3843559,
+    "sha256": "cd1dbddebbd34ab038f6225a3f66411d1ed6e16b0e7f4b8cfa6f45e99642fa77",
+    "retrieved_at": "2026-10-11T16:36:16Z",
+    "license_name": "PostgreSQL",
+    "license_url": "https://www.postgresql.org/about/licence/",
+    "copyright": "PostgreSQL Global Development Group",
+    "allowed_topics": [
+      "auth_privileges",
+      "backup_restore",
+      "performance_tuning",
+      "installation_configuration",
+      "sql_language",
+      "sql_commands"
+    ],
+    "selection_rules": [
+      {
+        "topic": "auth_privileges",
+        "patterns": [
+          "client-authentication*.html",
+          "auth-*.html",
+          "user-manag.html",
+          "database-roles.html",
+          "role-*.html",
+          "ddl-priv.html",
+          "ddl-rowsecurity.html",
+          "sql-grant.html",
+          "sql-revoke.html",
+          "sql-createuser.html",
+          "sql-alteruser.html",
+          "sql-dropuser.html",
+          "sql-createrole.html",
+          "sql-alterrole.html",
+          "sql-droprole.html",
+          "sql-creategroup.html",
+          "sql-altergroup.html",
+          "sql-dropgroup.html",
+          "sql-createpolicy.html",
+          "sql-alterpolicy.html",
+          "sql-droppolicy.html",
+          "sql-reassign-owned.html",
+          "sql-drop-owned.html"
+        ]
+      },
+      {
+        "topic": "backup_restore",
+        "patterns": [
+          "backup*.html",
+          "continuous-archiving.html",
+          "app-pgdump.html",
+          "app-pg-dumpall.html",
+          "app-pgrestore.html",
+          "app-pgbasebackup.html",
+          "app-pgverifybackup.html",
+          "app-pgcombinebackup.html",
+          "app-pgreceivewal.html"
+        ]
+      },
+      {
+        "topic": "performance_tuning",
+        "patterns": [
+          "performance-tips*.html",
+          "using-explain*.html",
+          "planner-*.html",
+          "runtime-config-query.html",
+          "runtime-config-resource.html",
+          "runtime-config-statistics.html",
+          "monitoring*.html",
+          "indexes*.html",
+          "parallel-query*.html",
+          "pgstatstatements*.html",
+          "auto-explain*.html"
+        ]
+      },
+      {
+        "topic": "installation_configuration",
+        "patterns": [
+          "install-*.html",
+          "installation*.html",
+          "runtime.html",
+          "runtime-config*.html",
+          "config-setting.html",
+          "server-start.html",
+          "server-shutdown.html",
+          "kernel-resources.html",
+          "creating-cluster*.html",
+          "app-initdb.html",
+          "app-pg-ctl.html",
+          "app-pgconfig.html"
+        ]
+      },
+      {
+        "topic": "sql_language",
+        "patterns": [
+          "sql-syntax*.html",
+          "ddl-*.html",
+          "dml-*.html",
+          "queries*.html",
+          "datatype*.html",
+          "functions*.html",
+          "typeconv*.html",
+          "textsearch*.html",
+          "mvcc*.html"
+        ]
+      },
+      {
+        "topic": "sql_commands",
+        "patterns": [
+          "sql-*.html"
+        ]
+      }
+    ]
+  },
+  {
+    "schema_version": 1,
+    "version": "18.6",
+    "major_version": "18",
+    "url": "https://ftp.postgresql.org/pub/source/v18.6/postgresql-18.6-docs.tar.gz",
+    "archive_path": "data/archives/postgresql-18.6-docs.tar.gz",
+    "size_bytes": 3906887,
+    "sha256": "0419dec0d3b7ca55a80c0519a1dd88a8d172019ef9841288889f0281ea1f97ed",
+    "retrieved_at": "2026-10-11T16:36:42Z",
+    "license_name": "PostgreSQL",
+    "license_url": "https://www.postgresql.org/about/licence/",
+    "copyright": "PostgreSQL Global Development Group",
+    "allowed_topics": [
+      "auth_privileges",
+      "backup_restore",
+      "performance_tuning",
+      "installation_configuration",
+      "sql_language",
+      "sql_commands"
+    ],
+    "selection_rules": [
+      {
+        "topic": "auth_privileges",
+        "patterns": [
+          "client-authentication*.html",
+          "auth-*.html",
+          "user-manag.html",
+          "database-roles.html",
+          "role-*.html",
+          "ddl-priv.html",
+          "ddl-rowsecurity.html",
+          "sql-grant.html",
+          "sql-revoke.html",
+          "sql-createuser.html",
+          "sql-alteruser.html",
+          "sql-dropuser.html",
+          "sql-createrole.html",
+          "sql-alterrole.html",
+          "sql-droprole.html",
+          "sql-creategroup.html",
+          "sql-altergroup.html",
+          "sql-dropgroup.html",
+          "sql-createpolicy.html",
+          "sql-alterpolicy.html",
+          "sql-droppolicy.html",
+          "sql-reassign-owned.html",
+          "sql-drop-owned.html"
+        ]
+      },
+      {
+        "topic": "backup_restore",
+        "patterns": [
+          "backup*.html",
+          "continuous-archiving.html",
+          "app-pgdump.html",
+          "app-pg-dumpall.html",
+          "app-pgrestore.html",
+          "app-pgbasebackup.html",
+          "app-pgverifybackup.html",
+          "app-pgcombinebackup.html",
+          "app-pgreceivewal.html"
+        ]
+      },
+      {
+        "topic": "performance_tuning",
+        "patterns": [
+          "performance-tips*.html",
+          "using-explain*.html",
+          "planner-*.html",
+          "runtime-config-query.html",
+          "runtime-config-resource.html",
+          "runtime-config-statistics.html",
+          "monitoring*.html",
+          "indexes*.html",
+          "parallel-query*.html",
+          "pgstatstatements*.html",
+          "auto-explain*.html"
+        ]
+      },
+      {
+        "topic": "installation_configuration",
+        "patterns": [
+          "install-*.html",
+          "installation*.html",
+          "runtime.html",
+          "runtime-config*.html",
+          "config-setting.html",
+          "server-start.html",
+          "server-shutdown.html",
+          "kernel-resources.html",
+          "creating-cluster*.html",
+          "app-initdb.html",
+          "app-pg-ctl.html",
+          "app-pgconfig.html"
+        ]
+      },
+      {
+        "topic": "sql_language",
+        "patterns": [
+          "sql-syntax*.html",
+          "ddl-*.html",
+          "dml-*.html",
+          "queries*.html",
+          "datatype*.html",
+          "functions*.html",
+          "typeconv*.html",
+          "textsearch*.html",
+          "mvcc*.html"
+        ]
+      },
+      {
+        "topic": "sql_commands",
+        "patterns": [
+          "sql-*.html"
+        ]
+      }
+    ]
+  }
+]

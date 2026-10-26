@@ -1,0 +1,10 @@
+{"schema_version":1,"query_id":"s3q01","query":"How do I create a table with a primary key?","version":null,"top_k":5}
+{"schema_version":1,"query_id":"s3q02","query":"What is multiversion concurrency control (MVCC)?","version":null,"top_k":5}
+{"schema_version":1,"query_id":"s3q03","query":"How does VACUUM reclaim storage?","version":"17.11","top_k":5}
+{"schema_version":1,"query_id":"s3q04","query":"How can I create and use a B-tree index?","version":"17.11","top_k":5}
+{"schema_version":1,"query_id":"s3q05","query":"What isolation levels are available for transactions?","version":"17.11","top_k":5}
+{"schema_version":1,"query_id":"s3q06","query":"How do I configure streaming replication?","version":"18.6","top_k":5}
+{"schema_version":1,"query_id":"s3q07","query":"What does EXPLAIN ANALYZE show?","version":"18.6","top_k":5}
+{"schema_version":1,"query_id":"s3q08","query":"How do row-level security policies work?","version":"18.6","top_k":5}
+{"schema_version":1,"query_id":"s3q09","query":"How are JSONB values indexed and queried?","version":null,"top_k":5}
+{"schema_version":1,"query_id":"s3q10","query":"How should database roles and privileges be managed?","version":null,"top_k":5}

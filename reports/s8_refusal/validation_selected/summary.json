@@ -1,0 +1,416 @@
+{
+  "interpretation_limit": "Validation selected these thresholds; this is not an unseen-Test generalization result.",
+  "metrics": {
+    "answerable_coverage": 0.6,
+    "confusion_matrix": {
+      "answer": {
+        "answer": 18,
+        "clarify": 6,
+        "error": 0,
+        "refuse": 6
+      },
+      "clarify": {
+        "answer": 1,
+        "clarify": 0,
+        "error": 0,
+        "refuse": 6
+      },
+      "error": {
+        "answer": 0,
+        "clarify": 0,
+        "error": 0,
+        "refuse": 0
+      },
+      "refuse": {
+        "answer": 0,
+        "clarify": 1,
+        "error": 0,
+        "refuse": 22
+      }
+    },
+    "false_accept_count": 1,
+    "false_reject_count": 12,
+    "macro_f1": 0.376655925528106,
+    "n": 60,
+    "refusal_f1": 0.8169014084507042,
+    "refusal_precision": 0.7073170731707317,
+    "refusal_recall": 0.9666666666666667,
+    "risk_coverage": [
+      {
+        "accepted": 1,
+        "coverage": 0.016666666666666666,
+        "max_refusal_score": 0.0,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 2,
+        "coverage": 0.03333333333333333,
+        "max_refusal_score": 0.25000055083550154,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 3,
+        "coverage": 0.05,
+        "max_refusal_score": 0.2500107499136772,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 4,
+        "coverage": 0.06666666666666667,
+        "max_refusal_score": 0.25002843510463635,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 5,
+        "coverage": 0.08333333333333333,
+        "max_refusal_score": 0.25009501141734725,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 6,
+        "coverage": 0.1,
+        "max_refusal_score": 0.25020540997391716,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 7,
+        "coverage": 0.11666666666666667,
+        "max_refusal_score": 0.2502650231448509,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 8,
+        "coverage": 0.13333333333333333,
+        "max_refusal_score": 0.2503116381655921,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 9,
+        "coverage": 0.15,
+        "max_refusal_score": 0.25041158811916364,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 10,
+        "coverage": 0.16666666666666666,
+        "max_refusal_score": 0.25165349790882297,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 11,
+        "coverage": 0.18333333333333332,
+        "max_refusal_score": 0.25264209395445825,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 12,
+        "coverage": 0.2,
+        "max_refusal_score": 0.26848300059740615,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 13,
+        "coverage": 0.21666666666666667,
+        "max_refusal_score": 0.27511224214340413,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 14,
+        "coverage": 0.23333333333333334,
+        "max_refusal_score": 0.31615913859073297,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 15,
+        "coverage": 0.25,
+        "max_refusal_score": 0.41245366030314146,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 16,
+        "coverage": 0.26666666666666666,
+        "max_refusal_score": 0.4416304291642047,
+        "selective_risk": 0.0
+      },
+      {
+        "accepted": 17,
+        "coverage": 0.2833333333333333,
+        "max_refusal_score": 0.44431978344160095,
+        "selective_risk": 0.058823529411764705
+      },
+      {
+        "accepted": 18,
+        "coverage": 0.3,
+        "max_refusal_score": 0.4933555615820787,
+        "selective_risk": 0.05555555555555555
+      },
+      {
+        "accepted": 19,
+        "coverage": 0.31666666666666665,
+        "max_refusal_score": 0.5,
+        "selective_risk": 0.05263157894736842
+      },
+      {
+        "accepted": 20,
+        "coverage": 0.3333333333333333,
+        "max_refusal_score": 0.5207852416084,
+        "selective_risk": 0.1
+      },
+      {
+        "accepted": 21,
+        "coverage": 0.35,
+        "max_refusal_score": 0.5310882504428991,
+        "selective_risk": 0.14285714285714285
+      },
+      {
+        "accepted": 22,
+        "coverage": 0.36666666666666664,
+        "max_refusal_score": 0.5310882504428991,
+        "selective_risk": 0.18181818181818182
+      },
+      {
+        "accepted": 23,
+        "coverage": 0.38333333333333336,
+        "max_refusal_score": 0.5574820407699363,
+        "selective_risk": 0.21739130434782608
+      },
+      {
+        "accepted": 24,
+        "coverage": 0.4,
+        "max_refusal_score": 0.5590269090126347,
+        "selective_risk": 0.25
+      },
+      {
+        "accepted": 25,
+        "coverage": 0.4166666666666667,
+        "max_refusal_score": 0.5612296656009272,
+        "selective_risk": 0.24
+      },
+      {
+        "accepted": 26,
+        "coverage": 0.43333333333333335,
+        "max_refusal_score": 0.5612296656009272,
+        "selective_risk": 0.2692307692307692
+      },
+      {
+        "accepted": 27,
+        "coverage": 0.45,
+        "max_refusal_score": 0.5776995178856327,
+        "selective_risk": 0.2962962962962963
+      },
+      {
+        "accepted": 28,
+        "coverage": 0.4666666666666667,
+        "max_refusal_score": 0.5818144097601028,
+        "selective_risk": 0.32142857142857145
+      },
+      {
+        "accepted": 29,
+        "coverage": 0.48333333333333334,
+        "max_refusal_score": 0.5936242561809235,
+        "selective_risk": 0.3448275862068966
+      },
+      {
+        "accepted": 30,
+        "coverage": 0.5,
+        "max_refusal_score": 0.5985296419827036,
+        "selective_risk": 0.36666666666666664
+      },
+      {
+        "accepted": 31,
+        "coverage": 0.5166666666666667,
+        "max_refusal_score": 0.6155292893150024,
+        "selective_risk": 0.3548387096774194
+      },
+      {
+        "accepted": 32,
+        "coverage": 0.5333333333333333,
+        "max_refusal_score": 0.6155292893150024,
+        "selective_risk": 0.34375
+      },
+      {
+        "accepted": 33,
+        "coverage": 0.55,
+        "max_refusal_score": 0.6155292893150024,
+        "selective_risk": 0.3333333333333333
+      },
+      {
+        "accepted": 34,
+        "coverage": 0.5666666666666667,
+        "max_refusal_score": 0.6155292893150024,
+        "selective_risk": 0.3235294117647059
+      },
+      {
+        "accepted": 35,
+        "coverage": 0.5833333333333334,
+        "max_refusal_score": 0.6155292893150024,
+        "selective_risk": 0.34285714285714286
+      },
+      {
+        "accepted": 36,
+        "coverage": 0.6,
+        "max_refusal_score": 0.6155292893150024,
+        "selective_risk": 0.3611111111111111
+      },
+      {
+        "accepted": 37,
+        "coverage": 0.6166666666666667,
+        "max_refusal_score": 0.6155292893150024,
+        "selective_risk": 0.3783783783783784
+      },
+      {
+        "accepted": 38,
+        "coverage": 0.6333333333333333,
+        "max_refusal_score": 0.6155292893150024,
+        "selective_risk": 0.39473684210526316
+      },
+      {
+        "accepted": 39,
+        "coverage": 0.65,
+        "max_refusal_score": 0.6155292893150024,
+        "selective_risk": 0.41025641025641024
+      },
+      {
+        "accepted": 40,
+        "coverage": 0.6666666666666666,
+        "max_refusal_score": 0.6155292893150024,
+        "selective_risk": 0.425
+      },
+      {
+        "accepted": 41,
+        "coverage": 0.6833333333333333,
+        "max_refusal_score": 0.6155292893150024,
+        "selective_risk": 0.43902439024390244
+      },
+      {
+        "accepted": 42,
+        "coverage": 0.7,
+        "max_refusal_score": 0.6155292893150024,
+        "selective_risk": 0.4523809523809524
+      },
+      {
+        "accepted": 43,
+        "coverage": 0.7166666666666667,
+        "max_refusal_score": 0.6155292893150024,
+        "selective_risk": 0.46511627906976744
+      },
+      {
+        "accepted": 44,
+        "coverage": 0.7333333333333333,
+        "max_refusal_score": 0.6155292893150024,
+        "selective_risk": 0.4772727272727273
+      },
+      {
+        "accepted": 45,
+        "coverage": 0.75,
+        "max_refusal_score": 0.6587872380968218,
+        "selective_risk": 0.4666666666666667
+      },
+      {
+        "accepted": 46,
+        "coverage": 0.7666666666666667,
+        "max_refusal_score": 0.6587872380968218,
+        "selective_risk": 0.4782608695652174
+      },
+      {
+        "accepted": 47,
+        "coverage": 0.7833333333333333,
+        "max_refusal_score": 0.6587872380968218,
+        "selective_risk": 0.48936170212765956
+      },
+      {
+        "accepted": 48,
+        "coverage": 0.8,
+        "max_refusal_score": 1.0,
+        "selective_risk": 0.4791666666666667
+      },
+      {
+        "accepted": 49,
+        "coverage": 0.8166666666666667,
+        "max_refusal_score": 1.0,
+        "selective_risk": 0.46938775510204084
+      },
+      {
+        "accepted": 50,
+        "coverage": 0.8333333333333334,
+        "max_refusal_score": 1.0,
+        "selective_risk": 0.46
+      },
+      {
+        "accepted": 51,
+        "coverage": 0.85,
+        "max_refusal_score": 1.0,
+        "selective_risk": 0.45098039215686275
+      },
+      {
+        "accepted": 52,
+        "coverage": 0.8666666666666667,
+        "max_refusal_score": 1.0,
+        "selective_risk": 0.4423076923076923
+      },
+      {
+        "accepted": 53,
+        "coverage": 0.8833333333333333,
+        "max_refusal_score": 1.0,
+        "selective_risk": 0.4339622641509434
+      },
+      {
+        "accepted": 54,
+        "coverage": 0.9,
+        "max_refusal_score": 1.0,
+        "selective_risk": 0.4444444444444444
+      },
+      {
+        "accepted": 55,
+        "coverage": 0.9166666666666666,
+        "max_refusal_score": 1.0,
+        "selective_risk": 0.45454545454545453
+      },
+      {
+        "accepted": 56,
+        "coverage": 0.9333333333333333,
+        "max_refusal_score": 1.0,
+        "selective_risk": 0.4642857142857143
+      },
+      {
+        "accepted": 57,
+        "coverage": 0.95,
+        "max_refusal_score": 1.0,
+        "selective_risk": 0.47368421052631576
+      },
+      {
+        "accepted": 58,
+        "coverage": 0.9666666666666667,
+        "max_refusal_score": 1.0,
+        "selective_risk": 0.4827586206896552
+      },
+      {
+        "accepted": 59,
+        "coverage": 0.9833333333333333,
+        "max_refusal_score": 1.0,
+        "selective_risk": 0.4915254237288136
+      },
+      {
+        "accepted": 60,
+        "coverage": 1.0,
+        "max_refusal_score": 1.0,
+        "selective_risk": 0.5
+      }
+    ],
+    "roc_auc": 0.7183333333333334
+  },
+  "question_count": 60,
+  "refusal_config_sha256": "852f482c7fda688bbdc387ea7cba65f5c66f02ac00d75feec5e6a5eeb5b31d86",
+  "refusal_version": "s8-refusal-v1",
+  "result_status": "selection_result",
+  "run_id": "s8-validation-selection-v1",
+  "schema_version": 1,
+  "selected_thresholds": {
+    "coverage": 0.75,
+    "margin": 0.5,
+    "top1": 0.0,
+    "top3_mean": 0.0
+  },
+  "split": "validation",
+  "test_execution_status": "locked_until_s12"
+}

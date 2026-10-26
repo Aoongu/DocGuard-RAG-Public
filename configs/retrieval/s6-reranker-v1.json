@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "reranking_version": "s6-reranker-v1",
+  "rerank_enabled": true,
+  "model": {
+    "name": "BAAI/bge-reranker-base",
+    "revision": "2cfc18c9415c912f9d8155881c133215df768a70",
+    "manifest_path": "data/manifests/s6-reranker-model.json",
+    "manifest_sha256": "a32c1fc79c0da13b8f09b68bc28a79bb444727e5f9dcbcff80bab720ae764b62"
+  },
+  "tokenizer": {
+    "path": "data/tokenizers/9eb652ac4e40cc093272bbbe0f55d521cf67570060227109b5cdc20945a4489e/tokenizer.json",
+    "sha256": "9eb652ac4e40cc093272bbbe0f55d521cf67570060227109b5cdc20945a4489e",
+    "max_length": 512,
+    "truncation": "only_second"
+  },
+  "inference": {
+    "batch_size": 8,
+    "execution_provider": "CPUExecutionProvider"
+  },
+  "m1": {
+    "rrf_k": 20,
+    "dense_depth": 50,
+    "bm25_depth": 20,
+    "s5_config_sha256": "f5c78ee94c27454bb278b4a9bb59e7ee8429bf3f4ea98f5c1b55cde9a0b380a2"
+  },
+  "reranking": {
+    "depth_candidates": [10, 20, 50],
+    "output_depth": 10,
+    "selection_metrics": ["ndcg_at_10", "mrr_at_10", "recall_at_10", "recall_at_5"]
+  },
+  "chunking_version": "s2-chunk-v1",
+  "chunks_sha256": "6aad4667593d6519657cd1823b713983e09ed9f819e48246e0db9c18f0694964"
+}

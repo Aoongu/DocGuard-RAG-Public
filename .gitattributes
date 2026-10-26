@@ -1,0 +1,3 @@
+/baseline/ragbits-reproduction/** -text
+/data/archives/*.tar.gz -text
+/data/tokenizers/** -text

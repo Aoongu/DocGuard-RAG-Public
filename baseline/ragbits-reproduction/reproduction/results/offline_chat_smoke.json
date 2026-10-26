@@ -1,0 +1,37 @@
+{
+  "upstream_example_class": "examples.chat.offline_chat:MyChat",
+  "route_count": 12,
+  "requests": [
+    {
+      "endpoint": "/openapi.json",
+      "status_code": 200,
+      "response_summary": {
+        "content_type": "application/json",
+        "title": "FastAPI",
+        "openapi_version": "3.1.0",
+        "documented_path_count": 7
+      }
+    },
+    {
+      "endpoint": "/api/config",
+      "status_code": 200,
+      "response_summary": {
+        "content_type": "application/json",
+        "top_level_keys": [
+          "authentication",
+          "conversation_history",
+          "customization",
+          "debug_mode",
+          "feedback",
+          "show_usage",
+          "supports_upload",
+          "user_settings"
+        ],
+        "authentication_enabled": false,
+        "supports_upload": true,
+        "debug_mode": false,
+        "header_title": "Example Offline Ragbits Chat"
+      }
+    }
+  ]
+}

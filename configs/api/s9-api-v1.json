@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "api_version": "s9-api-v1",
+  "api_prefix": "/api/v1",
+  "allowed_origins": [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173"
+  ],
+  "query_timeout_seconds": 130.0,
+  "max_question_chars": 2000,
+  "allowed_evaluation_methods": [
+    "b0",
+    "b1",
+    "m1",
+    "m2",
+    "b2",
+    "m4"
+  ],
+  "allowed_evaluation_splits": [
+    "development",
+    "validation"
+  ],
+  "test_execution_status": "locked_until_s12"
+}

@@ -1,0 +1,176 @@
+Ragbits upstream baseline test log
+Date: 2026-10-11 Asia/Shanghai
+Commit: 32074a71324239ba677234a67737ed65fb678eeb
+Platform: Windows 11 10.0.26200, Python 3.13.5, uv 0.11.13
+
+=== 1. Planned install commands ===
+
+COMMAND:
+uv sync --frozen --package ragbits-document-search --group dev
+
+EXIT: 1
+OUTPUT:
+Using CPython 3.13.5 interpreter at: <PYTHON_HOME>\python.exe
+Creating virtual environment at: .venv
+error: Group `dev` is not defined in the project's `dependency-groups` table
+
+COMMAND:
+uv sync --frozen --package ragbits-chat --group dev
+
+EXIT: 1
+OUTPUT:
+error: Group `dev` is not defined in the project's `dependency-groups` table
+
+COMMAND:
+uv pip install "fastembed>=0.5.0,<1.0.0"
+
+EXIT: 0
+RESULT:
+fastembed==0.9.0 installed.
+
+=== 2. Equivalent combined frozen sync attempt ===
+
+COMMAND:
+uv sync --frozen --package ragbits-document-search --package ragbits-chat --no-default-groups
+
+EXIT: 1
+ERROR:
+× Failed to download and build `safetensors==0.4.5`
+├─▶ Failed to parse:
+│   `<UV_CACHE>\sdists-v9\pypi\safetensors\0.4.5\<CACHE_KEY>\src\pyproject.toml`
+╰─▶ TOML parse error at line 1, column 1
+      [project]
+      ^^^^^^^^^
+    `pyproject.toml` is using the `[project]` table, but the required
+    `project.version` field is neither set nor present in the
+    `project.dynamic` list
+
+Dependency chain reported by uv:
+ragbits-document-search -> docling==2.65.0 -> docling-ibm-models==3.12.0 -> safetensors==0.4.5
+
+=== 3. Minimal alternative installation ===
+
+COMMANDS:
+uv pip install "fastembed>=0.5.0,<1.0.0" "pytest~=8.3.3" "pytest-asyncio~=0.24.0" "pytest-cov~=5.0.0"
+uv pip install -e packages/ragbits-core -e packages/ragbits-agents -e packages/ragbits-chat
+uv pip install --no-deps -e packages/ragbits-document-search
+uv pip install "sqlalchemy[asyncio]>=2.0.39,<3.0.0" "aiosqlite>=0.21.0" "greenlet>=3.1.1"
+uv pip install "docling==2.65.0" "datasets>=3.0.1,<4.0.0" tzdata
+
+EXIT: 0 for all commands.
+
+Installed workspace packages:
+ragbits-core==1.7.0.dev202605130309
+ragbits-document-search==1.7.0.dev202605130309
+ragbits-chat==1.7.0.dev202605130309
+ragbits-agents==1.7.0.dev202605130309
+
+=== 4. Planned test command ===
+
+COMMAND:
+uv run pytest packages/ragbits-core/tests/unit/vector_stores/test_in_memory.py packages/ragbits-document-search/tests/unit/test_document_search.py packages/ragbits-chat/tests/unit -q
+
+EXIT: 1 before pytest execution
+ERROR:
+error: Distribution `ray==2.52.1 @ registry+https://pypi.org/simple` can't be installed because it doesn't have a source distribution or wheel for the current platform
+
+hint: You're on Windows (`win_amd64`), but `ray` (v2.52.1) only has wheels for the following platforms: `manylinux2014_aarch64`, `manylinux2014_x86_64`, `macosx_12_0_arm64`.
+
+=== 5. First no-sync test attempt ===
+
+COMMAND:
+uv run --no-sync pytest packages/ragbits-core/tests/unit/vector_stores/test_in_memory.py packages/ragbits-document-search/tests/unit/test_document_search.py packages/ragbits-chat/tests/unit -q
+
+EXIT: 1 during collection
+ERROR:
+ERROR collecting packages/ragbits-chat/tests/unit/persistence/test_sql.py
+ModuleNotFoundError: No module named 'sqlalchemy'
+1 error in 4.69s
+
+After installing the SQL test dependencies, the same command produced:
+22 failed, 133 passed, 18 warnings in 29.21s
+
+Failure classes:
+- 18 DocumentSearch failures: `ModuleNotFoundError: No module named 'docling'`; the default parser router imports Docling even when TXT is explicitly configured.
+- 1 Hugging Face source test failure: `ModuleNotFoundError: No module named 'datasets'`.
+- 4 Chat timezone parameter failures: Windows lacked IANA timezone data (`Europe/Warsaw`, `America/New_York`, `UTC`, `Asia/Tokyo`).
+
+=== 6. Complete no-sync rerun after direct test dependencies ===
+
+COMMAND:
+uv run --no-sync pytest packages/ragbits-core/tests/unit/vector_stores/test_in_memory.py packages/ragbits-document-search/tests/unit/test_document_search.py packages/ragbits-chat/tests/unit -q
+
+EXIT: 1
+SUMMARY:
+148 passed, 7 failed, 43 warnings in 65.12s
+
+FAILED TESTS AND RAW ERROR CAUSES:
+1. test_document_search_ingest_from_source
+   PermissionError: [Errno 13] Permission denied for a NamedTemporaryFile that remains open on Windows.
+2. test_document_search_ingest_from_uri_with_wildcard[test*.txt-...]
+3. test_document_search_ingest_from_uri_with_wildcard[othe?.txt-...]
+4. test_document_search_ingest_from_uri_with_wildcard[te??*.txt-...]
+   AssertionError: expected bare filenames but got full Windows paths. The test extracts filenames using `.split('/')[-1]`, which does not split backslashes.
+5. test_document_search_ingest_from_gcs_uri_basic
+6. test_document_search_ingest_from_gcs_uri_with_wildcard
+7. test_document_search_ingest_from_gcs_uri_invalid_pattern
+   ModuleNotFoundError: No module named 'gcloud' / missing `gcloud.aio.storage` optional dependency.
+
+No upstream implementation or test was changed to hide these failures.
+
+=== 7. Final platform-compatible offline baseline ===
+
+COMMAND:
+uv run --no-sync pytest packages/ragbits-core/tests/unit/vector_stores/test_in_memory.py packages/ragbits-document-search/tests/unit/test_document_search.py packages/ragbits-chat/tests/unit -q -k "not test_document_search_ingest_from_source and not test_document_search_ingest_from_uri_with_wildcard and not test_document_search_ingest_from_gcs_uri"
+
+EXIT: 0
+OUTPUT:
+........................................................................ [ 48%]
+........................................................................ [ 97%]
+....                                                                     [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\typer\__init__.py:24
+  DeprecationWarning: 'click.utils.get_binary_stream' is deprecated and will be removed in Click 9.0.
+
+.venv\Lib\site-packages\typer\__init__.py:25
+  DeprecationWarning: 'click.utils.get_text_stream' is deprecated and will be removed in Click 9.0.
+
+packages/ragbits-document-search/tests/unit/test_document_search.py: 18 warnings
+  DeprecationWarning: Using DoclingParseV4DocumentBackend for InputFormat.IMAGE is deprecated.
+
+packages/ragbits-chat/tests/unit/test_api.py::test_validation_exception_handler
+  StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated.
+
+packages/ragbits-chat/tests/unit/test_api.py::test_state_verification_successful
+  UserWarning: No secret key found in environment variable RAGBITS_SECRET_KEY; an ephemeral key was generated. The random key value was redacted.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+148 passed, 7 deselected, 38 warnings in 40.68s
+
+Coverage represented by the final set:
+- InMemoryVectorStore unit behavior.
+- DocumentSearch literal/local ingestion and retrieval paths that are offline and platform-compatible.
+- Full `packages/ragbits-chat/tests/unit` suite, including Chat API construction, authentication, clients, conversations, persistence and types.
+
+=== 8. Saved environment inventory ===
+
+COMMAND:
+uv pip freeze
+
+OUTPUT FILE:
+reproduction/results/pip_freeze.txt
+
+The inventory is complete for the actual .venv. Editable workspace package URLs were normalized to repository-relative paths. Usernames, user-cache paths, Python installation paths and runtime-generated ephemeral secret values were redacted in saved evidence.
+It is an audit snapshot, not a newly solved lock file. Exact same-platform replay uses:
+uv pip install --no-deps -r reproduction/results/pip_freeze.txt
+Dry-run verification: 179 packages checked, no changes required. Omitting `--no-deps` exposes the recorded environment's fastapi-cloud-cli/typer resolver conflict.
+
+=== 9. Source integrity check ===
+
+COMMAND:
+git diff 32074a71324239ba677234a67737ed65fb678eeb -- packages
+
+OUTPUT:
+(empty)
+
+Conclusion: packages/** was not modified.

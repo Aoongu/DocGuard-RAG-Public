@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "protocol_version": "s12-final-v1",
+  "dataset": {
+    "version": "s4-golden-v1",
+    "manifest_path": "data/eval/s4-golden-v1/manifest.json",
+    "manifest_sha256": "68442c57bbe368369060b1e03d7fa415493c49d6c6f053b5ef53ae7323b0e1e5",
+    "test_path": "data/eval/s4-golden-v1/test.jsonl",
+    "test_sha256": "67bbafdb8841a15f58de0cd66cf14f488f142a2f1e44bff360ef17647e56adeb",
+    "test_count": 60,
+    "review_status": "double_reviewed"
+  },
+  "frozen_inputs": [
+    {"path": "configs/evaluation/s4-eval-v1.json", "sha256": "81056f39856e50eccb0cfc20f61df231ea157115eea7dcc771a17593c1b03885"},
+    {"path": "configs/retrieval/s5-hybrid-v1.json", "sha256": "f5c78ee94c27454bb278b4a9bb59e7ee8429bf3f4ea98f5c1b55cde9a0b380a2"},
+    {"path": "reports/s5_retrieval/validation_selected/selection.json", "sha256": "9e29899d23cff0a55b613eb86fefa7101f4d52d735d1a367b15f15595f07f292"},
+    {"path": "configs/retrieval/s6-reranker-v1.json", "sha256": "58f6be34cc40198dfc63eb503605bc2372205f9fbf80157ee2e063e424b3838a"},
+    {"path": "reports/s6_reranking/validation_selected/selection.json", "sha256": "cf431b74327a4a8575096dc4477206c47c484a8dbc27b87b761c996e8ebe6c44"},
+    {"path": "configs/generation/s7-deepseek-flash-v1.json", "sha256": "ff35d37b064bf8a61eb4489ccb4326bd542ec5787859293bbcd6926da0af1965"},
+    {"path": "configs/refusal/s8-refusal-v1.json", "sha256": "7aed77e1983f2f72bf0e285f9915d7f7a411cffa0b649f9b9b2659b5f49d4899"},
+    {"path": "reports/s8_refusal/validation_selected/selection.json", "sha256": "b4eaa6e41c36a15e75f28a97cae1ec1463fc84d0229609c6e3de5da39093d38b"},
+    {"path": "data/manifests/s3-embedding-model.json", "sha256": "d0555d0fe012218f441700b9a47ad6d5d2727606918ecaf2451df1e7a68e4418"},
+    {"path": "data/manifests/s6-reranker-model.json", "sha256": "a32c1fc79c0da13b8f09b68bc28a79bb444727e5f9dcbcff80bab720ae764b62"}
+  ],
+  "method_order": [
+    "b0",
+    "b1",
+    "m1",
+    "m2",
+    "b2",
+    "m3",
+    "m4",
+    "m4_no_version_filter",
+    "m4_no_citation_validation"
+  ],
+  "methods": {
+    "b0": {"run_id": "s12-test-b0-v1", "output_dir": "b0", "parameters": {"dense_enabled": false, "bm25_enabled": true}},
+    "b1": {"run_id": "s12-test-b1-v1", "output_dir": "b1", "parameters": {"dense_enabled": true, "bm25_enabled": false}},
+    "m1": {"run_id": "s12-test-m1-v1", "output_dir": "m1", "parameters": {"dense_enabled": true, "bm25_enabled": true, "dense_depth": 50, "bm25_depth": 20, "rrf_k": 20}},
+    "m2": {"run_id": "s12-test-m2-v1", "output_dir": "m2", "parameters": {"dense_enabled": true, "bm25_enabled": true, "dense_depth": 50, "bm25_depth": 20, "rrf_k": 20, "rerank_enabled": true, "rerank_depth": 50}},
+    "b2": {"run_id": "s12-test-b2-v1", "output_dir": "b2", "parameters": {"dense_enabled": true, "bm25_enabled": false, "rerank_enabled": false, "generation_enabled": true, "citation_validation_enabled": true, "top_k": 10}},
+    "m3": {"run_id": "s12-test-m3-v1", "output_dir": "m3", "parameters": {"refusal_enabled": false, "version_filter_enabled": true, "generation_enabled": true, "citation_validation_enabled": true}},
+    "m4": {"run_id": "s12-test-m4-v1", "output_dir": "m4", "parameters": {"refusal_enabled": true, "version_filter_enabled": true, "generation_enabled": true, "citation_validation_enabled": true}},
+    "m4_no_version_filter": {"run_id": "s12-test-m4-no-version-filter-v1", "output_dir": "m4_no_version_filter", "parameters": {"refusal_enabled": true, "version_filter_enabled": false, "generation_enabled": true, "citation_validation_enabled": true}},
+    "m4_no_citation_validation": {"run_id": "s12-test-m4-no-citation-validation-v1", "output_dir": "m4_no_citation_validation", "parameters": {"refusal_enabled": true, "version_filter_enabled": true, "generation_enabled": true, "citation_validation_enabled": false}}
+  },
+  "ablations": {
+    "no_bm25": "b1",
+    "no_dense": "b0",
+    "no_cross_encoder": "m1",
+    "prompt_only": "m3",
+    "no_version_filter": "m4_no_version_filter",
+    "no_citation_validation": "m4_no_citation_validation"
+  },
+  "output_root": "reports/s12_final/raw",
+  "max_retries": 0,
+  "existing_record_policy": "skip_any_record",
+  "bootstrap": {"samples": 10000, "seed": 20261014, "confidence_level": 0.95}
+}

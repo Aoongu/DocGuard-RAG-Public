@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "engineering_version": "s11-engineering-v1",
+  "api_version": "s9-api-v1",
+  "chunking_version": "s2-chunk-v1",
+  "dense_index_version": "s3-dense-v1",
+  "hybrid_version": "s5-hybrid-v1",
+  "reranker_version": "s6-reranker-v1",
+  "generation_version": "s7-deepseek-flash-v1",
+  "refusal_version": "s8-refusal-v1",
+  "test_execution_status": "locked_until_s12",
+  "score_tolerance": 0.000001,
+  "regression": {
+    "min_recall_at_5": 0.5,
+    "min_mrr_at_10": 0.4,
+    "max_failed_queries": 0
+  }
+}

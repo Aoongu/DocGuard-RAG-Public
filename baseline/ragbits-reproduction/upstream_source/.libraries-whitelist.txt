@@ -1,0 +1,16 @@
+pkg_resources
+tiktoken
+chardet
+chroma-hnswlib
+rouge
+distilabel
+rerankers
+py_rust_stemmers
+mirakuru
+psycopg
+pytest-postgresql
+python-bidi
+griffe
+types-requests
+sse-starlette
+nvidia-cusparselt-cu12

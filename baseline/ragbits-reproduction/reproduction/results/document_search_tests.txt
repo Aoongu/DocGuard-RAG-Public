@@ -1,0 +1,42 @@
+Ragbits local document search: RED/GREEN evidence
+Recorded: 2026-10-11 (Asia/Shanghai)
+
+RED (real execution against baseline commit 7898376e660b5eebe45f9f08b31930ecc4be7711)
+
+PowerShell setup and command:
+
+  $repo = (Resolve-Path '.').Path
+  $temp = Join-Path $repo '.tmp-document-search-red'
+  New-Item -ItemType Directory -Path $temp
+  git archive 7898376e660b5eebe45f9f08b31930ecc4be7711 | tar -x -C $temp
+  New-Item -ItemType Directory -Force -Path "$temp\reproduction\tests"
+  Copy-Item "$repo\reproduction\tests\test_reproduction.py" "$temp\reproduction\tests\test_reproduction.py"
+  $srcs = Get-ChildItem "$temp\packages" -Directory | ForEach-Object { Join-Path $_.FullName 'src' }
+  $env:PYTHONPATH = (@($temp) + $srcs) -join ';'
+  Set-Location $temp
+  & "$repo\.venv\Scripts\python.exe" -m pytest reproduction/tests/test_reproduction.py -q
+
+Observed summary:
+
+  reproduction\tests\test_reproduction.py:6: in <module>
+      from reproduction.run_document_search import QUERIES, run_reproduction
+  E   ModuleNotFoundError: No module named 'reproduction.run_document_search'
+  1 error in 0.32s
+  RED_EXIT_CODE=2
+
+The exported baseline contained no implementation. Only the current test_reproduction.py was copied into it.
+The temporary export was removed after the run.
+
+GREEN (real execution in current implementation checkout)
+
+Command:
+
+  uv run --no-sync pytest reproduction/tests/test_reproduction.py -q
+
+Observed summary:
+
+  .                                                                        [100%]
+  1 passed, 5 warnings in 17.03s
+  GREEN_EXIT_CODE=0
+
+Warnings were upstream deprecation notices from Typer and the Docling parser; they did not affect the test result.

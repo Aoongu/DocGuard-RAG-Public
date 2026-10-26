@@ -1,0 +1,16 @@
+{"error_message":"generation output contains unknown fields: ['type']","error_type":"GenerationValidationError","question_id":"s4-test-016"}
+{"error_message":"generation response status must be completed","error_type":"GenerationResponseError","question_id":"s4-test-020"}
+{"error_message":"generation output contains unknown fields: ['type']","error_type":"GenerationValidationError","question_id":"s4-test-022"}
+{"error_message":"verified answer requires at least one citation","error_type":"GenerationValidationError","question_id":"s4-test-032"}
+{"error_message":"verified answer requires at least one citation","error_type":"GenerationValidationError","question_id":"s4-test-035"}
+{"error_message":"verified answer requires at least one citation","error_type":"GenerationValidationError","question_id":"s4-test-036"}
+{"error_message":"verified answer requires at least one citation","error_type":"GenerationValidationError","question_id":"s4-test-037"}
+{"error_message":"verified answer requires at least one citation","error_type":"GenerationValidationError","question_id":"s4-test-038"}
+{"error_message":"verified answer requires at least one citation","error_type":"GenerationValidationError","question_id":"s4-test-039"}
+{"error_message":"verified answer requires at least one citation","error_type":"GenerationValidationError","question_id":"s4-test-040"}
+{"error_message":"verified answer requires at least one citation","error_type":"GenerationValidationError","question_id":"s4-test-047"}
+{"error_message":"verified answer requires at least one citation","error_type":"GenerationValidationError","question_id":"s4-test-048"}
+{"error_message":"verified answer requires at least one citation","error_type":"GenerationValidationError","question_id":"s4-test-049"}
+{"error_message":"verified answer requires at least one citation","error_type":"GenerationValidationError","question_id":"s4-test-050"}
+{"error_message":"verified answer requires at least one citation","error_type":"GenerationValidationError","question_id":"s4-test-051"}
+{"error_message":"verified answer requires at least one citation","error_type":"GenerationValidationError","question_id":"s4-test-052"}

@@ -1,0 +1,210 @@
+site_name: Ragbits docs
+site_description: Building blocks for rapid development of GenAI applications
+site_url: https://ragbits.deepsense.ai
+repo_name: deepsense-ai/ragbits
+repo_url: https://github.com/deepsense-ai/ragbits
+copyright: Copyright &copy; 2025 deepsense.ai
+nav:
+  - Ragbits: index.md
+  - Tutorials:
+    - "Introduction": tutorials/intro.md
+    - "Retrieval-Augmented Generation": tutorials/rag.md
+    - "Multi-Agent system with A2A and MCP": tutorials/agents.md
+    - "Tool-Powered Chat Interfaces": tutorials/chat.md
+  - Builder Journal:
+    - "Overview": builder-journal/index.md
+    - "1. LLM Proxy": builder-journal/section-1-llm-proxy.md
+  - How-to:
+      - "Prompts":
+        - "Define and use prompts": how-to/prompts/use_prompting.md
+        - "Use attachments in prompts": how-to/prompts/use_attachments_in_prompts.md
+        - "Test prompts with promptfoo": how-to/prompts/promptfoo.md
+      - LLMs:
+        - "Interact with LLMs": how-to/llms/use_llms.md
+        - "Use tools with LLMs": how-to/llms/use_tools_with_llms.md
+        - "Use local or self-hosted LLMs": how-to/llms/use_local_llms.md
+      - Vector Stores:
+        - "Perform hybrid search": how-to/vector_stores/hybrid.md
+        - "Use sparse retrieval": how-to/vector_stores/sparse_vectors.md
+        - "Use PostgreSQL as a vector store with pgvector": how-to/vector_stores/use_pgVector_store.md
+      - Data Sources:
+        - "Load data from sources": how-to/sources/load-dataset.md
+        - "Use google drive as a data source": how-to/sources/google-drive.md
+      - Observability:
+        - "Trace code execution": how-to/audit/use_tracing.md
+        - "Track metrics": how-to/audit/use_metrics.md
+      - Project Configuration:
+        - "Set preferred components": how-to/project/component_preferences.md
+        - "Register custom components": how-to/project/custom_components.md
+      - Document Search:
+        - "Ingest documents": how-to/document_search/ingest-documents.md
+        - "Search documents": how-to/document_search/search-documents.md
+      - Agents:
+        - "Define and use agents": how-to/agents/define_and_use_agents.md
+        - "Use hooks to customize behavior": how-to/agents/use_hooks.md
+        - "Provide tools with MCP": how-to/agents/provide_mcp_tools.md
+        - "Serve agents with A2A": how-to/agents/serve_ragbits_agents.md
+        - "Stream downstream agents": how-to/agents/stream_downstream_agents.md
+        - "Stream events from tools to chat": how-to/agents/stream_events_from_tools_to_chat.md
+      - Guardrails:
+        - "Setup guardrails": how-to/guardrails/use_guardrails.md
+      - Chatbots:
+        - "Setup API & UI": how-to/chatbots/api.md
+        - "Extend and customize the UI": how-to/chatbots/extending-ui.md
+      - Evaluate:
+          - "Evaluate pipelines": how-to/evaluate/evaluate.md
+          - "Create custom evaluation pipeline": how-to/evaluate/custom_evaluation_pipeline.md
+          - "Create custom evaluation metric": how-to/evaluate/custom_metric.md
+          - "Create custom data loader": how-to/evaluate/custom_dataloader.md
+          - "Generate new dataset with LLM": how-to/evaluate/generate_dataset.md
+          - "Auto-optimize hyperparameter tuning": how-to/evaluate/optimize.md
+  - CLI:
+      - cli/main.md
+  - API Reference:
+      - Core:
+          - api_reference/core/prompt.md
+          - api_reference/core/llms.md
+          - api_reference/core/embeddings.md
+          - api_reference/core/vector-stores.md
+          - api_reference/core/hybrid.md
+          - api_reference/core/sources.md
+          - Audit:
+            - api_reference/core/audit/traces.md
+            - api_reference/core/audit/metrics.md
+      - Document Search:
+          - api_reference/document_search/index.md
+          - Documents:
+            - api_reference/document_search/documents/documents.md
+            - api_reference/document_search/documents/elements.md
+          - Ingest:
+            - api_reference/document_search/ingest/parsers.md
+            - api_reference/document_search/ingest/enrichers.md
+            - api_reference/document_search/ingest/strategies.md
+          - Retrieval:
+            - api_reference/document_search/retrieval/rephrasers.md
+            - api_reference/document_search/retrieval/rerankers.md
+      - Agents:
+        - api_reference/agents/index.md
+        - MCP:
+          - api_reference/agents/mcp.md
+      - Evaluate:
+        - api_reference/evaluate/index.md
+        - api_reference/evaluate/dataloaders.md
+        - api_reference/evaluate/pipelines.md
+        - api_reference/evaluate/metrics.md
+      - Chatbots:
+          - api_reference/chat/compressors/base.md
+          - api_reference/chat/compressors/llm.md
+          - api_reference/chat/interface/chat_interface.md
+      - Guardrails:
+          - api_reference/guardrails/index.md
+hooks:
+  - mkdocs_hooks.py
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme)"
+      primary: black
+      accent: custom
+      toggle:
+        icon: material/lightbulb-auto
+        name: Switch to light mode
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      primary: black
+      accent: custom
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: black
+      accent: custom
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to system preference
+  features:
+    - navigation.footer
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - content.code.annotate
+    - content.code.copy
+    - toc.integrate
+    - toc.follow
+extra_css:
+  - stylesheets/extra.css
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.snippets:
+      url_download: true
+  - pymdownx.inlinehilite
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: "#"
+  - mkdocs-click
+plugins:
+  - search
+  - autorefs
+  - mike:
+      version_selector: true
+      css_dir: css
+      javascript_dir: js
+      canonical_version: null
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_root_heading: true
+            show_if_no_docstring: true
+            inherited_members: true
+            members_order: source
+            separate_signature: true
+            unwrap_annotated: true
+            filters:
+              - "!^_"
+            merge_init_into_class: true
+            docstring_section_style: spacy
+            signature_crossrefs: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            show_signature_annotations: true
+extra:
+  version:
+    provider: mike
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/deepsense-ai
+    - icon: fontawesome/brands/x-twitter
+      link: https://x.com/deepsense_ai
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/company/deepsense-ai
+    - icon: fontawesome/brands/youtube
+      link: https://youtube.com/@deepsenseai
+    - icon: fontawesome/brands/medium
+      link: https://medium.com/deepsense-ai
+    - icon: fontawesome/solid/globe
+      link: https://deepsense.ai
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn

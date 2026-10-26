@@ -1,0 +1,14 @@
+method,fixed_total,failed_count,generation_failure_rate,failure_reason,failure_reason_count,counts_are_multilabel,judge_status,judge_failed_count
+b0,60,0,0.0,none,0,True,not_run,0
+b1,60,0,0.0,none,0,True,not_run,0
+m1,60,0,0.0,none,0,True,not_run,0
+m2,60,0,0.0,none,0,True,not_run,0
+b2,60,16,0.26666666666666666,generation_contract_failure,15,True,not_run,0
+b2,60,16,0.26666666666666666,upstream_failure,1,True,not_run,0
+m3,60,9,0.15,generation_contract_failure,8,True,not_run,0
+m3,60,9,0.15,upstream_failure,1,True,not_run,0
+m4,60,2,0.03333333333333333,generation_contract_failure,1,True,not_run,0
+m4,60,2,0.03333333333333333,upstream_failure,1,True,not_run,0
+m4_no_version_filter,60,2,0.03333333333333333,generation_contract_failure,2,True,not_run,0
+m4_no_citation_validation,60,2,0.03333333333333333,generation_contract_failure,1,True,not_run,0
+m4_no_citation_validation,60,2,0.03333333333333333,upstream_failure,1,True,not_run,0

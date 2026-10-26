@@ -1,0 +1,270 @@
+name: Shared packages checks
+
+on:
+  workflow_call:
+    inputs:
+      install-methods:
+        description: 'JSON array of install methods to test'
+        type: string
+        default: '["source", "package"]'
+
+      artifact-name:
+        description: 'Name of the packages artifact to download'
+        type: string
+        default: 'packages'
+
+      skip-build:
+        description: 'Skip the build job (use when artifact is provided externally)'
+        type: boolean
+        default: false
+
+      skip-lints:
+        description: 'Skip the lints job'
+        type: boolean
+        default: false
+
+jobs:
+  lints:
+    name: Run linters
+    if: ${{ !inputs.skip-lints }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      checks: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+        with:
+          version: ${{ vars.UV_VERSION || '0.6.9' }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Cache pre-commit
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit-3|${{ env.pythonLocation }}|${{ hashFiles('.pre-commit-config.yaml') }}
+
+      - name: Run pre-commit checks
+        run: |
+          uv run pre-commit run --all-files --show-diff-on-failure --color always
+
+      - name: Run ruff formatter
+        run: uv run ruff format --check
+
+      - name: Run ruff linter
+        run: uv run ruff check --output-format=github
+
+      - name: Run mypy
+        run: uv run mypy .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        env:
+          TRIVY_DB_REPOSITORY: ghcr.io/aquasecurity/trivy-db:2,public.ecr.aws/aquasecurity/trivy-db:2
+        with:
+          scan-type: "fs"
+          ignore-unfixed: true
+          exit-code: 1
+          severity: "CRITICAL,HIGH"
+          skip-dirs: .venv,.ruff_cache,.mypy_cache
+          format: "table"
+          output: "trivy-scanning-results.txt"
+
+      - name: Print Trivy results
+        if: always()
+        run: cat trivy-scanning-results.txt
+
+      - name: Check licenses
+        run: |
+          uv run ./check_licenses.sh
+
+      - name: Check all examples are documented in README
+        run: |
+          bash .github/scripts/check_examples.sh
+
+      - name: Check documentation builds correctly
+        run: |
+          uv run mkdocs build --strict
+
+      - name: Generate pip freeze
+        run: |
+          uv pip freeze > requirements-freeze.txt
+
+      - name: Publish Artefacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        continue-on-error: true
+        with:
+          name: results
+          path: |
+            requirements-freeze.txt
+            licenses.txt
+            trivy-scanning-results.txt
+          retention-days: 30
+
+  build:
+    name: Run build
+    if: ${{ !inputs.skip-build }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      checks: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+        with:
+          version: ${{ vars.UV_VERSION || '0.6.9' }}
+
+      - name: Validate package build
+        run: |
+          for dir in packages/*/; do uv build "$dir" --out-dir dist; done
+
+      - name: Publish Package
+        uses: actions/upload-artifact@v4
+        continue-on-error: true
+        if: success()
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: dist/**
+          retention-days: 3
+
+  tests:
+    name: Run tests
+    needs: build
+    if: ${{ !cancelled() && (inputs.skip-build || needs.build.result == 'success') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      checks: write
+      pull-requests: write
+      contents: write # required for advanced coverage reporting (to keep branch)
+    strategy:
+      fail-fast: false # do not stop all jobs if one fails
+      matrix:
+        python-version: [ "3.10", "3.11", "3.12", "3.13" ]
+        install-method: ${{ fromJson(inputs.install-methods) }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+        with:
+          version: ${{ vars.UV_VERSION || '0.6.9' }}
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/uv
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/pyproject.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Cache NLTK data
+        uses: actions/cache@v3
+        with:
+          path: ~/nltk_data
+          key: nltk-${{ runner.os }}
+
+      - name: Download built packages
+        if: matrix.install-method == 'package'
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: dist
+
+      - name: Install built packages
+        if: matrix.install-method == 'package'
+        run: |
+          uv sync --only-group dev
+          uv pip install --find-links dist \
+            "$(ls dist/ragbits-*.whl)[a2a,azure,chroma,cli,fastembed,fastembed-gpu,gcs,google-drive,hf,local,logfire,mcp,openai,otel,pgvector,promptfoo,qdrant,ray,relari,s3,sql,unstructured,weaviate]"
+
+      - name: Export installed packages
+        if: matrix.install-method == 'package'
+        run: uv pip freeze > installed-packages-${{ matrix.install-method }}-py${{ matrix.python-version }}.txt
+
+      - name: Publish installed packages
+        if: matrix.install-method == 'package'
+        uses: actions/upload-artifact@v4
+        continue-on-error: true
+        with:
+          name: installed-packages-${{ matrix.install-method }}-py${{ matrix.python-version }}
+          path: installed-packages-${{ matrix.install-method }}-py${{ matrix.python-version }}.txt
+          retention-days: 10
+
+      - name: Run Tests With Coverage
+        run: |
+          UV_FLAGS="${{ matrix.install-method == 'package' && '--no-sync' || '' }}"
+          uv run $UV_FLAGS coverage run -m pytest -v -p no:warnings --junitxml=report.xml
+          uv run $UV_FLAGS coverage report
+          uv run $UV_FLAGS coverage xml
+        env:
+          GOOGLE_DRIVE_CLIENTID_JSON: ${{ secrets.GOOGLE_DRIVE_CLIENTID_JSON }}
+          GOOGLE_SOURCE_UNIT_TEST_FOLDER: ${{ secrets.GOOGLE_SOURCE_UNIT_TEST_FOLDER }}
+          GOOGLE_DRIVE_TARGET_EMAIL: ${{ secrets.GOOGLE_DRIVE_TARGET_EMAIL }}
+          RAY_ENABLE_UV_RUN_RUNTIME_ENV: "0"
+
+      - name: Test Report
+        uses: mikepenz/action-junit-report@v4
+        continue-on-error: true
+        if: always()
+        with:
+          report_paths: 'report.xml'
+          check_name: 'Test Results (${{ matrix.install-method }}, Python ${{ matrix.python-version }})'
+
+      - name: Publish Test Report
+        uses: actions/upload-artifact@v4
+        continue-on-error: true
+        if: always()
+        with:
+          name: test-report-${{ matrix.install-method }}-py${{ matrix.python-version }}
+          path: report.xml
+          retention-days: 10
+
+      - name: Produce the coverage report
+        if: matrix.install-method == 'source'
+        uses: insightsengineering/coverage-action@v2
+        continue-on-error: true
+        with:
+          # Path to the Cobertura XML report.
+          path: coverage.xml
+          # Minimum total coverage, if you want to the
+          # workflow to enforce it as a standard.
+          # This has no effect if the `fail` arg is set to `false`.
+          threshold: 60
+          # Fail the workflow if the minimum code coverage
+          # reuqirements are not satisfied.
+          fail: false
+          # Publish the rendered output as a PR comment
+          publish: true
+          # Create a coverage diff report.
+          diff: true
+          # Branch to diff against.
+          # Compare the current coverage to the coverage
+          # determined on this branch.
+          diff-branch: ${{ github.event.repository.default_branch }}
+          # make report togglable
+          togglable-report: true
+          # This is where the coverage reports for the
+          # `diff-branch` are stored.
+          # Branch is created if it doesn't already exist'.
+          diff-storage: _xml_coverage_reports
+          # A custom title that can be added to the code
+          # coverage summary in the PR comment.
+          coverage-summary-title: "Code Coverage Summary"

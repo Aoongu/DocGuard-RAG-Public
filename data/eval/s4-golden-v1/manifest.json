@@ -1,0 +1,64 @@
+{
+  "answerable_count": 90,
+  "boundary_count": 90,
+  "category_counts": {
+    "cross_section": 20,
+    "how_to_parameter": 25,
+    "no_evidence_false_premise": 20,
+    "out_of_domain": 30,
+    "single_fact": 25,
+    "unavailable_version": 20,
+    "version_conflict_ambiguity": 20,
+    "version_difference": 20
+  },
+  "chunking_version": "s2-chunk-v1",
+  "chunks_sha256": "6aad4667593d6519657cd1823b713983e09ed9f819e48246e0db9c18f0694964",
+  "corpus_manifest_sha256": "0559ee4d75d6079fc2859f8e09910570c4f37f631511f0a9f4348ae7023911d2",
+  "dataset_version": "s4-golden-v1",
+  "files": {
+    "development.jsonl": {
+      "count": 60,
+      "sha256": "0464b0a74fc9c6afe89e76332a9282c666987b68dbf090e98c4db6fd6086f6a6"
+    },
+    "test.jsonl": {
+      "count": 60,
+      "sha256": "67bbafdb8841a15f58de0cd66cf14f488f142a2f1e44bff360ef17647e56adeb"
+    },
+    "validation.jsonl": {
+      "count": 60,
+      "sha256": "38d11619b89c6c70eb9889d6882b07953599dcc49445e52d3cb458cb338377ea"
+    }
+  },
+  "human_review_complete": true,
+  "human_written_count": 36,
+  "note": "Golden set frozen after merging 36 human-authored questions and completing two review rounds; Test execution remains locked until S12.",
+  "question_count": 180,
+  "required_human_written_count": 36,
+  "review_inputs": {
+    "human_authored.jsonl": {
+      "count": 36,
+      "sha256": "c643be96681f9912149797f2a5ba657935be4071b2525f335d58d6b6003f1dbf"
+    },
+    "reviews_round1.jsonl": {
+      "count": 180,
+      "sha256": "4e9487e51c380cd1f7a0fa802e8dc8bd213b27bd710cfe3dc03ab0ff2a68c655"
+    },
+    "reviews_test_round2.jsonl": {
+      "count": 60,
+      "sha256": "af91e9dfaa6360f0da9385e5c759c17372abda5887f91fa33f3bed7cbefb8de0"
+    }
+  },
+  "review_status_counts": {
+    "double_reviewed": 60,
+    "human_reviewed": 120
+  },
+  "schema_version": 1,
+  "smoke": {
+    "count": 30,
+    "path": "s4-evaluator-smoke-v1.jsonl",
+    "sha256": "f4e2fa3772378925f1a1b17415b9c85dc78b02c7f525522e1271f91a55ad2c72"
+  },
+  "status": "frozen",
+  "test_double_review_complete": true,
+  "test_execution_status": "locked_until_s12"
+}

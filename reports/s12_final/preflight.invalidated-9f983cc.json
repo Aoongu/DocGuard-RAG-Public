@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "protocol_version": "s12-final-v1",
+  "status": "invalidated_before_test_execution",
+  "reason": "The fixed S12 execution wrapper had not yet been committed, so this seal cannot authorize Test execution.",
+  "git_commit": "9f983cce75d42c408d883ca3e73c8a1140347eb0",
+  "protocol_sha256": "865c950d4589a81931d6cacb0ad478462f0c60d0c4105a3b2e2b2f2521026666",
+  "dataset_sha256": "67bbafdb8841a15f58de0cd66cf14f488f142a2f1e44bff360ef17647e56adeb",
+  "question_count": 60,
+  "review_status": "double_reviewed",
+  "method_order": [
+    "b0",
+    "b1",
+    "m1",
+    "m2",
+    "b2",
+    "m3",
+    "m4",
+    "m4_no_version_filter",
+    "m4_no_citation_validation"
+  ],
+  "max_retries": 0,
+  "existing_record_policy": "skip_any_record",
+  "results_viewed": false,
+  "credential_present": true,
+  "assets": {
+    "chunks_sha256": "6aad4667593d6519657cd1823b713983e09ed9f819e48246e0db9c18f0694964",
+    "embedding_model": {
+      "file_count": 3,
+      "total_size_bytes": 470269818,
+      "manifest_sha256": "d0555d0fe012218f441700b9a47ad6d5d2727606918ecaf2451df1e7a68e4418"
+    },
+    "reranker_model": {
+      "file_count": 2,
+      "total_size_bytes": 1112460387,
+      "manifest_sha256": "a32c1fc79c0da13b8f09b68bc28a79bb444727e5f9dcbcff80bab720ae764b62"
+    },
+    "dense_index": {
+      "build_info_sha256": "ee039a4ee6f8859b534c2a765346e2b53997615772be0937dc217cbb96320f2d",
+      "point_count": 7413,
+      "version_counts": {"17.11": 3670, "18.6": 3743}
+    },
+    "bm25_index": {
+      "document_count": 7413,
+      "logical_sha256": "6873f94139cc06e0d3d5a1238709fbdd7f9f0ad497c59a47f2e6bbb579c449cd",
+      "version_counts": {"17.11": 3670, "18.6": 3743}
+    },
+    "tokenizer_sha256": {
+      "dense": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+      "reranker": "9eb652ac4e40cc093272bbbe0f55d521cf67570060227109b5cdc20945a4489e"
+    }
+  }
+}

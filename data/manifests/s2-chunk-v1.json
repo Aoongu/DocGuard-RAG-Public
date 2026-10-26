@@ -1,0 +1,12 @@
+{
+  "chunk_count": 7413,
+  "chunking_version": "s2-chunk-v1",
+  "chunks_sha256": "6aad4667593d6519657cd1823b713983e09ed9f819e48246e0db9c18f0694964",
+  "config_sha256": "bdcbbd888ccb902eab6239fca0fcf4286a2c33756f85c6fd7fbf6af8845df8ae",
+  "document_count": 773,
+  "schema_version": 1,
+  "snapshot_manifest_sha256": "c493a002cf22b32c3be25af6a25d0e35a92d0d97be9491f971557d99a7771da7",
+  "sqlite_logical_sha256": "8f82ac3fc599663ee6b6e057c3e735e038c22c212cfbae59aac3f8962d9bbf22",
+  "stats_sha256": "41225bc34707f67fff29b9e118a2ae7355b4868f754fce32f43bfaa8c3578488",
+  "tokenizer_manifest_sha256": "0b7f7e621a31c240092afb0d683818e2a2bd305d0f5a275c3b4ee56d09fb87a0"
+}

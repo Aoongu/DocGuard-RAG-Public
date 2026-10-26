@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "refusal_version": "s8-refusal-v1",
+  "test_execution_status": "locked_until_s12",
+  "files": {
+    "README.md": "13330326117c2a9af2482f6eb14fe86723efd23588ecc4c16bc28918987334d8",
+    "development_diagnostic/failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "development_diagnostic/results.jsonl": "3d88df8ab1701c7d02d99e5ccbaf50f8a821b5dac8fe5b9dac4b3dc1c65f2565",
+    "development_diagnostic/risk_coverage.jsonl": "eae6ab522a94d991763b2f4b1d2aa8546d75868ed1dfff983328b8ad6fe670d0",
+    "development_diagnostic/run.json": "1e58de50eed6c476d3f885791c529191acc236bd8d81483a1fa2d5820bcf300b",
+    "development_diagnostic/summary.json": "67b22aa0132564bdf77ccd2861778258176d1e1c2b55683cb225efdfa9d89c81",
+    "validation_selected/failures.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation_selected/results.jsonl": "aa6c95e07428cbe09ab22a17152acde1bf38f7deeb0ff8f66fc821798e879d80",
+    "validation_selected/risk_coverage.jsonl": "67f20b88b3c03ae1832322011fc41ca390761f6973ec04da3503786ec4755a4e",
+    "validation_selected/run.json": "a88b94f02edca8f00204084570d4aaab8f552820308e3abd6b226551b08c7ca8",
+    "validation_selected/selection.json": "b4eaa6e41c36a15e75f28a97cae1ec1463fc84d0229609c6e3de5da39093d38b",
+    "validation_selected/summary.json": "1d4fc7dcd74e3b58d2c11ed31a61575355eaef6c9124bfbde45784375ad71ef9"
+  }
+}

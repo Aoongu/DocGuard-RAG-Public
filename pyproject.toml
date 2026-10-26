@@ -1,0 +1,81 @@
+[build-system]
+requires = ["hatchling==1.32.4"]
+build-backend = "hatchling.build"
+
+[project]
+name = "docguard-rag"
+version = "0.1.0"
+description = "Traceable and abstention-aware QA for versioned technical documentation"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "fastapi==0.153.0",
+    "httpx==0.28.1",
+    "lxml==6.0.2",
+    "numpy==2.3.4",
+    "onnxruntime==1.23.2",
+    "qdrant-client==1.19.1",
+    "ragbits-core==1.7.0.dev202605130309",
+    "tokenizers==0.23.3",
+    "uvicorn==0.54.0",
+]
+
+[project.scripts]
+docguard-api = "docguard.api.main:main"
+docguard-s12 = "docguard.evaluation.final_cli:main"
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3,<9",
+  "pytest-asyncio>=0.25,<1",
+  "ruff>=0.11,<1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/docguard"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/.env.example",
+  "/.python-version",
+  "/README.md",
+  "/configs/api/s9-api-v1.json",
+  "/configs/engineering/s11-engineering-v1.json",
+  "/configs/evaluation/s12-final-v1.json",
+  "/configs/generation/s7-deepseek-flash-v1.json",
+  "/configs/generation/s7-generation-v1.json",
+  "/configs/refusal/s8-refusal-v1.json",
+  "/configs/retrieval/s5-hybrid-v1.json",
+  "/configs/retrieval/s6-reranker-v1.json",
+  "/pyproject.toml",
+  "/scripts/freeze_s2_tokenizers.py",
+  "/scripts/freeze_s3_model.py",
+  "/scripts/freeze_s4_dataset.py",
+  "/scripts/freeze_s6_reranker.py",
+  "/scripts/prepare_s12.py",
+  "/scripts/render_s12_figures.py",
+  "/scripts/run_s12.ps1",
+  "/scripts/start_local.ps1",
+  "/scripts/smoke_s6_reranker.py",
+  "/scripts/verify_s8.ps1",
+  "/scripts/verify_s9.ps1",
+  "/scripts/verify_s10.ps1",
+  "/scripts/verify_s11.ps1",
+  "/scripts/verify_s12.ps1",
+  "/src",
+  "/tests",
+]
+exclude = [
+  "/baseline",
+  "/docs",
+  "/**/*.bundle",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.uv.sources]
+ragbits-core = { path = "baseline/ragbits-reproduction/upstream_source/packages/ragbits-core", editable = true }

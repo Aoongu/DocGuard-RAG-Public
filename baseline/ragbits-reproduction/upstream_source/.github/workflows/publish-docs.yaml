@@ -1,0 +1,27 @@
+name: Publish documentation
+
+on:
+  push:
+    branches:
+      - gh-pages
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    container: gcr.io/google.com/cloudsdktool/google-cloud-cli:latest
+    environment: documentation
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          fetch-depth: 1
+
+      - name: Deploy docs
+        shell: bash
+        run: uv run ./.github/scripts/deploy_docs.sh
+        env:
+          GCP_KEY: ${{ secrets.GCP_KEY }}
+

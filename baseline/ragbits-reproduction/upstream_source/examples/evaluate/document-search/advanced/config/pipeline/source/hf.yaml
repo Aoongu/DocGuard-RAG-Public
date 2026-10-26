@@ -1,0 +1,4 @@
+type: ragbits.core.sources.hf:HuggingFaceSource
+config:
+  path: "micpst/hf-docs"
+  split: "train[:5]"

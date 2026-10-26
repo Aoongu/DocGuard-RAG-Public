@@ -1,0 +1,144 @@
+# CHANGELOG
+
+## Unreleased
+
+- added support for pydantic models as tool arguments
+
+## 1.6.2 (2026-03-26)
+
+- ragbits-core updated to version v1.6.2
+
+### Changed
+
+- Bump mcp dependency to >=1.23.0 for DNS rebinding fix (CVE-2025-66416)
+
+## 1.6.1 (2026-03-19)
+
+- ragbits-core updated to version v1.6.1
+
+## 1.6.0 (2026-03-17)
+
+### Changed
+
+- ragbits-core updated to version v1.6.0
+
+- Add long-term semantic memory tools for agents (#839)
+- Add agent planning capabilities (#823) (#907)
+
+## 1.5.0 (2026-02-19)
+
+### Changed
+
+- ragbits-core updated to version v1.5.0
+
+- Support wrapping downstream agents as tools (#818)
+- Add syntax sugar allowing easier Agents definition (#820)
+- Support streaming from downstream agents (#812)
+- Add parallel tool calling support to agents for concurrent tool execution (#836)
+- Add Support for Thinking in agents (#837)
+- Add support for confirmation requests in agents (#853) (#914)
+- Allow passing Tool objects directly to Agent
+- Add ToolReturn allowing the control which part of the tool output we pass to LLM (#920)
+- Add the option to stream events from tools using generators and async generators (#921)
+- Add hooks system for agent lifecycle interception (PRE_TOOL, POST_TOOL, PRE_RUN, POST_RUN, ON_EVENT) (#914) (#926) (#939)
+## 1.4.2 (2026-02-18)
+
+### Changed
+
+- ragbits-core updated to version v1.4.2
+
+## 1.4.1 (2026-02-08)
+
+### Changed
+
+- ragbits-core updated to version v1.4.1
+
+## 1.4.0 (2026-02-04)
+
+### Changed
+
+- ragbits-core updated to version v1.4.0
+
+## 1.3.0 (2025-09-11)
+
+### Changed
+
+- ragbits-core updated to version v1.3.0
+
+- Add Chat with agents in CLI
+- Add tool_choice parameter to agent interface (#738)
+- Add PydanticAI agents support (#755)
+- Add unique ID to each agent instance for better tracking and identification (#790)
+- Add audit tracing for tool calls to improve observability and debugging (#790)
+- Add AgentDependencies type (#781)
+
+## 1.2.2 (2025-08-08)
+
+### Changed
+
+- ragbits-core updated to version v1.2.2
+
+## 1.2.1 (2025-08-04)
+
+### Changed
+
+- ragbits-core updated to version v1.2.1
+
+## 1.2.0 (2025-08-01)
+
+### Changed
+
+- ragbits-core updated to version v1.2.0
+- Add native openai tools support (#621)
+- add Context to Agents (#715)
+
+## 1.1.0 (2025-07-09)
+
+### Changed
+
+- ragbits-core updated to version v1.1.0
+
+- Move a2a to extra dependencies (#703)
+- Add support for MCP servers (#632)
+- Add agent support for string prompts (#631)
+- Add tools to Agent interface (#568)
+- Update Agent run method docstring (#565)
+- Fix AgentResult typing (#600)
+- Add support for batch generation (#608)
+- Support history handling in Agent (#648)
+- Support run_streaming in Agent (#650)
+- Support A2A protocol (#649)
+- Add max turns to AgentOptions (#705)
+
+## 1.0.0 (2025-06-04)
+
+### Changed
+
+- ragbits-core updated to version v1.0.0
+
+## 0.20.1 (2025-06-04)
+
+### Changed
+
+- ragbits-core updated to version v0.20.1
+
+## 0.20.0 (2025-06-03)
+
+### Changed
+
+- ragbits-core updated to version v0.20.0
+
+## 0.19.1 (2025-05-27)
+
+### Changed
+
+- ragbits-core updated to version v0.19.1
+
+## 0.19.0 (2025-05-27)
+
+### Changed
+
+- ragbits-core updated to version v0.19.0
+
+- Add Agent interface (#569)
+- Initial release of the package (#569)

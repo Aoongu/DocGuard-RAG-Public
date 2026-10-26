@@ -1,0 +1,20 @@
+[
+  {
+    "query": "Which Python toolkit coordinates ingestion and semantic retrieval?",
+    "source": "ragbits_overview.md",
+    "score": -0.7128518905709509,
+    "text": "Ragbits is a modular Python toolkit for building retrieval-augmented generation applications. Its document search API coordinates document ingestion and semantic retrieval."
+  },
+  {
+    "query": "What stores embeddings locally without a database server?",
+    "source": "vector_store.md",
+    "score": -0.6860482298625373,
+    "text": "An in-memory vector store keeps embeddings in process and ranks stored passages by vector distance. It is useful for small local experiments that do not need a database server."
+  },
+  {
+    "query": "Which metric checks whether the relevant document ranks first?",
+    "source": "evaluation.md",
+    "score": -0.6372650378890513,
+    "text": "Top-1 accuracy measures whether the expected relevant document appears as the first retrieval result. A fixed query set makes a semantic search baseline reproducible."
+  }
+]

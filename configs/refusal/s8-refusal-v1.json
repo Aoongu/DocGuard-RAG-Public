@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "refusal_version": "s8-refusal-v1",
+  "supported_versions": ["17.11", "18.6"],
+  "threshold_grid": {
+    "top1": [-5, -4, -3, -2, -1, 0, 1, 2],
+    "top3_mean": [-5, -4, -3, -2, -1, 0, 1],
+    "coverage": [0.25, 0.35, 0.45, 0.55, 0.65, 0.75],
+    "margin": [0, 0.25, 0.5, 1, 2]
+  },
+  "selection_objective": [
+    "macro_f1",
+    "false_accept_count",
+    "refusal_precision",
+    "answerable_coverage",
+    "threshold_lexicographic"
+  ],
+  "token_pattern": "[a-z_][a-z0-9_]{2,}",
+  "stopwords": ["according", "answer", "behavior", "correct", "documentation", "documented", "does", "each", "exact", "for", "from", "frozen", "how", "into", "postgresql", "says", "should", "specified", "state", "that", "the", "this", "use", "version", "what", "which", "with"],
+  "domain_terms": ["postgresql", "postgres", "psql", "pg_dump", "pg_basebackup", "vacuum", "wal", "relation", "role", "table", "index", "sql", "transaction", "database", "cluster", "schema", "checkpoint", "replication"],
+  "version_conflict": {
+    "min_score": -1.5,
+    "max_token_jaccard": 0.92
+  },
+  "input_sha256": {
+    "development_dataset": "0464b0a74fc9c6afe89e76332a9282c666987b68dbf090e98c4db6fd6086f6a6",
+    "development_m2_results": "0e6711e943f5db45a676ee81c0bd4879775d4e336c29c7410faf0b4aa72d61b8",
+    "s2_chunk_manifest": "0559ee4d75d6079fc2859f8e09910570c4f37f631511f0a9f4348ae7023911d2",
+    "s6_reranker_config": "58f6be34cc40198dfc63eb503605bc2372205f9fbf80157ee2e063e424b3838a",
+    "validation_dataset": "38d11619b89c6c70eb9889d6882b07953599dcc49445e52d3cb458cb338377ea",
+    "validation_m2_results": "9b55f2aefd809630e622274f245d5f301766f749685472319b0df6209517430b"
+  },
+  "test_execution_status": "locked_until_s12"
+}

@@ -1,0 +1,16 @@
+type: ragbits.core.vector_stores.chroma:ChromaVectorStore
+config:
+  client:
+    type: EphemeralClient
+  index_name: baseline
+  distance_method: l2
+  default_options:
+    k: 3
+    score_threshold: -1.2
+  embedder:
+    type: ragbits.core.embeddings.dense:LiteLLMEmbedder
+    config:
+      model_name: "text-embedding-3-small"
+      default_options:
+        dimensions: 768
+        encoding_format: float

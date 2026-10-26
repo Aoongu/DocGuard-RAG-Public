@@ -1,0 +1,465 @@
+import json
+from collections.abc import AsyncGenerator
+from pathlib import Path
+from typing import Literal
+from unittest.mock import MagicMock, mock_open, patch
+
+import pytest
+from fastapi.testclient import TestClient
+from pydantic import BaseModel, ConfigDict, Field
+
+from ragbits.chat.api import RagbitsAPI
+from ragbits.chat.interface import ChatInterface
+from ragbits.chat.interface.forms import FeedbackConfig
+from ragbits.chat.interface.types import (
+    ChatContext,
+    ChatResponseUnion,
+    Reference,
+    ReferenceResponse,
+    TextContent,
+    TextResponse,
+)
+from ragbits.chat.interface.ui_customization import HeaderCustomization, UICustomization
+from ragbits.core.prompt.base import ChatFormat
+
+
+class LikeFormExample(BaseModel):
+    """A simple example implementation of the like form that demonstrates how to use Pydantic for form definition."""
+
+    model_config = ConfigDict(
+        title="Like Form",
+        json_schema_serialization_defaults_required=True,
+    )
+
+    like_reason: str = Field(
+        description="Why do you like this?",
+        min_length=1,
+    )
+
+
+class DislikeFormExample(BaseModel):
+    """A simple example implementation of the dislike form that demonstrates how to use Pydantic for form definition."""
+
+    model_config = ConfigDict(title="Dislike Form", json_schema_serialization_defaults_required=True)
+
+    issue_type: Literal["Incorrect information", "Not helpful", "Unclear", "Other"] = Field(
+        description="What was the issue?"
+    )
+    feedback: str = Field(description="Please provide more details", min_length=1)
+
+
+class MockChatInterface(ChatInterface):
+    """A mock implementation of ChatInterface for testing."""
+
+    def __init__(self) -> None:
+        self.feedback_config = FeedbackConfig()
+
+    async def chat(
+        self, message: str, history: ChatFormat, context: ChatContext
+    ) -> AsyncGenerator[ChatResponseUnion, None]:
+        """Mock implementation that yields test responses."""
+        yield self.create_text_response("Test response")
+        yield self.create_reference(title="Test Reference", content="Test content", url="http://test.com")
+
+
+@pytest.fixture
+def mock_chat_interface() -> type[MockChatInterface]:
+    """Fixture providing the MockChatInterface class."""
+    return MockChatInterface
+
+
+@pytest.fixture
+def api(mock_chat_interface: type[MockChatInterface]) -> RagbitsAPI:
+    """Fixture providing a RagbitsAPI instance with the mock interface."""
+    from ragbits.chat.auth.backends import ListAuthenticationBackend
+    from ragbits.chat.auth.session_store import InMemorySessionStore
+
+    # Set up authentication backend with test users
+    test_users = [
+        {
+            "username": "testuser",
+            "password": "testpass",
+            "email": "test@example.com",
+            "full_name": "Test User",
+            "roles": ["user"],
+        }
+    ]
+    session_store = InMemorySessionStore()
+    auth_backend = ListAuthenticationBackend(users=test_users, session_store=session_store)
+
+    api = RagbitsAPI(mock_chat_interface, auth_backend=auth_backend)
+    return api
+
+
+@pytest.fixture
+def client(api: RagbitsAPI) -> TestClient:
+    """Fixture providing a test client for the FastAPI app."""
+    return TestClient(api.app)
+
+
+def authenticate_user(client: TestClient, username: str = "testuser", password: str = "testpass") -> None:  # noqa: S107
+    """Helper function to authenticate a user. Session cookie is automatically stored by TestClient."""
+    login_response = client.post("/api/auth/login", json={"username": username, "password": password})
+    assert login_response.status_code == 200
+    login_data = login_response.json()
+    assert login_data["success"] is True
+    # TestClient automatically handles cookies, so we don't need to return anything
+
+
+@pytest.mark.asyncio
+async def test_chat_response_to_sse() -> None:
+    """Test conversion of chat responses to SSE format."""
+
+    async def mock_generator() -> AsyncGenerator[ChatResponseUnion, None]:
+        yield TextResponse(content=TextContent(text="Hello"))
+        yield ReferenceResponse(content=Reference(title="Ref", content="Content", url="http://example.com"))
+
+    sse_generator = RagbitsAPI._chat_response_to_sse(mock_generator())
+
+    responses = []
+    async for response in sse_generator:
+        responses.append(response)
+
+    # Should now have 2 chat responses
+    assert len(responses) == 2
+
+    # First should be the text response
+    assert responses[0] == 'data: {"type": "text", "content": {"text": "Hello"}}\n\n'
+
+    # Parse the second response JSON to check it
+    second_response = responses[1].replace("data: ", "").strip()
+    data = json.loads(second_response)
+    assert data["type"] == "reference"
+    assert data["content"]["title"] == "Ref"
+    assert data["content"]["content"] == "Content"
+    assert data["content"]["url"] == "http://example.com"
+
+
+def test_root_endpoint(client: TestClient) -> None:
+    """Test the root endpoint returns the index.html content."""
+    with patch("builtins.open", mock_open(read_data="<html>Test</html>")):
+        response = client.get("/")
+        assert response.status_code == 200
+        assert response.text == "<html>Test</html>"
+
+
+def test_chat_endpoint(client: TestClient) -> None:
+    """Test the chat endpoint returns streaming response with session cookie authentication."""
+    # Authenticate first - TestClient automatically stores the session cookie
+    authenticate_user(client)
+
+    request_data = {
+        "message": "Hello",
+        "history": [{"role": "user", "content": "Previous message"}],
+        "context": {"user_id": "test_user"},
+    }
+
+    # TestClient automatically sends cookies from previous requests
+    response = client.post("/api/chat", json=request_data)
+    assert response.status_code == 200
+    # Check only the main part of the content type, ignoring charset
+    assert response.headers["content-type"].startswith("text/event-stream")
+
+    # Test the content of the streamed response
+    content = response.content.decode("utf-8")
+    assert 'data: {"type": "text", "content": {"text": "Test response"}}' in content
+    assert 'data: {"type": "reference", "content": {"title": "Test Reference"' in content
+
+
+def test_config_endpoint_with_feedback(client: TestClient, api: RagbitsAPI) -> None:
+    """Test the config endpoint with feedback configuration enabled."""
+    # Set up feedback config
+    api.chat_interface.feedback_config = FeedbackConfig(
+        like_enabled=True, dislike_enabled=True, like_form=LikeFormExample, dislike_form=DislikeFormExample
+    )
+
+    response = client.get("/api/config")
+    assert response.status_code == 200
+    data = response.json()
+
+    assert "feedback" in data
+    assert "like" in data["feedback"]
+    assert "dislike" in data["feedback"]
+    assert data["feedback"]["like"]["enabled"] is True
+    assert data["feedback"]["dislike"]["enabled"] is True
+    assert "like_reason" in data["feedback"]["like"]["form"]["properties"]
+    assert "feedback" in data["feedback"]["dislike"]["form"]["properties"]
+
+
+def test_config_endpoint_without_feedback(client: TestClient) -> None:
+    """Test the config endpoint with feedback configuration disabled."""
+    # Default MockChatInterface has feedback disabled
+    response = client.get("/api/config")
+    assert response.status_code == 200
+    data = response.json()
+    assert "feedback" in data
+    assert data["feedback"]["like"]["enabled"] is False
+    assert data["feedback"]["dislike"]["enabled"] is False
+    assert data["feedback"]["like"]["form"] is None
+    assert data["feedback"]["dislike"]["form"] is None
+
+
+def test_config_endpoint_with_customization(client: TestClient, api: RagbitsAPI) -> None:
+    """Test the config endpoint with customization."""
+    # Set up customization
+    api.chat_interface.ui_customization = UICustomization(
+        header=HeaderCustomization(title="Custom Title", subtitle="Custom Subtitle", logo="Custom Logo"),
+        welcome_message="Custom Welcome Message",
+    )
+
+    response = client.get("/api/config")
+    assert response.status_code == 200
+    data = response.json()
+    assert "customization" in data
+    assert data["customization"]["header"]["title"] == "Custom Title"
+    assert data["customization"]["header"]["subtitle"] == "Custom Subtitle"
+    assert data["customization"]["header"]["logo"] == "Custom Logo"
+    assert data["customization"]["welcome_message"] == "Custom Welcome Message"
+
+
+def test_config_endpoint_without_customization(client: TestClient) -> None:
+    """Test the config endpoint without customization."""
+    # Default MockChatInterface has no customization
+    response = client.get("/api/config")
+    assert response.status_code == 200
+    data = response.json()
+    assert "customization" in data
+    assert data["customization"] is None
+
+
+def test_validation_exception_handler(client: TestClient) -> None:
+    """Test handling of validation errors."""
+    # Missing required 'message' field should trigger validation error
+    response = client.post("/api/chat", json={})
+    assert response.status_code == 422
+    data = response.json()
+    assert "detail" in data
+    assert "body" in data
+
+
+def test_unauthenticated_request(client: TestClient) -> None:
+    """Test that requests without authentication are rejected."""
+    request_data = {
+        "message": "Hello",
+        "history": [{"role": "user", "content": "Previous message"}],
+        "context": {"user_id": "test_user"},
+    }
+
+    response = client.post("/api/chat", json=request_data)
+    assert response.status_code == 401
+    data = response.json()
+    assert data["detail"] == "Authentication required"
+
+
+def test_load_chat_interface_from_class() -> None:
+    """Test loading chat interface from a class."""
+    api = RagbitsAPI(MockChatInterface)
+    assert isinstance(api.chat_interface, MockChatInterface)
+
+
+@patch("importlib.import_module")
+def test_load_chat_interface_from_string(mock_import: MagicMock) -> None:
+    """Test loading chat interface from a string path."""
+
+    class TestChatInterface(ChatInterface):
+        async def chat(
+            self, message: str, history: ChatFormat, context: ChatContext
+        ) -> AsyncGenerator[ChatResponseUnion, None]:
+            yield self.create_text_response("Test")
+
+    mock_module = MagicMock()
+    mock_module.TestClass = TestChatInterface
+    mock_import.return_value = mock_module
+
+    api = RagbitsAPI("test_module:TestClass")
+    mock_import.assert_called_once_with("test_module")
+    assert isinstance(api.chat_interface, TestChatInterface)
+
+
+def test_state_verification_successful(client: TestClient, api: RagbitsAPI) -> None:
+    """Test state verification succeeds with valid signature."""
+    # Authenticate first - TestClient automatically stores the session cookie
+    authenticate_user(client)
+
+    state = {"user_data": "test_value"}
+    signature = api.chat_interface._sign_state(state)
+
+    request_data = {
+        "message": "Hello",
+        "history": [{"role": "user", "content": "Previous message"}],
+        "context": {"state": state, "signature": signature},
+    }
+
+    # TestClient automatically sends cookies from previous requests
+    response = client.post("/api/chat", json=request_data)
+    assert response.status_code == 200
+    assert response.headers["content-type"].startswith("text/event-stream")
+
+
+def test_state_verification_failed(client: TestClient, api: RagbitsAPI) -> None:
+    """Test state verification fails with invalid signature."""
+    # Authenticate first - TestClient automatically stores the session cookie
+    authenticate_user(client)
+
+    state = {"user_data": "test_value"}
+    invalid_signature = "invalid-signature"
+
+    request_data = {
+        "message": "Hello",
+        "history": [{"role": "user", "content": "Previous message"}],
+        "context": {"state": state, "signature": invalid_signature},
+    }
+
+    # TestClient automatically sends cookies from previous requests
+    response = client.post("/api/chat", json=request_data)
+    assert response.status_code == 400
+    assert response.json()["detail"] == "Invalid state signature"
+
+
+def test_load_chat_interface_invalid_type() -> None:
+    """Test error when loading an invalid chat interface type."""
+
+    class InvalidClass:
+        pass
+
+    with pytest.raises(TypeError, match="Implementation must inherit from ChatInterface"):
+        RagbitsAPI(InvalidClass)  # type: ignore
+
+
+def test_run_method() -> None:
+    """Test the run method starts the uvicorn server."""
+    api = RagbitsAPI(MockChatInterface)
+
+    # Mock the uvicorn.run method
+    with patch("uvicorn.run") as mock_run:
+        api.run(host="localhost", port=9000)
+
+        # Verify uvicorn.run was called with the correct parameters
+        mock_run.assert_called_once_with(api.app, host="localhost", port=9000)
+
+
+def test_run_with_reload_method() -> None:
+    """Test the run_with_reload method creates temp file and starts uvicorn with reload."""
+
+    class TempFileCheck:
+        """Helper class to verify temp file exists when uvicorn.run is called."""
+
+        existed_at_run_time: bool = False
+        temp_file_path: Path | None = None
+
+        @classmethod
+        def check_and_record(cls, app_path: str, **kwargs: dict) -> None:
+            module_name = app_path.split(":")[0]
+            cls.temp_file_path = Path(f"./{module_name}.py")
+            cls.existed_at_run_time = cls.temp_file_path.exists()
+
+    with patch("uvicorn.run", side_effect=TempFileCheck.check_and_record) as mock_run:
+        RagbitsAPI.run_with_reload(
+            host="localhost",
+            port=9000,
+            chat_interface="test:TestChat",
+            debug_mode=True,
+        )
+
+        # Verify uvicorn.run was called with reload=True and an import string
+        mock_run.assert_called_once()
+        call_args = mock_run.call_args
+        assert call_args[1]["reload"] is True
+        assert call_args[1]["host"] == "localhost"
+        assert call_args[1]["port"] == 9000
+        assert isinstance(call_args[0][0], str)
+        # Module name format: _ragbits_app_<random>:app
+        assert ":app" in call_args[0][0]
+        assert "_ragbits_app_" in call_args[0][0]
+
+        # Verify temp file existed when uvicorn.run was called
+        assert TempFileCheck.existed_at_run_time, "Temp file was not created before uvicorn.run"
+
+        # Verify temp file was cleaned up after
+        assert TempFileCheck.temp_file_path is not None
+        assert not TempFileCheck.temp_file_path.exists(), "Temp file was not cleaned up"
+
+
+def test_login_endpoint(client: TestClient) -> None:
+    """Test the login endpoint with valid credentials sets session cookie."""
+    response = client.post("/api/auth/login", json={"username": "testuser", "password": "testpass"})
+    assert response.status_code == 200
+    data = response.json()
+    assert data["success"] is True
+    assert data["user"]["username"] == "testuser"
+    # Check that session cookie is set
+    assert "ragbits_session" in response.cookies
+
+
+def test_login_endpoint_invalid_credentials(client: TestClient) -> None:
+    """Test the login endpoint with invalid credentials."""
+    response = client.post("/api/auth/login", json={"username": "testuser", "password": "wrongpass"})
+    assert response.status_code == 401
+    data = response.json()
+    assert data["success"] is False
+    assert data["error_message"] == "Invalid password"
+
+
+def test_logout_endpoint(client: TestClient) -> None:
+    """Test the logout endpoint clears session cookie."""
+    # First login to get a session cookie
+    authenticate_user(client)
+
+    # Then logout
+    response = client.post("/api/auth/logout")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["success"] is True
+
+
+def test_user_endpoint_authenticated(client: TestClient) -> None:
+    """Test the /api/user endpoint returns user info when authenticated."""
+    # Authenticate first
+    authenticate_user(client)
+
+    # Call /api/user endpoint
+    response = client.get("/api/user")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["username"] == "testuser"
+    assert data["email"] == "test@example.com"
+
+
+def test_user_endpoint_unauthenticated(client: TestClient) -> None:
+    """Test the /api/user endpoint returns 401 when not authenticated."""
+    response = client.get("/api/user")
+    assert response.status_code == 401
+
+
+def test_feedback_endpoint_authenticated(client: TestClient, api: RagbitsAPI) -> None:
+    """Test the feedback endpoint with authentication."""
+    # Set up feedback config
+    api.chat_interface.feedback_config = FeedbackConfig(like_enabled=True, dislike_enabled=True)
+
+    # Authenticate first
+    authenticate_user(client)
+
+    feedback_data = {
+        "message_id": "test-message-id",
+        "feedback": "like",
+        "payload": {"like_reason": "Very helpful"},
+    }
+
+    response = client.post("/api/feedback", json=feedback_data)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["status"] == "success"
+
+
+def test_feedback_endpoint_unauthenticated(client: TestClient) -> None:
+    """Test the feedback endpoint rejects unauthenticated requests."""
+    feedback_data = {
+        "message_id": "test-message-id",
+        "feedback": "like",
+        "payload": {"like_reason": "Very helpful"},
+    }
+
+    response = client.post("/api/feedback", json=feedback_data)
+    assert response.status_code == 401
+    data = response.json()
+    assert data["detail"] == "Authentication required"

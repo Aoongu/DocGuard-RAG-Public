@@ -1,0 +1,19 @@
+{
+  "file_count": 2,
+  "files": [
+    {
+      "path": "config.json",
+      "sha256": "289adf7ada1eb6b4afa7589a48a032d45a076cf2e46dcdb3b4cabc33be14f708",
+      "size_bytes": 799
+    },
+    {
+      "path": "onnx/model.onnx",
+      "sha256": "15b9a8c3da82eddf263df571281166e00e9308fe19d077084b642ebfcaf06d2b",
+      "size_bytes": 1112459588
+    }
+  ],
+  "model_name": "BAAI/bge-reranker-base",
+  "revision": "2cfc18c9415c912f9d8155881c133215df768a70",
+  "schema_version": 1,
+  "total_size_bytes": 1112460387
+}

@@ -1,0 +1,34 @@
+{
+  "models": [
+    {
+      "asset_path": "data/tokenizers/0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39/tokenizer.json",
+      "license": "MIT",
+      "metadata_sha256": "4b08ba2b45ca6b619a48fbcec20cea68c810820f6b3debf718f32e6394fdc00b",
+      "metadata_url": "https://huggingface.co/api/models/intfloat/multilingual-e5-small/revision/614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "name": "intfloat/multilingual-e5-small",
+      "readme_sha256": "0038de97aee16258cecbad7ffda4b4febd6953e747a00e0ddbc8e6ed241e9c1c",
+      "readme_size_bytes": 497538,
+      "readme_url": "https://huggingface.co/intfloat/multilingual-e5-small/resolve/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md",
+      "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+      "size_bytes": 17082730,
+      "tokenizer_url": "https://huggingface.co/intfloat/multilingual-e5-small/resolve/614241f622f53c4eeff9890bdc4f31cfecc418b3/tokenizer.json"
+    },
+    {
+      "asset_path": "data/tokenizers/9eb652ac4e40cc093272bbbe0f55d521cf67570060227109b5cdc20945a4489e/tokenizer.json",
+      "license": "MIT",
+      "metadata_sha256": "48ae244582637ce66d5fc996dfe5dd70fa69bd1b1b016d290aa310ba592cdc7f",
+      "metadata_url": "https://huggingface.co/api/models/BAAI/bge-reranker-base/revision/2cfc18c9415c912f9d8155881c133215df768a70",
+      "name": "BAAI/bge-reranker-base",
+      "readme_sha256": "b4223c8c1e95538f8c79168afc501f8b2da06c63221f013b79b28af78b59366d",
+      "readme_size_bytes": 34111,
+      "readme_url": "https://huggingface.co/BAAI/bge-reranker-base/resolve/2cfc18c9415c912f9d8155881c133215df768a70/README.md",
+      "revision": "2cfc18c9415c912f9d8155881c133215df768a70",
+      "sha256": "9eb652ac4e40cc093272bbbe0f55d521cf67570060227109b5cdc20945a4489e",
+      "size_bytes": 17098107,
+      "tokenizer_url": "https://huggingface.co/BAAI/bge-reranker-base/resolve/2cfc18c9415c912f9d8155881c133215df768a70/tokenizer.json"
+    }
+  ],
+  "retrieved_at": "2026-10-14T03:14:26Z",
+  "schema_version": 1
+}

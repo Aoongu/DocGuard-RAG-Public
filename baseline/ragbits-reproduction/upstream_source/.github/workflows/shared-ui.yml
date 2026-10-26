@@ -1,0 +1,77 @@
+name: Shared ui checks
+
+on:
+  workflow_call:
+
+jobs:
+  checks:
+    name: Run linters & tests
+    continue-on-error: false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+        with:
+          version: ${{ vars.UV_VERSION || '0.6.9' }}
+
+      - name: Sync Python packages
+        run: |
+          uv venv
+          source .venv/bin/activate
+          uv sync
+
+      - name: Install Ragbits API Client dependencies
+        run: npm ci
+        working-directory: typescript/@ragbits/api-client
+
+      - name: Install Ragbits API Client React dependencies
+        run: npm ci
+        working-directory: typescript/@ragbits/api-client-react
+
+      - name: Build Ragbits API Client
+        run: npm run build
+        working-directory: typescript/@ragbits/api-client
+
+      - name: Build Ragbits API Client React
+        run: npm run build
+        working-directory: typescript/@ragbits/api-client-react
+
+      - name: Install UI dependencies
+        run: npm ci
+        working-directory: typescript/ui
+
+      - name: Run ESLint
+        run: npm run lint
+        working-directory: typescript/ui
+
+      - name: Run Prettier
+        run: npm run format:check
+        working-directory: typescript/ui
+
+      - name: Check build
+        run: npm run build
+        working-directory: typescript/ui
+
+      - name: Check UI build artifacts are up to date
+        run: |
+          if [ -n "$(git diff --name-only packages/ragbits-chat/src/ragbits/chat/ui-build/)" ]; then
+            echo "::error::UI build artifacts are outdated. Run 'npm run build' and commit the updated ui-build/ directory."
+            exit 1
+          fi
+
+      - name: Run unit tests
+        run: npm run test:run
+        working-directory: typescript/ui
+
+      - name: Run integration tests
+        run: |
+          source .venv/bin/activate
+          cd typescript/ui
+          npm run test:integration

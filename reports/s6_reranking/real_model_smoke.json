@@ -1,0 +1,21 @@
+{
+  "model_manifest_sha256": "a32c1fc79c0da13b8f09b68bc28a79bb444727e5f9dcbcff80bab720ae764b62",
+  "model_name": "BAAI/bge-reranker-base",
+  "model_revision": "2cfc18c9415c912f9d8155881c133215df768a70",
+  "process_runs": [
+    [
+      {"logit": -0.891210675239563, "truncated": false},
+      {"logit": -10.196866989135742, "truncated": false},
+      {"logit": -4.966052055358887, "truncated": true}
+    ],
+    [
+      {"logit": -0.891210675239563, "truncated": false},
+      {"logit": -10.196866989135742, "truncated": false},
+      {"logit": -4.966052055358887, "truncated": true}
+    ]
+  ],
+  "query": "What does wal_level control?",
+  "schema_version": 1,
+  "status": "pass",
+  "tokenizer_sha256": "9eb652ac4e40cc093272bbbe0f55d521cf67570060227109b5cdc20945a4489e"
+}

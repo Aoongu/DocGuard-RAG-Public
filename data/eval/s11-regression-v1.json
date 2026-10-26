@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "fixture_version": "s11-regression-v1",
+  "questions": [
+    {"query_id": "s11-fixture-001", "gold_chunk_ids": ["chunk-a"], "retrieved_chunk_ids": ["chunk-a", "chunk-x", "chunk-y"], "status": "success"},
+    {"query_id": "s11-fixture-002", "gold_chunk_ids": ["chunk-b"], "retrieved_chunk_ids": ["chunk-x", "chunk-b", "chunk-y"], "status": "success"},
+    {"query_id": "s11-fixture-003", "gold_chunk_ids": ["chunk-c"], "retrieved_chunk_ids": ["chunk-x", "chunk-y", "chunk-z"], "status": "success"},
+    {"query_id": "s11-fixture-004", "gold_chunk_ids": ["chunk-d"], "retrieved_chunk_ids": ["chunk-d", "chunk-y", "chunk-z"], "status": "success"}
+  ]
+}

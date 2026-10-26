@@ -1,0 +1,15 @@
+defaults:
+  - dataloader@evaluation.dataloader: hf
+  - pipeline@evaluation.pipeline: document_search
+  - metrics@evaluation.metrics:
+    - precision_recall_f1
+    - ranked_retrieval
+  - _self_
+
+evaluator:
+  batch_size: 5
+  num_retries: 1
+
+logger:
+  local: True
+  neptune: False

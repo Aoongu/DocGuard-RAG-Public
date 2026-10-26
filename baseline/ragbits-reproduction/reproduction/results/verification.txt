@@ -1,0 +1,42 @@
+Repository root: <repository-root>
+[RUN] fixed upstream commit exists
+[PASS] fixed upstream commit exists
+[RUN] HEAD contains fixed upstream baseline
+[PASS] HEAD contains fixed upstream baseline
+Current reproduction HEAD: 39bcb5a67dd73db108708c41a2df4a766302c1c2
+[RUN] result JSON files match committed versions before run
+[PASS] result JSON files match committed versions before run
+[RUN] reproduction tests
+..                                                                       [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\typer\__init__.py:24
+  <repository-root>\.venv\Lib\site-packages\typer\__init__.py:24: DeprecationWarning: 'click.utils.get_binary_stream' is deprecated and will be removed in Click 9.0.
+    from click.utils import get_binary_stream as get_binary_stream
+
+.venv\Lib\site-packages\typer\__init__.py:25
+  <repository-root>\.venv\Lib\site-packages\typer\__init__.py:25: DeprecationWarning: 'click.utils.get_text_stream' is deprecated and will be removed in Click 9.0.
+    from click.utils import get_text_stream as get_text_stream
+
+reproduction/tests/test_reproduction.py::test_local_document_search_returns_expected_top_one_and_writes_results
+reproduction/tests/test_reproduction.py::test_local_document_search_returns_expected_top_one_and_writes_results
+reproduction/tests/test_reproduction.py::test_local_document_search_returns_expected_top_one_and_writes_results
+  <repository-root>\packages\ragbits-document-search\src\ragbits\document_search\ingestion\parsers\docling.py:112: DeprecationWarning: Using DoclingParseV4DocumentBackend for InputFormat.IMAGE is deprecated. Images should use ImageDocumentBackend via ImageFormatOption. Automatically correcting the backend, please update your code to avoid this warning.
+    converter = DocumentConverter(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2 passed, 5 warnings in 14.98s
+[PASS] reproduction tests
+[RUN] document search reproduction
+[PASS] document search reproduction
+[RUN] offline chat smoke reproduction
+[PASS] offline chat smoke reproduction
+[PASS] document JSON fields and expected Top-1 sources
+[PASS] offline chat JSON fields and expected HTTP 200 responses
+[RUN] generated JSON files remain identical to committed versions
+[PASS] generated JSON files remain identical to committed versions
+[RUN] protected paths match fixed upstream baseline
+[PASS] protected paths match fixed upstream baseline
+[RUN] protected paths have no current worktree diff
+[PASS] protected paths have no current worktree diff
+[PASS] no common literal API key/private key patterns in reproduction source
+VERIFY_PASS

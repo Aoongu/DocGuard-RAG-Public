@@ -1,0 +1,2 @@
+{"error_message":"generation output must be valid JSON","error_type":"CitationValidationFailure","question_id":"s4-test-020"}
+{"error_message":"generation response status must be completed","error_type":"FinalPipelineError","question_id":"s4-test-021"}
