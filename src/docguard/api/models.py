@@ -64,6 +64,7 @@ class ProvenanceResponse(StrictModel):
 
 class EvidenceSummary(StrictModel):
     evidence_id: NonEmpty
+    citation_label: str | None = None
     chunk_id: NonEmpty
     rank: int = Field(ge=1)
     score: float
@@ -78,6 +79,7 @@ class EvidenceSummary(StrictModel):
 
 class CitationResponse(StrictModel):
     evidence_id: NonEmpty
+    citation_label: str | None = None
     chunk_id: NonEmpty
     postgresql_version: Version
     topic: NonEmpty

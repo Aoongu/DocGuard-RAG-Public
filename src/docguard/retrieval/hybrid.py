@@ -69,6 +69,25 @@ def _route_map(hits: Sequence[RouteHit], route: str) -> dict[str, RouteHit]:
     return mapped
 
 
+def rrf_scores(
+    dense_ranks: dict[str, int], bm25_ranks: dict[str, int], *, rrf_k: int
+) -> dict[str, float]:
+    """Domain-independent RRF arithmetic shared by frozen and imported corpora."""
+    if type(rrf_k) is not int or rrf_k <= 0:
+        raise ValueError("rrf_k must be a positive integer")
+    for ranks in (dense_ranks, bm25_ranks):
+        if any(type(rank) is not int or rank <= 0 for rank in ranks.values()):
+            raise ValueError("RRF ranks must be positive integers")
+    return {
+        key: sum(
+            1 / (rrf_k + ranks[key])
+            for ranks in (dense_ranks, bm25_ranks)
+            if key in ranks
+        )
+        for key in set(dense_ranks) | set(bm25_ranks)
+    }
+
+
 def reciprocal_rank_fusion(
     dense_hits: Sequence[DenseSearchHit],
     bm25_hits: Sequence[BM25SearchHit],
@@ -90,12 +109,11 @@ def reciprocal_rank_fusion(
             )
 
     scored: list[tuple[float, str]] = []
-    for chunk_id in set(dense) | set(bm25):
-        score = 0.0
-        if chunk_id in dense:
-            score += 1 / (rrf_k + dense[chunk_id].rank)
-        if chunk_id in bm25:
-            score += 1 / (rrf_k + bm25[chunk_id].rank)
+    for chunk_id, score in rrf_scores(
+        {key: hit.rank for key, hit in dense.items()},
+        {key: hit.rank for key, hit in bm25.items()},
+        rrf_k=rrf_k,
+    ).items():
         if not math.isfinite(score):
             raise HybridRetrievalError("RRF score must be finite")
         scored.append((score, chunk_id))
@@ -226,9 +244,7 @@ class HybridRetriever:
         bm25_hits = await self._bm25_route().search(
             query, version, bm25_depth, bm25_enabled=True
         )
-        return reciprocal_rank_fusion(
-            dense_hits, bm25_hits, rrf_k=rrf_k, top_k=top_k
-        )
+        return reciprocal_rank_fusion(dense_hits, bm25_hits, rrf_k=rrf_k, top_k=top_k)
 
     async def close(self) -> None:
         if self._dense is not None:

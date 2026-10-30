@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import re
 import time
 from dataclasses import asdict, dataclass
 from typing import Any, Protocol
@@ -54,6 +55,7 @@ def _evidence(value: Any) -> EvidenceSummary:
     chunk_id = str(value.chunk_id)
     return EvidenceSummary(
         evidence_id=chunk_id,
+        citation_label=_citation_label(value),
         chunk_id=chunk_id,
         rank=int(value.rank),
         score=float(value.score),
@@ -67,9 +69,19 @@ def _evidence(value: Any) -> EvidenceSummary:
     )
 
 
+def _citation_label(value):
+    label = getattr(value, "evidence_id", "")
+    return (
+        label
+        if isinstance(label, str) and re.fullmatch(r"E(?:0[1-9]|10)", label)
+        else None
+    )
+
+
 def _citation(value: Any) -> CitationResponse:
     return CitationResponse(
         evidence_id=value.chunk_id,
+        citation_label=_citation_label(value),
         chunk_id=value.chunk_id,
         postgresql_version=value.postgresql_version,
         topic=value.topic,
@@ -155,7 +167,9 @@ class QueryService:
             route=result.route,
             decision=DecisionResponse(
                 action=decision.action.value,
-                reason_code=(decision.reason_code.value if decision.reason_code else None),
+                reason_code=(
+                    decision.reason_code.value if decision.reason_code else None
+                ),
                 confidence=decision.confidence,
                 triggered_rule=decision.triggered_rule,
                 feature_values=asdict(decision.features),

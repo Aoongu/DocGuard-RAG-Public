@@ -13,6 +13,7 @@ from docguard.api.runtime import (
     build_live_query_service,
     dependency_probe,
 )
+from docguard.discovery.runtime import build_discovery_service
 from docguard.engineering.config import (
     load_engineering_config,
     verify_repository_compatibility,
@@ -43,12 +44,18 @@ EVALUATIONS = EvaluationJobService(
     ASSET_ROOT / "reports/generated/s9-evaluation-jobs.sqlite3",
     EXECUTORS.run_evaluation,
 )
+DISCOVERY = build_discovery_service(
+    PROJECT_ROOT,
+    Path(os.environ.get('DOCGUARD_DISCOVERY_ROOT', ASSET_ROOT / 'reports/generated/s15-discovery')),
+    asset_root=ASSET_ROOT,
+)
 SERVICES = AppServices(
     query=QUERY,
     artifacts=ARTIFACTS,
     evaluations=EVALUATIONS,
     dependency_probe=lambda: dependency_probe(PROJECT_ROOT, ASSET_ROOT),
     shutdown=EXECUTORS.close,
+    discovery=DISCOVERY,
 )
 
 app = create_app(CONFIG, SERVICES)

@@ -10,6 +10,7 @@ node_modules/
 frontend/dist/
 .qdrant/
 .bm25/
+.knowledge/
 data/raw/
 data/processed/
 data/models/

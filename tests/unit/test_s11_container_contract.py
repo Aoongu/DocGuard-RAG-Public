@@ -31,12 +31,38 @@ def test_compose_has_healthchecks_and_named_qdrant_volume() -> None:
     assert "qdrant_data:" in compose
     assert "runtime_reports:/workspace/reports/generated" in compose
     assert "runtime_reports:" in compose
-    assert '"6333:6333"' in compose
+    assert '"127.0.0.1:6333:6333"' in compose
     assert "DOCGUARD_QDRANT_URL: http://qdrant:6333" in compose
     assert "DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}" in compose
 
 
 def test_docker_context_excludes_secrets_models_and_generated_indexes() -> None:
     ignored = (ROOT / ".dockerignore").read_text(encoding="utf-8").splitlines()
-    for required in (".env", "data/models/", "data/raw/", ".qdrant/", ".bm25/"):
+    for required in (
+        ".env",
+        "data/models/",
+        "data/raw/",
+        ".qdrant/",
+        ".bm25/",
+        ".knowledge/",
+    ):
         assert required in ignored
+
+
+def test_compose_initializes_current_assets_and_passes_discovery_settings():
+    compose = (ROOT / "compose.yaml").read_text(encoding="utf-8")
+    for value in (
+        "SERPAPI_API_KEY:",
+        "OPENAI_API_KEY:",
+        "DOCGUARD_DOCUMENT_DNS:",
+        "DOCGUARD_DOH_PROVIDER:",
+        "bootstrap:",
+        "service_completed_successfully",
+        "prepare_container.py",
+        "/imports/knowledge:ro",
+        "/workspace/.qdrant:ro",
+    ):
+        assert value in compose
+    nginx = (ROOT / "frontend/nginx.conf").read_text(encoding="utf-8")
+    assert "proxy_buffering off;" in nginx
+    assert "proxy_read_timeout 600s;" in nginx

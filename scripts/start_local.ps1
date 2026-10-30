@@ -1,11 +1,17 @@
 [CmdletBinding()]
-param()
+param(
+    [ValidateSet("system", "doh")]
+    [string]$DocumentDnsMode,
+    [ValidateSet("brave", "serpapi")]
+    [string]$SearchProvider
+)
 
 $ErrorActionPreference = "Stop"
 $env:PYTHONIOENCODING = "utf-8"
 $env:PYTHONDONTWRITEBYTECODE = "1"
+
 $ProjectRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
-$env:UV_CACHE_DIR = Join-Path $ProjectRoot ".uv-cache"
+if (-not $env:UV_CACHE_DIR) { $env:UV_CACHE_DIR = Join-Path $ProjectRoot ".uv-cache" }
 $FrontendRoot = Join-Path $ProjectRoot "frontend"
 $AppUrl = "http://127.0.0.1:5173"
 $ApiHealthUrl = "http://127.0.0.1:8000/api/v1/health"
@@ -36,6 +42,15 @@ function ConvertTo-EncodedCommand {
 
 try {
     Set-Location -LiteralPath $ProjectRoot
+    . (Join-Path $PSScriptRoot "project_env.ps1")
+    Import-DocGuardEnvironment -Path (Join-Path $ProjectRoot ".env")
+    # Explicit command-line choices override file settings.
+    if ($PSBoundParameters.ContainsKey("DocumentDnsMode")) {
+        $env:DOCGUARD_DOCUMENT_DNS = $DocumentDnsMode
+    }
+    if ($PSBoundParameters.ContainsKey("SearchProvider")) {
+        $env:DOCGUARD_SEARCH_PROVIDER = $SearchProvider
+    }
 
     foreach ($CommandName in @("uv", "npm", "powershell")) {
         if (-not (Get-Command $CommandName -ErrorAction SilentlyContinue)) {
@@ -51,6 +66,11 @@ try {
     }
     if ([string]::IsNullOrWhiteSpace($env:DEEPSEEK_API_KEY)) {
         Write-Warning "DEEPSEEK_API_KEY is unavailable; generated answers will fail closed."
+    }
+    foreach ($SearchKeyName in @("SERPAPI_API_KEY", "BRAVE_SEARCH_API_KEY")) {
+        if ([string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($SearchKeyName, "Process"))) {
+            [Environment]::SetEnvironmentVariable($SearchKeyName, [Environment]::GetEnvironmentVariable($SearchKeyName, "User"), "Process")
+        }
     }
 
     Write-Host "[1/5] Synchronizing the frozen Python environment..." -ForegroundColor Cyan

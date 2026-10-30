@@ -1,0 +1,24 @@
+{
+  "bootstrap_samples": 10000,
+  "bootstrap_seed": 20261027,
+  "evidence_level": "scripted_engineering_replay_only",
+  "human_expectations_status": "pending",
+  "limits": {
+    "max_active_seconds": 120,
+    "max_input_tokens": 50000,
+    "max_model_calls": 8,
+    "max_model_cost_usd": 0.05,
+    "max_output_tokens": 6400,
+    "max_prompt_bytes": 20000,
+    "max_reads": 10,
+    "max_searches": 3
+  },
+  "methods": [
+    "given_url",
+    "single_search_replay",
+    "adaptive_replay"
+  ],
+  "schema_version": 1,
+  "suite_version": "s15-engineering-v1",
+  "test_execution_status": "locked"
+}

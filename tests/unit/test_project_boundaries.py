@@ -82,6 +82,7 @@ def test_only_approved_direct_runtime_dependencies_are_declared() -> None:
         "fastapi",
         "httpx",
         "lxml",
+        "langgraph",
         "numpy",
         "onnxruntime",
         "qdrant-client",

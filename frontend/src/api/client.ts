@@ -12,6 +12,7 @@ import type {
 } from "./types";
 
 const API_PREFIX = "/api/v1";
+import { watchEvents, type DiscoveryTask, type DiscoveryCreate, type DiscoveryReply, type DiscoveryApproval, type DiscoveryCapabilities, type DiscoveryEvent, type ImportJob, type KnowledgeBase, type KnowledgeAnswer } from "./discovery";
 
 type RequestOptions = {
   signal?: AbortSignal;
@@ -84,6 +85,18 @@ export async function requestJson<T>(
 }
 
 export interface ApiClient {
+  getDiscoveryCapabilities(options?: RequestOptions): Promise<DiscoveryCapabilities>;
+  createDiscoveryTask(payload: DiscoveryCreate): Promise<DiscoveryTask>;
+  getDiscoveryTask(taskId: string, options?: RequestOptions): Promise<DiscoveryTask>;
+  replyDiscoveryTask(taskId: string, payload: DiscoveryReply): Promise<DiscoveryTask>;
+  approveDiscoveryTask(taskId: string, payload: DiscoveryApproval): Promise<ImportJob>;
+  cancelDiscoveryTask(taskId: string): Promise<DiscoveryTask>;
+  retryImport(jobId: string): Promise<ImportJob>;
+  getImport(jobId: string, options?: RequestOptions): Promise<ImportJob>;
+  listKnowledgeBases(options?: RequestOptions): Promise<{ knowledge_bases: KnowledgeBase[] }>;
+  deleteKnowledgeBase(kbId: string): Promise<{ knowledge_base_id: string; status: "deleted" }>;
+  queryKnowledgeBase(kbId: string, question: string, options?: RequestOptions & { generate?: boolean }): Promise<KnowledgeAnswer>;
+  watchDiscoveryEvents(taskId: string, after: number, onEvent: (event: DiscoveryEvent) => void, options?: RequestOptions): Promise<void>;
   getHealth(options?: RequestOptions): Promise<HealthResponse>;
   getCorpora(options?: RequestOptions): Promise<CorpusListResponse>;
   rebuildCorpora(options?: RequestOptions): Promise<RebuildResponse>;
@@ -108,6 +121,18 @@ export function createApiClient(fetcher: typeof fetch = fetch): ApiClient {
     });
 
   return {
+    getDiscoveryCapabilities: (options) => get(`${API_PREFIX}/discovery/capabilities`, options),
+    createDiscoveryTask: (payload) => post(`${API_PREFIX}/discovery/tasks`, payload),
+    getDiscoveryTask: (id, options) => get(`${API_PREFIX}/discovery/tasks/${encodeURIComponent(id)}`, options),
+    replyDiscoveryTask: (id, payload) => post(`${API_PREFIX}/discovery/tasks/${encodeURIComponent(id)}/reply`, payload),
+    approveDiscoveryTask: (id, payload) => post(`${API_PREFIX}/discovery/tasks/${encodeURIComponent(id)}/approve`, payload),
+    cancelDiscoveryTask: (id) => post(`${API_PREFIX}/discovery/tasks/${encodeURIComponent(id)}/cancel`, undefined),
+    retryImport: (id) => post(`${API_PREFIX}/imports/${encodeURIComponent(id)}/retry`, undefined),
+    getImport: (id, options) => get(`${API_PREFIX}/imports/${encodeURIComponent(id)}`, options),
+    listKnowledgeBases: (options) => get(`${API_PREFIX}/knowledge-bases`, options),
+    deleteKnowledgeBase: (id) => requestJson(fetcher, `${API_PREFIX}/knowledge-bases/${encodeURIComponent(id)}`, { method: "DELETE" }),
+    queryKnowledgeBase: (id, question, options) => post(`${API_PREFIX}/knowledge-bases/${encodeURIComponent(id)}/query`, { question, generate: options?.generate ?? false }, options),
+    watchDiscoveryEvents: (id, after, onEvent, options) => watchEvents(fetcher, id, after, onEvent, options?.signal),
     getHealth: (options) => get(`${API_PREFIX}/health`, options),
     getCorpora: (options) => get(`${API_PREFIX}/corpora`, options),
     rebuildCorpora: (options) => post(`${API_PREFIX}/corpora/rebuild`, undefined, options),

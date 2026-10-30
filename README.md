@@ -11,16 +11,19 @@
 
 普通 RAG 系统往往只展示一段生成文本。DocGuard-RAG 进一步回答四个工程问题：答案来自哪个文档版本、检索与重排经过了哪些步骤、引用是否真的来自已提供证据、证据不足时系统是否应该拒答或要求补充版本。
 
-项目以 PostgreSQL 17.11/18.6 官方文档为代表场景，覆盖从可信快照、结构化切分、混合检索、Cross-Encoder 重排，到生成前决策、生成后引用验证、FastAPI/React 产品界面和冻结评测协议的完整链路。
+项目保留 PostgreSQL 17.11/18.6 官方文档的冻结评测，同时支持通过文档发现 Agent 导入其他产品的静态 HTML 文档。覆盖从可信快照、结构化切分、混合检索、Cross-Encoder 重排，到生成前决策、生成后引用验证、FastAPI/React 产品界面和冻结评测协议的完整链路。
 
 ## 核心能力
 
+- **文档发现 Agent**：根据产品、版本和文档类型调用搜索、阅读网页、跟随真实导航并判断来源；确认入口后自动收集同源目录中的章节。任务与工具轨迹持久化，调用、时间和费用预算受限。
+- **技术文档导入**：支持详细使用文档、API 参考、快速入门和具体主题；完整集合最多 1,000 页，保留 HTML 快照、内容哈希和来源。失败不发布部分集合，支持缓存重试、导入进度及知识库删除。
+- **共享检索链路**：导入文档复用 E5 Dense、BM25、RRF 与 BGE 重排，引用可跳转检查各路分数；新领域拒答阈值独立校准，未校准状态明确展示。
 - **版本感知**：问题可指定 PostgreSQL 17.11 或 18.6；跨版本证据不足时返回 `clarify`，不替用户猜测版本。
 - **可追溯回答**：每条 Evidence 保存版本、章节路径、官方 URL、anchor、chunk ID，以及 Dense/BM25/RRF/rerank 排名来源。
 - **生成前拒答**：根据版本可用性、证据覆盖率和排序余量决定 `answer/refuse/clarify/error`，只有 `answer` 才调用生成模型。
 - **生成后验证**：结构化 JSON Schema、Evidence allow-list、未知/重复/空引用检查共同构成失败关闭合同。
 - **可复现评测**：180 条冻结数据集，Development/Validation/Test 各 60 题；Test 采用一次性执行、零自动重试和不可覆盖账本。
-- **完整产品界面**：知识库管理、技术问答、证据检查器和评测看板四个响应式页面。
+- **完整产品界面**：知识库管理、技术问答、证据检查器和评测看板四个主要响应式页面，以及文档发现、分阶段导入进度和引用跳转。
 
 ## 系统架构
 
@@ -102,6 +105,8 @@ Test 运行器对方法、参数、数据哈希、输出目录和 run ID 做绑�
 
 | 路径 | 内容 |
 | --- | --- |
+| `src/docguard/discovery/` | 有预算约束的搜索/阅读 Agent、来源核查、HTTPS/DNS、集合收集与任务账本 |
+| `src/docguard/knowledge/` | 导入知识库快照、索引、完整检索与问答 |
 | `src/docguard/ingestion/` | 官方文档下载、校验、安全提取和快照恢复 |
 | `src/docguard/processing/` | DocBook HTML 解析、结构感知切分和 token 预算 |
 | `src/docguard/retrieval/` | E5 Dense、SQLite BM25、1wRRF 和 Cross-Encoder |
@@ -157,7 +162,18 @@ $env:DEEPSEEK_API_KEY = "<your-key>"
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_local.ps1
 ```
 
-脚本会同步冻结依赖、执行前端测试与构建、启动 API 和 Vite，并在服务就绪后打开 [http://127.0.0.1:5173](http://127.0.0.1:5173)。Docker 方式见 [S11_DEPLOYMENT.md](docs/S11_DEPLOYMENT.md)。
+脚本会同步冻结依赖、执行前端测试与构建、启动 API 和 Vite，并在服务就绪后打开 [http://127.0.0.1:5173](http://127.0.0.1:5173)。Docker 方式见 [DEPLOYMENT.md](docs/DEPLOYMENT.md)。
+
+## Docker 启动
+
+复制 `.env.example` 为 `.env`，填写 `DEEPSEEK_API_KEY` 与 `SERPAPI_API_KEY`；密钥与运行资产均不进入镜像。
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\start_docker.ps1
+# 或：docker compose up -d --build
+```
+
+访问 http://127.0.0.1:8080。一次性初始化服务会复用本机已有 PostgreSQL 向量和已导入知识库；没有资产时容器仍可启动，但相关检索能力会报告不可用。资产准备、数据卷持久化和网络排错见 [部署文档](docs/DEPLOYMENT.md)，文档发现与功能边界见 [DOCUMENT_DISCOVERY.md](docs/DOCUMENT_DISCOVERY.md)。
 
 ## 数据与结果溯源
 
@@ -174,7 +190,8 @@ PandaWiki 仅作为产品形态参考；本项目未复制其源码。
 
 ## 已知限制
 
-- 评测语料仅覆盖 PostgreSQL 17.11/18.6，不代表跨领域泛化。
+- 冻结质量评测仅覆盖 PostgreSQL 17.11/18.6；新增文档发现与导入能力不能视为跨领域准确率已经验证。
+- 文档导入仅支持可读取的静态 HTML；PDF、登录页及必须执行 JavaScript 的正文不在当前支持范围。来源判断需要用户确认，链接关系本身不能证明官方域名所有权。
 - Test 只有 60 题，人工质量复核只有 9 题。
 - Cross-Encoder 当前为 CPU ONNX 实现，尚未进行量化、缓存或在线批处理优化。
 - `deepseek-flash` 是滚动服务别名，未来服务端实现可能变化。

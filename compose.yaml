@@ -2,10 +2,10 @@ name: docguard-rag
 
 services:
   qdrant:
-    image: qdrant/qdrant:v1.15.5
+    image: qdrant/qdrant:v1.19.1
     restart: unless-stopped
     ports:
-      - "6333:6333"
+      - "127.0.0.1:6333:6333"
     volumes:
       - qdrant_data:/qdrant/storage
     healthcheck:
@@ -14,7 +14,23 @@ services:
       timeout: 5s
       retries: 10
 
+  bootstrap:
+    image: docguard-rag-api:local
+    pull_policy: never
+    restart: "no"
+    command: ["python", "/app/scripts/prepare_container.py"]
+    environment:
+      DOCGUARD_QDRANT_URL: http://qdrant:6333
+    volumes:
+      - ./.qdrant:/workspace/.qdrant:ro
+      - ./reports/generated/s15-discovery/knowledge:/imports/knowledge:ro
+      - runtime_reports:/workspace/reports/generated
+    depends_on:
+      qdrant:
+        condition: service_healthy
+
   api:
+    image: docguard-rag-api:local
     build:
       context: .
       dockerfile: Dockerfile.api
@@ -24,11 +40,21 @@ services:
       DOCGUARD_ASSET_ROOT: /workspace
       DOCGUARD_QDRANT_URL: http://qdrant:6333
       DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      SERPAPI_API_KEY: ${SERPAPI_API_KEY:-}
+      BRAVE_SEARCH_API_KEY: ${BRAVE_SEARCH_API_KEY:-}
+      DOCGUARD_SEARCH_PROVIDER: ${DOCGUARD_SEARCH_PROVIDER:-serpapi}
+      DOCGUARD_DOCUMENT_DNS: ${DOCGUARD_DOCUMENT_DNS:-doh}
+      DOCGUARD_DOH_PROVIDER: ${DOCGUARD_DOH_PROVIDER:-auto}
+      DOCGUARD_DISCOVERY_ROOT: /workspace/reports/generated/s15-discovery
     volumes:
       - ./data:/workspace/data
       - runtime_reports:/workspace/reports/generated
       - ./.bm25:/workspace/.bm25
+      - ./.qdrant:/workspace/.qdrant:ro
     depends_on:
+      bootstrap:
+        condition: service_completed_successfully
       qdrant:
         condition: service_healthy
     healthcheck:
@@ -44,7 +70,7 @@ services:
       dockerfile: frontend/Dockerfile
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"
     depends_on:
       api:
         condition: service_healthy
@@ -56,4 +82,5 @@ services:
 
 volumes:
   qdrant_data:
+    name: ${COMPOSE_PROJECT_NAME:-docguard-rag}_qdrant_data_v119
   runtime_reports:

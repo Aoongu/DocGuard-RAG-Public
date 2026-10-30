@@ -1,3 +1,4 @@
 /baseline/ragbits-reproduction/** -text
 /data/archives/*.tar.gz -text
 /data/tokenizers/** -text
+/data/eval/s15-discovery-engineering-v1/** -text

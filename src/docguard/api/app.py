@@ -14,6 +14,7 @@ from fastapi.responses import JSONResponse, StreamingResponse
 
 from docguard.api.config import ApiConfig
 from docguard.api.dependencies import AppServices
+from docguard.api.discovery import discovery_router
 from docguard.api.logging import log_request
 from docguard.api.models import (
     CorpusListResponse,
@@ -54,13 +55,19 @@ def _problem(request: Request, status_code: int, error_type: str, message: str) 
 def create_app(config: ApiConfig, services: AppServices) -> FastAPI:
     @asynccontextmanager
     async def lifespan(_: FastAPI):
-        yield
-        await services.evaluations.close()
-        close = getattr(services.query, "close", None)
-        if callable(close):
-            await close()
-        if callable(services.shutdown):
-            await services.shutdown()
+        if services.discovery is not None:
+            await services.discovery.start()
+        try:
+            yield
+        finally:
+            if services.discovery is not None:
+                await services.discovery.close()
+            await services.evaluations.close()
+            close = getattr(services.query, "close", None)
+            if callable(close):
+                await close()
+            if callable(services.shutdown):
+                await services.shutdown()
 
     app = FastAPI(
         title="DocGuard-RAG API",
@@ -72,7 +79,7 @@ def create_app(config: ApiConfig, services: AppServices) -> FastAPI:
         allow_origins=list(config.allowed_origins),
         allow_credentials=False,
         allow_methods=["GET", "POST", "OPTIONS"],
-        allow_headers=["Accept", "Content-Type"],
+        allow_headers=["Accept", "Content-Type", "Last-Event-ID"],
     )
     http_logger = logging.getLogger("docguard.api.http")
 
@@ -109,6 +116,7 @@ def create_app(config: ApiConfig, services: AppServices) -> FastAPI:
         return _problem(request, 503, "UPSTREAM_ERROR", "required local artifact is unavailable")
 
     prefix = config.api_prefix
+    app.include_router(discovery_router(services.discovery), prefix=prefix)
 
     @app.get(f"{prefix}/health", response_model=HealthResponse)
     async def health(request: Request) -> HealthResponse:

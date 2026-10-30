@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "agent_version": "s15-discovery-agent-v1",
+  "limits": {
+    "max_model_calls": 8,
+    "max_searches": 3,
+    "max_reads": 10,
+    "max_input_tokens": 50000,
+    "max_output_tokens": 6400,
+    "max_prompt_bytes": 20000,
+    "max_model_cost_usd": 0.05,
+    "max_active_seconds": 120
+  },
+  "search_provider": "serpapi",
+  "model_connection_config": "configs/generation/s7-deepseek-flash-v1.json"
+}

@@ -1,10 +1,13 @@
 FROM python:3.11.15-slim-bookworm AS builder
 
-ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
+ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_HTTP_TIMEOUT=120 UV_HTTP_RETRIES=3 PIP_DEFAULT_TIMEOUT=120
 WORKDIR /app
 RUN pip install --no-cache-dir uv==0.11.13
+COPY pyproject.toml uv.lock README.md /app/
+COPY baseline /app/baseline
+RUN --mount=type=cache,target=/root/.cache/uv uv sync --frozen --no-dev --no-install-project
 COPY . /app
-RUN uv sync --frozen --no-dev
+RUN --mount=type=cache,target=/root/.cache/uv uv sync --frozen --no-dev
 
 FROM python:3.11.15-slim-bookworm AS runtime
 ENV PATH="/app/.venv/bin:$PATH" \

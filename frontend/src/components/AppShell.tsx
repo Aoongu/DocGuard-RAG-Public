@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useApi } from "../api/context";
 import type { HealthResponse } from "../api/types";
 import { StatusBadge } from "./StatusBadge";
@@ -15,5 +15,6 @@ function ServiceHealth() {
 }
 
 export function AppShell({ children }: { children: ReactNode }) {
-  return <div className="app-shell"><a className="skip-link" href="#main-content">跳到主要内容</a><aside className="sidebar" aria-label="主导航"><div className="brand"><span className="brand-mark">DG</span><div><strong>DocGuard-RAG</strong><small>CONTROL PLANE</small></div></div><nav>{links.map(([to, label, index]) => <NavLink key={to} to={to} className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}><span>{index}</span>{label}</NavLink>)}</nav><div className="system-health"><small>系统状态</small><ServiceHealth /></div></aside><main id="main-content" tabIndex={-1}>{children}</main></div>;
+  const location = useLocation();
+  return <div className="app-shell"><a className="skip-link" href="#main-content">跳到主要内容</a><aside className="sidebar" aria-label="主导航"><div className="brand"><span className="brand-mark">DG</span><div><strong>DocGuard-RAG</strong><small>CONTROL PLANE</small></div></div><nav>{links.map(([to, label, index]) => <NavLink key={to} to={to} className={({ isActive }) => isActive || (to === "/knowledge" && location.pathname === "/discovery") ? "nav-link active" : "nav-link"}><span>{index}</span>{label}</NavLink>)}</nav><div className="system-health"><small>系统状态</small><ServiceHealth /></div></aside><main id="main-content" tabIndex={-1}>{children}</main></div>;
 }

@@ -16,3 +16,4 @@ class AppServices:
     evaluations: Any
     dependency_probe: DependencyProbe
     shutdown: Any | None = None
+    discovery: Any | None = None

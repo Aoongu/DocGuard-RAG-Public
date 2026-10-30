@@ -37,6 +37,7 @@ export interface ProvenanceResponse {
 
 export interface EvidenceSummary {
   evidence_id: string;
+  citation_label?: string | null;
   chunk_id: string;
   rank: number;
   score: number;
@@ -51,6 +52,7 @@ export interface EvidenceSummary {
 
 export interface CitationResponse {
   evidence_id: string;
+  citation_label?: string | null;
   chunk_id: string;
   postgresql_version: PostgreSqlVersion;
   topic: string;

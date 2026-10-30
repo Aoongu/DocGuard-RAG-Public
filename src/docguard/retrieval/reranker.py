@@ -91,6 +91,37 @@ def _validate_query(query: str) -> None:
         raise ValueError("query must be a non-empty string without NUL")
 
 
+def score_ranked_passages(
+    query: str,
+    passages: Sequence[tuple[str, int, str]],
+    scorer: PairScorer,
+    *,
+    top_k: int,
+) -> list[tuple[float, int, str, PairScore]]:
+    """Score and stably order passages without assuming a document product."""
+    _validate_query(query)
+    if type(top_k) is not int or top_k <= 0:
+        raise ValueError("top_k must be a positive integer")
+    if not passages:
+        return []
+    scores = scorer.score_pairs(query, [text for _, _, text in passages])
+    if len(scores) != len(passages):
+        raise RerankerError("reranker score count differs from candidate count")
+    ranked = []
+    seen = set()
+    for (key, rank, text), pair in zip(passages, scores, strict=True):
+        if key in seen or type(rank) is not int or rank <= 0 or not text.strip():
+            raise RerankerError("Invalid or duplicate reranker candidate")
+        seen.add(key)
+        logit = float(pair.logit)
+        if not math.isfinite(logit):
+            raise RerankerError("reranker score must be finite")
+        if type(pair.truncated) is not bool:
+            raise RerankerError("reranker truncation flag must be boolean")
+        ranked.append((logit, rank, key, pair))
+    return sorted(ranked, key=lambda item: (-item[0], item[1], item[2]))[:top_k]
+
+
 def rerank_hits(
     query: str,
     candidates: Sequence[HybridSearchHit],
@@ -114,23 +145,16 @@ def rerank_hits(
     if not candidates:
         return []
 
-    pair_scores = scorer.score_pairs(query, [item.text for item in candidates])
-    if len(pair_scores) != len(candidates):
-        raise RerankerError("reranker score count differs from candidate count")
-    scored: list[tuple[float, int, str, HybridSearchHit, PairScore]] = []
-    for candidate, pair_score in zip(candidates, pair_scores, strict=True):
-        logit = float(pair_score.logit)
-        if not math.isfinite(logit):
-            raise RerankerError("reranker score must be finite")
-        if type(pair_score.truncated) is not bool:
-            raise RerankerError("reranker truncation flag must be boolean")
-        scored.append((logit, candidate.rank, candidate.chunk_id, candidate, pair_score))
-    scored.sort(key=lambda item: (-item[0], item[1], item[2]))
+    mapping = {candidate.chunk_id: candidate for candidate in candidates}
+    scored = score_ranked_passages(
+        query, [(c.chunk_id, c.rank, c.text) for c in candidates], scorer, top_k=top_k
+    )
 
     output: list[RerankedSearchHit] = []
-    for rank, (logit, original_rank, _, candidate, pair_score) in enumerate(
-        scored[:top_k], start=1
+    for rank, (logit, original_rank, chunk_id, pair_score) in enumerate(
+        scored, start=1
     ):
+        candidate = mapping[chunk_id]
         output.append(
             RerankedSearchHit(
                 rank=rank,
@@ -207,7 +231,9 @@ class CrossEncoderReranker:
         result: list[PairScore] = []
         for offset in range(0, len(passages), self._config.batch_size):
             batch = passages[offset : offset + self._config.batch_size]
-            encoded = self._tokenizer.encode_batch([(query, passage) for passage in batch])
+            encoded = self._tokenizer.encode_batch(
+                [(query, passage) for passage in batch]
+            )
             if len(encoded) != len(batch):
                 raise RerankerError("tokenizer output count differs from pair count")
             input_ids = np.asarray([item.ids for item in encoded], dtype=np.int64)

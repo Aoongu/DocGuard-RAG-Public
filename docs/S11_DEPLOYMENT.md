@@ -1,3 +1,5 @@
+> 当前 Docker 启动和文档导入初始化方式见 [DEPLOYMENT.md](DEPLOYMENT.md)。以下保留历史工程门禁说明。
+
 # S11 本地运行、Docker 与回归门禁
 
 ## 安全边界
@@ -51,7 +53,7 @@ docker compose ps
 
 访问 `http://127.0.0.1:8080`。`docker compose down` 后再次 `up -d` 不删除 Qdrant 的 named volume `qdrant_data`；只有显式 `docker compose down --volumes` 才会删除，执行前必须确认。
 
-Compose 将宿主 `data/`、`.bm25/` 与 named volume `runtime_reports` 挂载到 API；运行期 job 数据不会写回只读镜像。`DOCGUARD_QDRANT_URL=http://qdrant:6333` 让查询走服务模式。生产问答前需把与 `s3-dense-v1` 相同 collection 和 payload 写入服务；S11 CI 使用固定向量实际校验 local/service Top-K 一致性，不会把模型权重放进镜像。
+Compose 将宿主 `data/`、`.bm25/` 与 named volume `runtime_reports` 挂载到 API；新版本先由 bootstrap 初始化已有向量与知识库，详细步骤见 DEPLOYMENT.md。运行期 job 数据不会写回只读镜像。`DOCGUARD_QDRANT_URL=http://qdrant:6333` 让查询走服务模式。生产问答前需把与 `s3-dense-v1` 相同 collection 和 payload 写入服务；S11 CI 使用固定向量实际校验 local/service Top-K 一致性，不会把模型权重放进镜像。
 
 ## Qdrant 一致性规则
 

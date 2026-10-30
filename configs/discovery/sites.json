@@ -1,0 +1,6 @@
+{
+  "python": ["docs.python.org"],
+  "redis": ["redis.io"],
+  "postgresql": ["www.postgresql.org"],
+  "java": ["docs.oracle.com"]
+}

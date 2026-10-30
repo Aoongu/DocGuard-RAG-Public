@@ -1,0 +1,1052 @@
+{
+  "https://community.example.org/postgresql/18/ambiguous.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/b3c9883713bc76833551150009ab2fba6ce5138b938fc49df14a4c854ec3fbe6.html",
+    "product": "OtherProduct",
+    "sha256": "9deb6af5b260561c83c4684ae1a6fa1bb33cc38dad768f1dad10878814639a21"
+  },
+  "https://community.example.org/postgresql/18/budget_exhausted.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/f4d3f46b12bd9146774c050f2ae1bf0cc4ff3bf8e42e38349c37fa3c0d811d5a.html",
+    "product": "OtherProduct",
+    "sha256": "e6370463c3974101387a729fe231ca588a8cecab746da6ddb80762c5de37b589"
+  },
+  "https://community.example.org/postgresql/18/duplicate.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/880ce72f99241dfe9afa6c9ddce6e3a378ffe2f2eb9077d1a63510b7da337c88.html",
+    "product": "OtherProduct",
+    "sha256": "178c5e896679817f75a71846a90182d63e3bd3c8a35893f3cd014fd396e9cf9c"
+  },
+  "https://community.example.org/postgresql/18/empty_then_rewrite.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/d4b0fc063b883f4cad15bad4d6110d43798b47884f75ff061884ef5c902c80e6.html",
+    "product": "OtherProduct",
+    "sha256": "8066c59ffc9ea3fb454104cec9439180c08713400c8318f004cb7fb29b1be645"
+  },
+  "https://community.example.org/postgresql/18/exact.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/280487b7b369c8843f7669e4c8fb09cca97e5bbd400cfe27a3a0c125fcda0a1d.html",
+    "product": "OtherProduct",
+    "sha256": "a4d58b18908702a3c888d2f20659b2378f044bfd27c6705d2a69acd89b798b6f"
+  },
+  "https://community.example.org/postgresql/18/shell.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/16068e3f62c03da6a78badbd00736a1ded0771c9e2caea54b9a8c6f3fac90953.html",
+    "product": "OtherProduct",
+    "sha256": "21b3d41ce0ef6a9a7823ab7ade1eb90e68445ddd2daea93ba3879cb175a23cac"
+  },
+  "https://community.example.org/postgresql/18/similar_product.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/65cda739f4738f873143b5014db364ac8b2d9548ce93a06d11e4358614588eba.html",
+    "product": "OtherProduct",
+    "sha256": "011eaaae0998bae1a223720b6b6db7879f88ccded2bc3ddeaa8f8cc31a7add65"
+  },
+  "https://community.example.org/postgresql/18/unverified_source.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/9395cbab5d0b872d1734cd492a80529fbf6de0c2564fa58b7991e2dfd724e844.html",
+    "product": "OtherProduct",
+    "sha256": "daf0b1523a95e266c0a5fc57725b5cb7d6c31b83fb63e56c9532251a40a02381"
+  },
+  "https://community.example.org/postgresql/18/upstream_failure.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/cb749a0e1a011c549445bd5ff24501f4f74016fe4454790a0c0689b93fbd8915.html",
+    "product": "OtherProduct",
+    "sha256": "bf10edeafc32b3a529e84fd9ef41e6b97fb22487f032a27d36659d82abf9673d"
+  },
+  "https://community.example.org/postgresql/18/wrong_version.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/5f534e7a6440cbfebe52168a95d4dff43b54683ea3f2bf88bf6d3fa2e3d65ae1.html",
+    "product": "OtherProduct",
+    "sha256": "3a202aa665f1ee7291dd1aa742ced6e0274799123ecf8f6e7cacb5ba31b51932"
+  },
+  "https://community.example.org/python/3/ambiguous.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/44007c1a2ded45f017a26d072bc8160d42226991d0af7c1af4831bc3182572bc.html",
+    "product": "OtherProduct",
+    "sha256": "ef00b9de76f9d16236ec879596e439c2992d349c6e541dc2127cbcd902fde12b"
+  },
+  "https://community.example.org/python/3/budget_exhausted.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/3ee3bb1ded3daaf6057260cc02d1132988331761bb876b2a139c963462acf500.html",
+    "product": "OtherProduct",
+    "sha256": "8653b46f9631f8f7fb5bf62dd8f41082f37c8fbae227ed51f1e3c939b6f3e1d9"
+  },
+  "https://community.example.org/python/3/duplicate.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/d0255103a46da44029bb05c4defb3eeede80c7e64aeaede8112ae8d13c51f25c.html",
+    "product": "OtherProduct",
+    "sha256": "b1c6bfa2d7b47e22ac09ed57c872662d81847374501a2a224a94d4f8926d69d1"
+  },
+  "https://community.example.org/python/3/empty_then_rewrite.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/0255b39102e951a9ffe823bc027c0ae995abe27aff02ade3794760e748635e5b.html",
+    "product": "OtherProduct",
+    "sha256": "788089efc954f96bd4d87b30dfedcaf72ae77f5714b6983dcee13cfb6e1844ed"
+  },
+  "https://community.example.org/python/3/exact.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/3597f03b401123bf21658e83eb01a6794912e675d4db2d92e15332a081dadba2.html",
+    "product": "OtherProduct",
+    "sha256": "b0c6ea85cfea2e1fe00184e0655f72947e9f228b04de0555e44bde0406f70bec"
+  },
+  "https://community.example.org/python/3/shell.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/510f4401e5fc064c0f9ee85a5790d79507fb2e3faae87029c8b1f61a1adde22b.html",
+    "product": "OtherProduct",
+    "sha256": "9a3472b91eb0ee4b299a8cb7d54aacfc159640f3497ffadecd0097e4652852ff"
+  },
+  "https://community.example.org/python/3/similar_product.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/1bd5c8a7bf35684209da6d175b6d32c7b1417f05d5cb6a52807329097b227fb9.html",
+    "product": "OtherProduct",
+    "sha256": "7d30d63a39ee50587570b390401fbf0eee747db7aed88c411421a439f8319451"
+  },
+  "https://community.example.org/python/3/unverified_source.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/2692c491ac69a6e40a5a66bb4b9bc8358c2211046c44dbd1d58046ff96544a87.html",
+    "product": "OtherProduct",
+    "sha256": "b0214acf93649db1e18b66076c1479e7c376c37ce96c34bfea70a9b85abb1154"
+  },
+  "https://community.example.org/python/3/upstream_failure.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/d1ee958e05068c00b31cf8007c61767bb21d9d4e584822b25f53fdeb15ff49bc.html",
+    "product": "OtherProduct",
+    "sha256": "640ac778858205c6dc3b171090f03ca07d42901ef38ad9e8d53aacdd37450374"
+  },
+  "https://community.example.org/python/3/wrong_version.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/0152849be192bd0103a112009ceeb1be2d551e5385acc2b474971daf236b9365.html",
+    "product": "OtherProduct",
+    "sha256": "19aabd4ad21aef9c5d25036d5ab55bc5e047af0944b73136647de3977bb8806d"
+  },
+  "https://community.example.org/redis/7/ambiguous.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/073eb856b9a586f2efdfeaee70d7ba45dc192fc81b0f4ff153728981f9e2ecb7.html",
+    "product": "OtherProduct",
+    "sha256": "a10179a4ceeb40ee4b6209f6c17dece875b37b57ff2ec0310b50cca14958ae93"
+  },
+  "https://community.example.org/redis/7/budget_exhausted.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/265f7a2103418edb0c1fb646fb8edcc9c8a05dfac0a8868906fc7a97d5c62a8c.html",
+    "product": "OtherProduct",
+    "sha256": "1c4412397e3c216ed32538855385b519483a1db3166652a9e63d01a8db5540d1"
+  },
+  "https://community.example.org/redis/7/duplicate.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/4a730c07dca767036583ac787e4130b1fe710a832669e2bc3cf4a14e7976d45c.html",
+    "product": "OtherProduct",
+    "sha256": "87938b4c444a15b04a5de615f8aecb7dc046f2bdbaaedf4407859cbee5323cb4"
+  },
+  "https://community.example.org/redis/7/empty_then_rewrite.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/a7388eb534251853e350b545633b03822aea07bb8f184f4a25e58f89066b3d54.html",
+    "product": "OtherProduct",
+    "sha256": "7c7fd5fb4b1ac25d9dd72078521de8e718dfe1b70b798bba975d41dd6f23f8b2"
+  },
+  "https://community.example.org/redis/7/exact.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/e7309f664dd5b566bb330aac8dc9adb5f12de993477c3e7de5f268b7279b382c.html",
+    "product": "OtherProduct",
+    "sha256": "91ca71eafd9dfc86a960a334d7f664aa43537556ce1bb0643821fe51b513a812"
+  },
+  "https://community.example.org/redis/7/shell.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/390bbaf57ae006aa3b358e1230c59a6f96866c2a0b6b9ddaf6794348d4496e97.html",
+    "product": "OtherProduct",
+    "sha256": "451e8c9299b7cbb11963ffb9ade4c4beb15c4b784c07de709e85079c17a843eb"
+  },
+  "https://community.example.org/redis/7/similar_product.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/b1796dd53d70443a148836bee933f9b830d7e8c76789c1490182d58a6e743032.html",
+    "product": "OtherProduct",
+    "sha256": "fc445cc8fbe702bf9f1be69c4573d9c6de8b3d69720588c5c144256a493e1fb5"
+  },
+  "https://community.example.org/redis/7/unverified_source.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/47851059f6010ca8cc5e61d956c4f9291c7e22931920276d1e60b4653fcb3add.html",
+    "product": "OtherProduct",
+    "sha256": "0a6eafadd11294b87853b10c3ed03606bcea11f0e4fc8f97d28b1684a78f2a0c"
+  },
+  "https://community.example.org/redis/7/upstream_failure.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/5a4f59ddef008ce3a2af1593a7f1ecab81b8230278a0c629017f0911eca875ab.html",
+    "product": "OtherProduct",
+    "sha256": "196f65198ec703fe00062993fdf4f7c840114da0e05005aef3f668f92387df08"
+  },
+  "https://community.example.org/redis/7/wrong_version.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/f61be8a7c312fab61a2f7484aeb93c19ca8c7e5b746c6eceb9fafb6c8955a4c1.html",
+    "product": "OtherProduct",
+    "sha256": "6b2a6b026ae238dc00a86831df45a3be5b2d32bd1ba6f8ca7ecb72ecb8894ede"
+  },
+  "https://docs.python.org/2/s15-fixture/ambiguous.html": {
+    "actual_version": "2",
+    "official": true,
+    "path": "pages/1f60f713e28b616d0c1a3de7cc6c634578522f386567d4f47e0d1ac009074f3e.html",
+    "product": "Python",
+    "sha256": "b40946cdd55b3477083ccaf239f16f51b15f51abbc105adc534f99eda60aa757"
+  },
+  "https://docs.python.org/2/s15-fixture/budget_exhausted.html": {
+    "actual_version": "2",
+    "official": true,
+    "path": "pages/2abfa2f9b8effd55c0af8a3615c2f7a694bcbb1e0714e60eee904c9a338b8839.html",
+    "product": "Python",
+    "sha256": "d9f9b8e2f0a824123ad991ee56dd06843333a7218eeb0a7a50594a32be6e390f"
+  },
+  "https://docs.python.org/2/s15-fixture/duplicate.html": {
+    "actual_version": "2",
+    "official": true,
+    "path": "pages/74e70f38228276783eeba0f39790f571390df4848731e26c44602721e868381e.html",
+    "product": "Python",
+    "sha256": "103185b1bd5d1b77deb9cc9b9113242fc3cee0bcafda962711e829500281e9ae"
+  },
+  "https://docs.python.org/2/s15-fixture/empty_then_rewrite.html": {
+    "actual_version": "2",
+    "official": true,
+    "path": "pages/027404e8bb9e77dccac560014d2166cd935dc7d7f59fb9ecc0636b6286c595e8.html",
+    "product": "Python",
+    "sha256": "cc449ac04209d3ce75b019e274c32e3ceaa07b5a6a2623acd2ac43a537809a70"
+  },
+  "https://docs.python.org/2/s15-fixture/exact.html": {
+    "actual_version": "2",
+    "official": true,
+    "path": "pages/95602efc14e0db990c7601cae85e768d545fa070393d82918bbce88b0fb9fabc.html",
+    "product": "Python",
+    "sha256": "95c3b740db557363c1f82a27c248ec7bf80e97ca3e86ac9ff735fa095b126f12"
+  },
+  "https://docs.python.org/2/s15-fixture/shell.html": {
+    "actual_version": "2",
+    "official": true,
+    "path": "pages/859ff38ddb814bd7d40baf9241633344684d241492f8ffb4814be3d9c505e504.html",
+    "product": "Python",
+    "sha256": "04f5c3d7b0ff41ed38bbb10d5291e8feb90526db1f6c814a9600319386061a7e"
+  },
+  "https://docs.python.org/2/s15-fixture/similar_product.html": {
+    "actual_version": "2",
+    "official": true,
+    "path": "pages/713e0e9df88babad37a3d5db6347efd0f7cee110606103d0cdc9332a09a963bb.html",
+    "product": "Python",
+    "sha256": "b8218ccb6fca47a7bac0366f914a8a3380e4ab5cfca4c9d8a4964b46b6c90b45"
+  },
+  "https://docs.python.org/2/s15-fixture/unverified_source.html": {
+    "actual_version": "2",
+    "official": true,
+    "path": "pages/c50f6ca98cf6b228a412c6c8cc8b17e72f8b2077291e2cecd5e3d9e5b9582b0c.html",
+    "product": "Python",
+    "sha256": "8a5c316e94247918d57ab1b1dfc6bf938621d69e766aaa6f63a4b6741e21fad4"
+  },
+  "https://docs.python.org/2/s15-fixture/upstream_failure.html": {
+    "actual_version": "2",
+    "official": true,
+    "path": "pages/a7c4ec90bdf9b9bd7657188d0075ea36ef6372107e63d42f1c8a543de98a2ef6.html",
+    "product": "Python",
+    "sha256": "17547834617190db2cd8fa38f39b944c5097a3d81e5d0142bc00db0e7833a8bf"
+  },
+  "https://docs.python.org/2/s15-fixture/wrong_version.html": {
+    "actual_version": "2",
+    "official": true,
+    "path": "pages/a73032fd9957bdfc672a5dd36d76284d60cf8a175b834a233651c32854ecd474.html",
+    "product": "Python",
+    "sha256": "f1b0070acdc0e3592d1fa6222e67b8913b92e0e23fecd6ce13a6255d4991c529"
+  },
+  "https://docs.python.org/3/s15-fixture/ambiguous-shell.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/bf534b1083cb18850c2f928f15f59d9f77fef206c4ea6f8ac0b71f72d6adabf2.html",
+    "product": "Python",
+    "sha256": "b05f962f6429cc24ccf88977e90a9287218da5fbec9f403db2126faaf665336d"
+  },
+  "https://docs.python.org/3/s15-fixture/ambiguous.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/f78ed8574b1bd799bc5d46cc750de7b47f1bd64102cf75342df5f17f5c0630f6.html",
+    "product": "Python",
+    "sha256": "25c0068a3cd217245400d14dfe36c3555bd063d34e8c568a9f7a5833be24a949"
+  },
+  "https://docs.python.org/3/s15-fixture/budget_exhausted-shell.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/c58413925a7a7c14a4450a76370adcd26a83876d52b329314bdf7ba40efc2d19.html",
+    "product": "Python",
+    "sha256": "b05f962f6429cc24ccf88977e90a9287218da5fbec9f403db2126faaf665336d"
+  },
+  "https://docs.python.org/3/s15-fixture/budget_exhausted.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/26613e6a3b47a7539cba31a9acb88ae5bbab43f8561258cf9c4eb0160ab4f6ff.html",
+    "product": "Python",
+    "sha256": "9a60071b92476720ae46792155bb796cd2990bed11594d8b4b58c8b5268cefc5"
+  },
+  "https://docs.python.org/3/s15-fixture/duplicate-shell.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/c067d0906778156e5398f02727d2bec7b19f88728d527b1a7b5d21c5b8365144.html",
+    "product": "Python",
+    "sha256": "b05f962f6429cc24ccf88977e90a9287218da5fbec9f403db2126faaf665336d"
+  },
+  "https://docs.python.org/3/s15-fixture/duplicate.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/961b62cd40723ea7c1ffc014b9a4ab34be0619b8b9d346f7788de51c4d93a8cc.html",
+    "product": "Python",
+    "sha256": "5581a776b17c6468fe663b4d0722c389c3a045b7e2deafdddfc06696e6fba44a"
+  },
+  "https://docs.python.org/3/s15-fixture/empty_then_rewrite-shell.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/d34cfe19bc388a3ff7d91d64495cd2b974ddd9842c8674d193369d6191e4851b.html",
+    "product": "Python",
+    "sha256": "b05f962f6429cc24ccf88977e90a9287218da5fbec9f403db2126faaf665336d"
+  },
+  "https://docs.python.org/3/s15-fixture/empty_then_rewrite.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/1069694fb16649b9130343a79d0524a97ad96911a5744094224ac063d5f8c7c2.html",
+    "product": "Python",
+    "sha256": "19d6d6beaf97d7335f7d934c2f8472f1e7b574e8102f6d08cba6b591434b75c2"
+  },
+  "https://docs.python.org/3/s15-fixture/exact-shell.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/e4047598ff41d55e74b5832713ab72c6bb49d6f0c5f4bf8eb40a929e3520bb84.html",
+    "product": "Python",
+    "sha256": "b05f962f6429cc24ccf88977e90a9287218da5fbec9f403db2126faaf665336d"
+  },
+  "https://docs.python.org/3/s15-fixture/exact.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/00025ae93ba320c855cea22a0c0409da4b1d049907fced08b3a24d5326c58633.html",
+    "product": "Python",
+    "sha256": "f51be942cdc4a87bdcecebd47b0b0fe2556a262d362b6dee6fa14d418bb3657e"
+  },
+  "https://docs.python.org/3/s15-fixture/shell-shell.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/f30ed9e4434baf264564b2876e2a52a9e69fc4aa71fd7cdafd529c0410a7430e.html",
+    "product": "Python",
+    "sha256": "b05f962f6429cc24ccf88977e90a9287218da5fbec9f403db2126faaf665336d"
+  },
+  "https://docs.python.org/3/s15-fixture/shell.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/0c7d0289182a8ac374139858925749377e571aad33ae5eec36af7e37a2b0a21a.html",
+    "product": "Python",
+    "sha256": "b87fb37ca71497077c7a806e91d703213eeeb7896121ded5fa1cd9fd9a26801a"
+  },
+  "https://docs.python.org/3/s15-fixture/similar_product-shell.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/4bc4baa0658a69124bbe45e3cdd2f1bb6a518d496f56755ad51b911046189d2e.html",
+    "product": "Python",
+    "sha256": "b05f962f6429cc24ccf88977e90a9287218da5fbec9f403db2126faaf665336d"
+  },
+  "https://docs.python.org/3/s15-fixture/similar_product.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/9ef9d87389fffcfd4aba8eb9388d0fb4928be16239a3b289cd17224317fbb6a4.html",
+    "product": "Python",
+    "sha256": "9a025269edab01761ea576f58e43ebf3de814e80cb93ef4b10a0f87f20aeb0d0"
+  },
+  "https://docs.python.org/3/s15-fixture/unverified_source-shell.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/e3a55feaa9d14b52760112af5d159d8f4c2959f1b540e49085b283ffc552aa47.html",
+    "product": "Python",
+    "sha256": "b05f962f6429cc24ccf88977e90a9287218da5fbec9f403db2126faaf665336d"
+  },
+  "https://docs.python.org/3/s15-fixture/unverified_source.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/58d2fe46f6776a660f935b68c75b07e2737ac48cf9d6c5ccf17c10988a41c21c.html",
+    "product": "Python",
+    "sha256": "522870f27a9f60042dbee5aa7129d40f93eb9bd696a7f2e729de64734c090f1a"
+  },
+  "https://docs.python.org/3/s15-fixture/upstream_failure-shell.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/48586df7ce52c83865b133bdd8156f56c4d3fb5196338702cc92d88082e6402c.html",
+    "product": "Python",
+    "sha256": "b05f962f6429cc24ccf88977e90a9287218da5fbec9f403db2126faaf665336d"
+  },
+  "https://docs.python.org/3/s15-fixture/upstream_failure.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/a42463088f0bcf53ce462de898c9594fb108feb337eb25c4d1b5fa89de985f1e.html",
+    "product": "Python",
+    "sha256": "a64015aca03c629d42e932ccc6d8f0aa34a51b912e2a720ad4ade74b1edd9f5b"
+  },
+  "https://docs.python.org/3/s15-fixture/wrong_version-shell.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/b29064d2957267244a1194acf9ccff4dc50ce7c73ef20ddd7ca6500dd4fec932.html",
+    "product": "Python",
+    "sha256": "b05f962f6429cc24ccf88977e90a9287218da5fbec9f403db2126faaf665336d"
+  },
+  "https://docs.python.org/3/s15-fixture/wrong_version.html": {
+    "actual_version": "3",
+    "official": true,
+    "path": "pages/14ee61f97013146ec23004aeef96cd9ce3365868c6fa49ebed3841c7b5215fc6.html",
+    "product": "Python",
+    "sha256": "4ff98a4d982daec271872bc74a1253f51659599a9cabc6cff8dfd55cac9c94e7"
+  },
+  "https://other-product.example.org/18/ambiguous.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/1be4251b7b72c404c704131ea42d28c099643d3159e7595decc463afcb340609.html",
+    "product": "OtherProduct",
+    "sha256": "9deb6af5b260561c83c4684ae1a6fa1bb33cc38dad768f1dad10878814639a21"
+  },
+  "https://other-product.example.org/18/budget_exhausted.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/bab30c09598fb356d0be9baf190fa1f3855df0dc6a27a53cb9ea0c703ef01bdd.html",
+    "product": "OtherProduct",
+    "sha256": "e6370463c3974101387a729fe231ca588a8cecab746da6ddb80762c5de37b589"
+  },
+  "https://other-product.example.org/18/duplicate.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/fbb9e3bd310279f025ba7b26dd0fb9964f0982bd844f0ff58392723e81345cee.html",
+    "product": "OtherProduct",
+    "sha256": "178c5e896679817f75a71846a90182d63e3bd3c8a35893f3cd014fd396e9cf9c"
+  },
+  "https://other-product.example.org/18/empty_then_rewrite.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/c1724e9fb934ebd5df85c232ebbe079df4bac6f7c0e0ef6f91c2393cde917c67.html",
+    "product": "OtherProduct",
+    "sha256": "8066c59ffc9ea3fb454104cec9439180c08713400c8318f004cb7fb29b1be645"
+  },
+  "https://other-product.example.org/18/exact.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/38e3d5c4e13957b5f2d49bc46d0b8e8d9031c0cb7f84dd33624d95ae71af39c4.html",
+    "product": "OtherProduct",
+    "sha256": "a4d58b18908702a3c888d2f20659b2378f044bfd27c6705d2a69acd89b798b6f"
+  },
+  "https://other-product.example.org/18/shell.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/d79f91d415dbe2ff799a85da911fd4b36ccd1e7c38adf34bd1ec1ce993db4e0b.html",
+    "product": "OtherProduct",
+    "sha256": "21b3d41ce0ef6a9a7823ab7ade1eb90e68445ddd2daea93ba3879cb175a23cac"
+  },
+  "https://other-product.example.org/18/similar_product.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/2ce2d0fdc35e02e37800251ad9098a5a81852c883e28d1e2cc4114963fc16b43.html",
+    "product": "OtherProduct",
+    "sha256": "011eaaae0998bae1a223720b6b6db7879f88ccded2bc3ddeaa8f8cc31a7add65"
+  },
+  "https://other-product.example.org/18/unverified_source.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/bb91a123a4822020c43b4b3b3caa703823c9939df9d738cb7112163d2e702604.html",
+    "product": "OtherProduct",
+    "sha256": "daf0b1523a95e266c0a5fc57725b5cb7d6c31b83fb63e56c9532251a40a02381"
+  },
+  "https://other-product.example.org/18/upstream_failure.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/ed63794492736aadbcf77c3cc409ae78f398e1984eda07c2031974642cc468fa.html",
+    "product": "OtherProduct",
+    "sha256": "bf10edeafc32b3a529e84fd9ef41e6b97fb22487f032a27d36659d82abf9673d"
+  },
+  "https://other-product.example.org/18/wrong_version.html": {
+    "actual_version": "18",
+    "official": false,
+    "path": "pages/8a388097317cfc885c97a81150313b8a3dc9c25c61cca445607114438e04d4f5.html",
+    "product": "OtherProduct",
+    "sha256": "3a202aa665f1ee7291dd1aa742ced6e0274799123ecf8f6e7cacb5ba31b51932"
+  },
+  "https://other-product.example.org/3/ambiguous.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/917129d3080d4a4c87e7828a80aa15d46ad1fb8946e7218dc56ec1850e6ebfef.html",
+    "product": "OtherProduct",
+    "sha256": "ef00b9de76f9d16236ec879596e439c2992d349c6e541dc2127cbcd902fde12b"
+  },
+  "https://other-product.example.org/3/budget_exhausted.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/08c81283d5e7edf0d0426b2cb891caeff085f06dc43a45323ed8fe0e5029557a.html",
+    "product": "OtherProduct",
+    "sha256": "8653b46f9631f8f7fb5bf62dd8f41082f37c8fbae227ed51f1e3c939b6f3e1d9"
+  },
+  "https://other-product.example.org/3/duplicate.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/5f2cc07cce3f19aa755f370fb4db66d8324d0b78f02de6e5dc23e17b79bd829d.html",
+    "product": "OtherProduct",
+    "sha256": "b1c6bfa2d7b47e22ac09ed57c872662d81847374501a2a224a94d4f8926d69d1"
+  },
+  "https://other-product.example.org/3/empty_then_rewrite.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/f2d260488c8ff051994ae91a97a5d24d02e6bd962a618525622c21fa98a82e6a.html",
+    "product": "OtherProduct",
+    "sha256": "788089efc954f96bd4d87b30dfedcaf72ae77f5714b6983dcee13cfb6e1844ed"
+  },
+  "https://other-product.example.org/3/exact.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/afa697d68b22c26b707d08c2db20db6425e0d47b76d85003790253a6215acee3.html",
+    "product": "OtherProduct",
+    "sha256": "b0c6ea85cfea2e1fe00184e0655f72947e9f228b04de0555e44bde0406f70bec"
+  },
+  "https://other-product.example.org/3/shell.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/1978b1376d1a87d0115144ae46131e51e7727a92b617848425caaf34a0baea8b.html",
+    "product": "OtherProduct",
+    "sha256": "9a3472b91eb0ee4b299a8cb7d54aacfc159640f3497ffadecd0097e4652852ff"
+  },
+  "https://other-product.example.org/3/similar_product.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/e303e6c38cf0606d4487201eb4fba2f02fbde75bc06356549b607a8209a5ddd6.html",
+    "product": "OtherProduct",
+    "sha256": "7d30d63a39ee50587570b390401fbf0eee747db7aed88c411421a439f8319451"
+  },
+  "https://other-product.example.org/3/unverified_source.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/cb1c5c17852aede38476a671ffbd553c47c9d083985ff40213b6a95c899188ae.html",
+    "product": "OtherProduct",
+    "sha256": "b0214acf93649db1e18b66076c1479e7c376c37ce96c34bfea70a9b85abb1154"
+  },
+  "https://other-product.example.org/3/upstream_failure.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/317e9846c28a811db58e854561e0dd39e1feef52d58a0cc6cd130604c728c41f.html",
+    "product": "OtherProduct",
+    "sha256": "640ac778858205c6dc3b171090f03ca07d42901ef38ad9e8d53aacdd37450374"
+  },
+  "https://other-product.example.org/3/wrong_version.html": {
+    "actual_version": "3",
+    "official": false,
+    "path": "pages/0e4e6a04461ecb99c222d40f2d702b42836e86b54d6b15fcef90abe1438d555a.html",
+    "product": "OtherProduct",
+    "sha256": "19aabd4ad21aef9c5d25036d5ab55bc5e047af0944b73136647de3977bb8806d"
+  },
+  "https://other-product.example.org/7/ambiguous.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/524422870fd3412a38c7fb7677ef20312ea01fa6fec931081c190b21e23dbee6.html",
+    "product": "OtherProduct",
+    "sha256": "a10179a4ceeb40ee4b6209f6c17dece875b37b57ff2ec0310b50cca14958ae93"
+  },
+  "https://other-product.example.org/7/budget_exhausted.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/01bed38faa22ae5ddf71dd822484805972dcb340e881519747c76900bc37a591.html",
+    "product": "OtherProduct",
+    "sha256": "1c4412397e3c216ed32538855385b519483a1db3166652a9e63d01a8db5540d1"
+  },
+  "https://other-product.example.org/7/duplicate.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/a29e55acabda564fa41b473aa67e26041a4c72b14a0e6baf46a4df2e8c58121c.html",
+    "product": "OtherProduct",
+    "sha256": "87938b4c444a15b04a5de615f8aecb7dc046f2bdbaaedf4407859cbee5323cb4"
+  },
+  "https://other-product.example.org/7/empty_then_rewrite.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/912188d0671d38c940401d967413a2432e0f27f83f074bc2e37eeb1914625e6e.html",
+    "product": "OtherProduct",
+    "sha256": "7c7fd5fb4b1ac25d9dd72078521de8e718dfe1b70b798bba975d41dd6f23f8b2"
+  },
+  "https://other-product.example.org/7/exact.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/85e8eed4e92c3b784518b9df35ac77636f4818f2ec9151be9a75e7d9c8861295.html",
+    "product": "OtherProduct",
+    "sha256": "91ca71eafd9dfc86a960a334d7f664aa43537556ce1bb0643821fe51b513a812"
+  },
+  "https://other-product.example.org/7/shell.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/ad826784804b4be566afbbc784b1296bc7385423dcc81f2f85e7b58f7dd073e7.html",
+    "product": "OtherProduct",
+    "sha256": "451e8c9299b7cbb11963ffb9ade4c4beb15c4b784c07de709e85079c17a843eb"
+  },
+  "https://other-product.example.org/7/similar_product.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/e6ae71aa540c99654a31f3a2b2ed355772a4e46be34016f5fe8e64d29ce0bac7.html",
+    "product": "OtherProduct",
+    "sha256": "fc445cc8fbe702bf9f1be69c4573d9c6de8b3d69720588c5c144256a493e1fb5"
+  },
+  "https://other-product.example.org/7/unverified_source.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/4a23ba3d16621721192ac0b13ab7cec9d6745aaec49d383ddc46284239868535.html",
+    "product": "OtherProduct",
+    "sha256": "0a6eafadd11294b87853b10c3ed03606bcea11f0e4fc8f97d28b1684a78f2a0c"
+  },
+  "https://other-product.example.org/7/upstream_failure.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/1f2b1485ca3d658bda627978ad195605b92d61d3865121508f8dcfc96b7dea91.html",
+    "product": "OtherProduct",
+    "sha256": "196f65198ec703fe00062993fdf4f7c840114da0e05005aef3f668f92387df08"
+  },
+  "https://other-product.example.org/7/wrong_version.html": {
+    "actual_version": "7",
+    "official": false,
+    "path": "pages/c56e3ddd8b50d51022d3a1768fbbfa8f042675739dc4016119f1f18147cd4ab4.html",
+    "product": "OtherProduct",
+    "sha256": "6b2a6b026ae238dc00a86831df45a3be5b2d32bd1ba6f8ca7ecb72ecb8894ede"
+  },
+  "https://redis.io/6/s15-fixture/ambiguous.html": {
+    "actual_version": "6",
+    "official": true,
+    "path": "pages/a9103d50a5dd29601e3286175277e82720d6500cef9a683bdfa4fde98aa05401.html",
+    "product": "Redis",
+    "sha256": "8a68595a3f4a90fbb2b42f1987820e8faacb41d3e75a3cf8f52b93646c9debc6"
+  },
+  "https://redis.io/6/s15-fixture/budget_exhausted.html": {
+    "actual_version": "6",
+    "official": true,
+    "path": "pages/ed230c5fc60f99118d59f41808cc4c455f50aacc0c2990fb502c00807d44b850.html",
+    "product": "Redis",
+    "sha256": "ee417d47a1dd65b6a4060607c1a631c8f6dea0af9a0e853d34a2d27fb29ade1f"
+  },
+  "https://redis.io/6/s15-fixture/duplicate.html": {
+    "actual_version": "6",
+    "official": true,
+    "path": "pages/e8b816b69a1e113a3807a660363b899165ad6611f3f8c3c0742887285d8c5369.html",
+    "product": "Redis",
+    "sha256": "ef5d839e859da002b3b8cc48cec923317b21e61dc4f2f90d682740fc7068beb5"
+  },
+  "https://redis.io/6/s15-fixture/empty_then_rewrite.html": {
+    "actual_version": "6",
+    "official": true,
+    "path": "pages/0ef29565fbc0bf930c0859893d671a54fd8fec1929b4709d1032d5021953e0f2.html",
+    "product": "Redis",
+    "sha256": "9615bd839bc6293310c22586caf2271bd0840958ca02f6e33d65bf1a4e328e8b"
+  },
+  "https://redis.io/6/s15-fixture/exact.html": {
+    "actual_version": "6",
+    "official": true,
+    "path": "pages/4471f06a23f92131e3bea4541664e1b410a27405afebbc97f5708c1dd921ce81.html",
+    "product": "Redis",
+    "sha256": "95d52d0b489e69f896a326fd236d2d24f98934a8b4c61ea958876850898b8da4"
+  },
+  "https://redis.io/6/s15-fixture/shell.html": {
+    "actual_version": "6",
+    "official": true,
+    "path": "pages/f0b05a62d27a5338d76e9c2018556ad719f9ed00e5f3caeb453bc09f78b8c530.html",
+    "product": "Redis",
+    "sha256": "8ef42a648edff843bd59716b1a807b8e410ba169be893293aa6580a568fd3032"
+  },
+  "https://redis.io/6/s15-fixture/similar_product.html": {
+    "actual_version": "6",
+    "official": true,
+    "path": "pages/9c63d7f4bc99d3def3e032c6a739e8079eb4df9e677ffa0da92e7e7a22aa1233.html",
+    "product": "Redis",
+    "sha256": "e114792041480a91a15f72e12ca5ce350a56b833ceca8c9a8489c88b53598bf4"
+  },
+  "https://redis.io/6/s15-fixture/unverified_source.html": {
+    "actual_version": "6",
+    "official": true,
+    "path": "pages/0a4277db2f5a6eeb334aff857285e32c31b279ae6b97b365d2b9392da7981768.html",
+    "product": "Redis",
+    "sha256": "415f54e2d2c46db2a9d1c03a19835a69663e95ba6c334eabf5b98a03cffdaa20"
+  },
+  "https://redis.io/6/s15-fixture/upstream_failure.html": {
+    "actual_version": "6",
+    "official": true,
+    "path": "pages/43c5f482236376636776fc4c625b86dae6c03a8c9dc48fd89788cd0bf5109a62.html",
+    "product": "Redis",
+    "sha256": "d6aab9969031e108fc24b2690be9d99b913c0fc2cc6dfc0a49e80494e41088f2"
+  },
+  "https://redis.io/6/s15-fixture/wrong_version.html": {
+    "actual_version": "6",
+    "official": true,
+    "path": "pages/a0625a296a0484db3be4529d4afa3b856077b068798c404cfe40593bffbd256b.html",
+    "product": "Redis",
+    "sha256": "3b148318ff74344602500df2280fe81c47595c024865e2396df1a029a309c3a2"
+  },
+  "https://redis.io/7/s15-fixture/ambiguous-shell.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/b6775bb3a7eb7cafea165a68864721c008b98e53824c6c892fbff6eea0a13251.html",
+    "product": "Redis",
+    "sha256": "b2d9c7d6c927b1d6e540aaa59380cd4395b6c9c96b8700df9401ad5232e0e168"
+  },
+  "https://redis.io/7/s15-fixture/ambiguous.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/282651cca92ade262ddd52436b91ae0be66e0fba98a11d973326ea512acac515.html",
+    "product": "Redis",
+    "sha256": "b04e2b45851d5a50133f0bbe9352ad2be03e1ca5b68694d140aba24f1ba16df4"
+  },
+  "https://redis.io/7/s15-fixture/budget_exhausted-shell.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/03bfccb52a43aa68ccc5ce215f3cfd17456fcdfbebb448091cfdde47dc7ff9a5.html",
+    "product": "Redis",
+    "sha256": "b2d9c7d6c927b1d6e540aaa59380cd4395b6c9c96b8700df9401ad5232e0e168"
+  },
+  "https://redis.io/7/s15-fixture/budget_exhausted.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/7530ddf031e511fe7d64d36917206c608892cca55574a98f19fae9b339c1e598.html",
+    "product": "Redis",
+    "sha256": "eeb91ee5b5f2af95e7038d230988dd231f4ee0eb4e59f5e0fff732e3d6e2ab7a"
+  },
+  "https://redis.io/7/s15-fixture/duplicate-shell.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/2a8e4ed92f2f38f6578cf7a6212150cc18757400f076c0604fb406bb06e8b90c.html",
+    "product": "Redis",
+    "sha256": "b2d9c7d6c927b1d6e540aaa59380cd4395b6c9c96b8700df9401ad5232e0e168"
+  },
+  "https://redis.io/7/s15-fixture/duplicate.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/fd7030b61bf493214a1d30f9fbbe0f91a164370a454ff5362ddb8c7248a92632.html",
+    "product": "Redis",
+    "sha256": "55efff862f48f1560f7b4d463a1180516bcbc6bf8dd2a3e2a7246f3a758ba995"
+  },
+  "https://redis.io/7/s15-fixture/empty_then_rewrite-shell.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/67a18e37ecde610a4453d7e59047c1e639fa177f1208c75653441ecbcb71b1e8.html",
+    "product": "Redis",
+    "sha256": "b2d9c7d6c927b1d6e540aaa59380cd4395b6c9c96b8700df9401ad5232e0e168"
+  },
+  "https://redis.io/7/s15-fixture/empty_then_rewrite.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/efdd4a9edc376096ee4636590ebcc6fe3fec21695d1c1e3b87375c2534b3aa43.html",
+    "product": "Redis",
+    "sha256": "a615e75ae9a1e4ce99ecbffb2851a3ed926e83c835f6565e6973c25dccd26fa4"
+  },
+  "https://redis.io/7/s15-fixture/exact-shell.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/f5c1efc7bb041a4b6914f21e056a52af2b634799098464bce24796d6f5d7ae4f.html",
+    "product": "Redis",
+    "sha256": "b2d9c7d6c927b1d6e540aaa59380cd4395b6c9c96b8700df9401ad5232e0e168"
+  },
+  "https://redis.io/7/s15-fixture/exact.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/3ed184f1c7101f611aa269f742c1b3a1c664da9b2b50b565c2a6aa57114f2c46.html",
+    "product": "Redis",
+    "sha256": "2d27071e70bd4dbe2ac3f4825f82120e137f0f3980d53385bbfd0168771b4875"
+  },
+  "https://redis.io/7/s15-fixture/shell-shell.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/00545a57638089cd537e86c44d4abb8351fc2454d9c3a6bd251794ad2396f01e.html",
+    "product": "Redis",
+    "sha256": "b2d9c7d6c927b1d6e540aaa59380cd4395b6c9c96b8700df9401ad5232e0e168"
+  },
+  "https://redis.io/7/s15-fixture/shell.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/5b93a1144f109c340a58b0d33bfbf9c7471f64c10e0bb86095915e3800569eba.html",
+    "product": "Redis",
+    "sha256": "91426b18190a755fd6adf0058c8327b0573100ac7b1f80c630a99d4a059dc0fe"
+  },
+  "https://redis.io/7/s15-fixture/similar_product-shell.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/671a73cfc6dc099a9c6a7cafa1fe776ee04bc31e722a5e567b6d359f23440cef.html",
+    "product": "Redis",
+    "sha256": "b2d9c7d6c927b1d6e540aaa59380cd4395b6c9c96b8700df9401ad5232e0e168"
+  },
+  "https://redis.io/7/s15-fixture/similar_product.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/bdc276e7c4617acdb5ac173e226b5306c266a74767c8ec425fad47213e0f2717.html",
+    "product": "Redis",
+    "sha256": "d3570d138a93689dce490812951537236745c51f05fa14f2dd664ca9b264bf70"
+  },
+  "https://redis.io/7/s15-fixture/unverified_source-shell.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/b9ccf69804b152b254028446651754e91a083b8b4d10088f5229a54d44ec40e5.html",
+    "product": "Redis",
+    "sha256": "b2d9c7d6c927b1d6e540aaa59380cd4395b6c9c96b8700df9401ad5232e0e168"
+  },
+  "https://redis.io/7/s15-fixture/unverified_source.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/c3194b225793a7b422a6912f417283cd772b5a389fc474f3e685a69635511e93.html",
+    "product": "Redis",
+    "sha256": "ddb2e129a41e472cd4a0232f26fd14b2f2809888e33c9df29faba0c5dc4b147e"
+  },
+  "https://redis.io/7/s15-fixture/upstream_failure-shell.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/863b7098da55642d452f6f6047a413b8124c6254e274fe6518ffce05ae9e7ed3.html",
+    "product": "Redis",
+    "sha256": "b2d9c7d6c927b1d6e540aaa59380cd4395b6c9c96b8700df9401ad5232e0e168"
+  },
+  "https://redis.io/7/s15-fixture/upstream_failure.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/37372ec173fb383a1e75d17261d20ed50c8038d32ff314a998b09529ea6b49c1.html",
+    "product": "Redis",
+    "sha256": "f33290c3d69a4f7fa07baafc89d8e76cfab644d3064b53bf3d0d0cd44e6c1c21"
+  },
+  "https://redis.io/7/s15-fixture/wrong_version-shell.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/88840dcbe519794b4d08af5c0c72dc5f0bb021fc837c2834d5d5d54f3095a5e3.html",
+    "product": "Redis",
+    "sha256": "b2d9c7d6c927b1d6e540aaa59380cd4395b6c9c96b8700df9401ad5232e0e168"
+  },
+  "https://redis.io/7/s15-fixture/wrong_version.html": {
+    "actual_version": "7",
+    "official": true,
+    "path": "pages/f83d36355f38cd6de5b252debc59b6dc09c5349ecebc68af5aefb06153f546a8.html",
+    "product": "Redis",
+    "sha256": "013b5015ed3bb8745a5fecaefa75b8b5a2fe9c74472c57159058952a19d109b3"
+  },
+  "https://www.postgresql.org/17/s15-fixture/ambiguous.html": {
+    "actual_version": "17",
+    "official": true,
+    "path": "pages/f0d918d680ef3161962a7ae1e6606c313e8ea0991a5caadcbf2d77a18604b48f.html",
+    "product": "PostgreSQL",
+    "sha256": "492441619633edae7fb8dce3905eeb1b958fc9d7f622ad902c2c91f571f43148"
+  },
+  "https://www.postgresql.org/17/s15-fixture/budget_exhausted.html": {
+    "actual_version": "17",
+    "official": true,
+    "path": "pages/faae83cac71bdd7398043617117c0d116896d926d0eba980ede0577c0eed56a3.html",
+    "product": "PostgreSQL",
+    "sha256": "ca4032a192d4de4d9a92c564612ca7868a5b21ef6317331a651939ca61d3c8c4"
+  },
+  "https://www.postgresql.org/17/s15-fixture/duplicate.html": {
+    "actual_version": "17",
+    "official": true,
+    "path": "pages/3060d5ba8db11e52d1aab4424257c04b16957f3ab882853a6a11c592ce94c52d.html",
+    "product": "PostgreSQL",
+    "sha256": "80b5dde3dc6d1e1624b86ff1642c825196b879064c7a9e677c0cbbfb3a21a3aa"
+  },
+  "https://www.postgresql.org/17/s15-fixture/empty_then_rewrite.html": {
+    "actual_version": "17",
+    "official": true,
+    "path": "pages/9e576398b328b20779724f8e6c185a6f5672e598e5c9d301661086b6dcf5840c.html",
+    "product": "PostgreSQL",
+    "sha256": "4f44e62c151b57e82db7932f0633559746d7ac9cfea773ae6d6d173e9708d99f"
+  },
+  "https://www.postgresql.org/17/s15-fixture/exact.html": {
+    "actual_version": "17",
+    "official": true,
+    "path": "pages/9ef6a99d4b1fccfd395d999bf17aece942817929ae116ffdb8c6a1f6da24cb9c.html",
+    "product": "PostgreSQL",
+    "sha256": "c3f8f5d6344b8be7c8f98437234282cfa842ee3778ccd606bdaa913cf6e23a36"
+  },
+  "https://www.postgresql.org/17/s15-fixture/shell.html": {
+    "actual_version": "17",
+    "official": true,
+    "path": "pages/0a8c72997cc05d89aabbb28ffdd926b0eb082feec5c63acd55e01f0c80d3f4d3.html",
+    "product": "PostgreSQL",
+    "sha256": "115fd8af466d0acdb36d4954ccdfb474cc64fdb38d9c54879d094b7e81be9171"
+  },
+  "https://www.postgresql.org/17/s15-fixture/similar_product.html": {
+    "actual_version": "17",
+    "official": true,
+    "path": "pages/f374f8e6155ba5b77260fe838970007658015db40588ab45f4a09830b44e1b8e.html",
+    "product": "PostgreSQL",
+    "sha256": "f8962a9c7693c229fa44d175f1ecbc16cde8f731b85260c8a15883a53285ff1a"
+  },
+  "https://www.postgresql.org/17/s15-fixture/unverified_source.html": {
+    "actual_version": "17",
+    "official": true,
+    "path": "pages/5a670b6086478d531218fadd3fd4d9ef4741207194dd7fc91ce31474c8b826d6.html",
+    "product": "PostgreSQL",
+    "sha256": "21b56ed22bf95a87081a4b7383a4152b60da7eb94e0701e5de94b1978f5b2a0d"
+  },
+  "https://www.postgresql.org/17/s15-fixture/upstream_failure.html": {
+    "actual_version": "17",
+    "official": true,
+    "path": "pages/b7ff252e56c720f9055374608c3892a41bebcaa0d0ab79d73879b7d4f869ae5c.html",
+    "product": "PostgreSQL",
+    "sha256": "0cb88e3812c149cad0f5d4a0632a09f64b93f397b4afdece7cd4d8ce9e238ae8"
+  },
+  "https://www.postgresql.org/17/s15-fixture/wrong_version.html": {
+    "actual_version": "17",
+    "official": true,
+    "path": "pages/87239bff0372634ef318ba9408db69c60274f7b838387f957e117d2fb22f5476.html",
+    "product": "PostgreSQL",
+    "sha256": "eaf41b7e67d211b4247506fc8bc51353e487e6b3942276a9fbad2611781a618f"
+  },
+  "https://www.postgresql.org/18/s15-fixture/ambiguous-shell.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/f49efaab466a1a9522b345ca6ee65d4fe00235fbccabcfeb483321af49e37b63.html",
+    "product": "PostgreSQL",
+    "sha256": "a606bb0f1ab2a16268893c76eb5acbd09d06180fc8974474e159ae6883e6a51e"
+  },
+  "https://www.postgresql.org/18/s15-fixture/ambiguous.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/1eeeb2634f154ab5a7d2c52c30ef502da9dd3c565ece70a54f7b998f3e4858d7.html",
+    "product": "PostgreSQL",
+    "sha256": "b6ca7f8a5c43521a41efd6e3b3c4b33e9fff81f1314f26e42a69f96d25e5985d"
+  },
+  "https://www.postgresql.org/18/s15-fixture/budget_exhausted-shell.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/784d0ee6de4add5711ed25a5c328cb3f82bed57e0f304d3be285f0283b5d2d23.html",
+    "product": "PostgreSQL",
+    "sha256": "a606bb0f1ab2a16268893c76eb5acbd09d06180fc8974474e159ae6883e6a51e"
+  },
+  "https://www.postgresql.org/18/s15-fixture/budget_exhausted.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/cf986088bad64812fe151ae96b24a43da4c461033e8eaab6fa090fc545348695.html",
+    "product": "PostgreSQL",
+    "sha256": "08f2000a3073cfb2c88db2d8e2e05effd85ce811b977155fdfa9fc7e17a666db"
+  },
+  "https://www.postgresql.org/18/s15-fixture/duplicate-shell.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/429bd03974218b8c4a4e6095a5f409b1af938395faaa00a309e42254778673b9.html",
+    "product": "PostgreSQL",
+    "sha256": "a606bb0f1ab2a16268893c76eb5acbd09d06180fc8974474e159ae6883e6a51e"
+  },
+  "https://www.postgresql.org/18/s15-fixture/duplicate.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/e74e6d7ba7a7a4ede05f87bf9792dfd56e2663c85e5cde23ead23d5c1140728b.html",
+    "product": "PostgreSQL",
+    "sha256": "9b2b747ddb0639cc79142bbeab499207c8d501c76352418f01bc9acb491fee24"
+  },
+  "https://www.postgresql.org/18/s15-fixture/empty_then_rewrite-shell.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/8aaa39b6f1af19001c156c71643f8822ba60b848cb1be6a6cf4c1288dec709ba.html",
+    "product": "PostgreSQL",
+    "sha256": "a606bb0f1ab2a16268893c76eb5acbd09d06180fc8974474e159ae6883e6a51e"
+  },
+  "https://www.postgresql.org/18/s15-fixture/empty_then_rewrite.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/38fae8a0305064c44c2950afc0939e3e933195476076f13495ddd02ebffc2866.html",
+    "product": "PostgreSQL",
+    "sha256": "1beb0f49509fd0d4655d88293f5b9bf73fcd21274509666c204f714de8f7b547"
+  },
+  "https://www.postgresql.org/18/s15-fixture/exact-shell.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/d1b76043d6310cc1d1e8c2f59a12faabdd36e4c7627ebec59c292a1d522a58ab.html",
+    "product": "PostgreSQL",
+    "sha256": "a606bb0f1ab2a16268893c76eb5acbd09d06180fc8974474e159ae6883e6a51e"
+  },
+  "https://www.postgresql.org/18/s15-fixture/exact.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/ff602ac3a7ffdb31f624baa8a5caa8ad946c8419ab9588d6d292f8c347a43866.html",
+    "product": "PostgreSQL",
+    "sha256": "b456be8f97c27c16f1e4689b450ed996ad5c015754124ba046e3dc707de04488"
+  },
+  "https://www.postgresql.org/18/s15-fixture/shell-shell.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/ff1d79296a90b7a6f98be4f6900b33b0ea9564e53b44a82b1bd4faa36a465fbc.html",
+    "product": "PostgreSQL",
+    "sha256": "a606bb0f1ab2a16268893c76eb5acbd09d06180fc8974474e159ae6883e6a51e"
+  },
+  "https://www.postgresql.org/18/s15-fixture/shell.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/75706c4c3ebc2119c91999036792def5ec2b41bf87cb9038e55a4de7e13596c4.html",
+    "product": "PostgreSQL",
+    "sha256": "332d9c06e7b79d7826dab94d77ef3d286dedf0cd755a81f6402b6cbc7e136fbc"
+  },
+  "https://www.postgresql.org/18/s15-fixture/similar_product-shell.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/518dbd73374ef03005fbf03e628d596f44a053cb1bf12f03c7c886cdbfd38480.html",
+    "product": "PostgreSQL",
+    "sha256": "a606bb0f1ab2a16268893c76eb5acbd09d06180fc8974474e159ae6883e6a51e"
+  },
+  "https://www.postgresql.org/18/s15-fixture/similar_product.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/d9328f85e1145056cf8c032eb678a6c7c1fb437a57758378c7b2d01daaee9416.html",
+    "product": "PostgreSQL",
+    "sha256": "e6cfa9ec9ecec232811a2ca5eef57038dab3a8870b229dd50f8b69920b44c836"
+  },
+  "https://www.postgresql.org/18/s15-fixture/unverified_source-shell.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/a8e08bc9b5faf100a7d2e8fbbe412673c1125c4a40e68befc5a3ea086a759333.html",
+    "product": "PostgreSQL",
+    "sha256": "a606bb0f1ab2a16268893c76eb5acbd09d06180fc8974474e159ae6883e6a51e"
+  },
+  "https://www.postgresql.org/18/s15-fixture/unverified_source.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/1eee604df4fcd18153c0280e47da3432a4c763daa59dde591cf62b4e1ed281c1.html",
+    "product": "PostgreSQL",
+    "sha256": "f2e2595b0fac90779735ec3a7c6d6a897d528b6bd79d27166644b7678b654d8e"
+  },
+  "https://www.postgresql.org/18/s15-fixture/upstream_failure-shell.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/50b3a00826428e3a85d8852bd335ddbceb3a8801d367333e3c7932213c23162a.html",
+    "product": "PostgreSQL",
+    "sha256": "a606bb0f1ab2a16268893c76eb5acbd09d06180fc8974474e159ae6883e6a51e"
+  },
+  "https://www.postgresql.org/18/s15-fixture/upstream_failure.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/722e8d4f91614f0e84d16604885353b50eb562b65cbb02dcf4e8456b046d6746.html",
+    "product": "PostgreSQL",
+    "sha256": "cbca909f9d5596003e0df04ffc7cc43795a0f1baae601d8de5afcccb38c34aaa"
+  },
+  "https://www.postgresql.org/18/s15-fixture/wrong_version-shell.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/2b47d7b284912f0820eb41c7a8d8ec6f30f6f5b060c83f7635ac7762c3b75203.html",
+    "product": "PostgreSQL",
+    "sha256": "a606bb0f1ab2a16268893c76eb5acbd09d06180fc8974474e159ae6883e6a51e"
+  },
+  "https://www.postgresql.org/18/s15-fixture/wrong_version.html": {
+    "actual_version": "18",
+    "official": true,
+    "path": "pages/351bd90f29041986a2c2dd3deb1c43e9af459857e0414047cebd112959ed55df.html",
+    "product": "PostgreSQL",
+    "sha256": "9855484ddacecb33ab38e6ceee1daa719985addb518a5b4fe31ed8cd2771395c"
+  }
+}

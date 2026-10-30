@@ -14,5 +14,11 @@ data/raw/
 data/processed/
 .qdrant/
 .bm25/
+.knowledge/
 reports/generated/
 *.log
+
+.env.*
+!.env.example
+/docs/
+/reports/s15_ingestion/
